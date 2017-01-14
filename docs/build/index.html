@@ -1,0 +1,1269 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Documentação API</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #272822;
+  background-color: #f92672;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #f8f8f2;
+}
+.highlight .p, .highlight .pi {
+  color: #f8f8f2;
+}
+.highlight .gi {
+  color: #a6e22e;
+}
+.highlight .gd {
+  color: #f92672;
+}
+.highlight .gh {
+  color: #66d9ef;
+  background-color: #272822;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #ae81ff;
+}
+.highlight .kc {
+  color: #fd971f;
+}
+.highlight .kt {
+  color: #fd971f;
+}
+.highlight .kd {
+  color: #fd971f;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #a6e22e;
+}
+.highlight .sr {
+  color: #a1efe4;
+}
+.highlight .si {
+  color: #cc6633;
+}
+.highlight .se {
+  color: #cc6633;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #66d9ef;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #a6e22e;
+}
+.highlight .ss {
+  color: #a6e22e;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;php&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">cURL</a>
+              <a href="#" data-language-name="php">PHP</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Pesquisar">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introdu-o">Introdução</h1>
+
+<p>Seja bem-vindo a documentação do Wide Pay! Aqui você encontrará as informações necessárias para fazer a integração com nossa infraestrutura.</p>
+
+<p>Antes de iniciar, crie sua conta no Wide Pay.</p>
+
+<p>Com a API do Wide Pay é possível utilizar qualquer recurso disponível em sua conta, como gerar transações, carnês, assinaturas, receber notificações toda vez que algum status sofrer alteração.</p>
+
+<p>Também é possivel utilizar os recursos de pagamento de contas, recargas de celular, transferências bancárias, transferências entre contas Wide Pay e para Cartão Wide Pay.</p>
+
+<h3 id="carteira-e-token">Carteira e token</h3>
+
+<p>Para utilização da API é necessário ter o ID da carteira e o token de autenticação.</p>
+
+<p>O conceito de carteiras do Wide Pay serve para que você possa separar os recebimentos, pagamentos e transferências. Ex. no caso de você ter duas lojas. (Colocar um exemplo prático aqui)</p>
+
+<p>Por padrão quando sua conta Wide Pay é feita, automaticamente é criada uma carteira padrão, essa carteira não pode ser usada em ambiente de testes nem em modo gateway.</p>
+
+<p>Para ter um gerenciamento completo de suas carteiras como criar, editar, obter ID e token, logue em sua conta Wide Pay, acesse o menu superior &ldquo;Configurações&rdquo;, depois clique em &ldquo;Carteiras e integrações&rdquo;.</p>
+
+<h3 id="modo-gateway">Modo gateway</h3>
+
+<p>Caso você não queira que o Wide Pay faça a intermediação dos seus recebimentos, tanto para boletos e cartão de crédito, é possível utilizar o &ldquo;Modo gateway&rdquo;. Ao adicionar uma carteira, você configura os parametros do banco para recebimento via boleto e da adquirente para recebimento via cartão de crédito.</p>
+
+<p>Nesse modo não há &ldquo;saldo&rdquo; na carteira, uma vez que o Wide Pay só servirá como gateway. Desse modo os menus de pagamentos, transferências e extratos são desativados.</p>
+
+<h3 id="ambiente-de-testes">Ambiente de testes</h3>
+
+<p>A configuração do ambiente de teste é feita na hora que você adiciona a carteira do Wide Pay.</p>
+
+<p>Após feito os testes de integração você poderá migrar a carteira para o ambiente de produção. Lembramos que uma carteira já em produção não pode ser migrada para o ambiente de testes.</p>
+
+<h3 id="endpoint-e-respostas">Endpoint e respostas</h3>
+
+<p>Todas as requisições são feitas no endpoint:</p>
+
+<p><code class="prettyprint">https://api.widepay.com</code></p>
+
+<p>Todas as respostas da API por padrão são em JSON, mas podendo ser em XML passando no header:</p>
+
+<p><code class="prettyprint">Accept: application/xml</code></p>
+
+<h3 id="d-vidas">Dúvidas?</h3>
+
+<p>Surgiu alguma dúvida ou sugestão para tornar nossa documentação melhor? Mande um e-mail para integracao@widepay.com e iremos te ajudar!</p>
+
+          <h1 id="bibliotecas">Bibliotecas</h1>
+
+<p>Nos exemplos que você encontrará pela documentação, usaremos o cURL e os códigos compatíveis com as bibliotecas disponíveis.</p>
+
+<h2 id="php">PHP</h2>
+
+<blockquote>
+<p>Inclusão via arquivo composer.json</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"require"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"widepay/sdk-php"</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Para instalar a biblioteca PHP, basta baixá-la do nosso <a href="https://github.com/widepay/sdk-php" target="_blank">GitHub</a> e copiá-la para a pasta do seu projeto. Você também pode instalá-la usando o <a href="https://getcomposer.org" target="_blank">Composer</a> via <a href="https://packagist.org/packages/widepay/sdk-php" target="_blank">Packagist</a>.</p>
+
+<p><code class="prettyprint">composer require widepay/sdk-php</code></p>
+
+          <h1 id="recebimentos">Recebimentos</h1>
+
+<p>&hellip;</p>
+
+<h3 id="marketplace">Marketplace</h3>
+
+<p>&hellip;</p>
+
+<h2 id="gerando-transa-es">Gerando Transações</h2>
+
+<p>&hellip;</p>
+<pre class="highlight shell"><code>curl <span class="se">\</span>
+    -X POST <span class="s1">'https://www.widepay.com/api/recebimentos/transacoes/adicionar'</span> <span class="se">\</span>
+        -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+    -u <span class="s1">'1001-2:a436691a169d06e56d4abc8e821c212b'</span> <span class="se">\</span>
+    -d <span class="s1">'tipo=Boleto'</span> <span class="se">\</span>
+    -d <span class="s1">'cliente=Claudio'</span> <span class="se">\</span>
+    -d <span class="s1">'itens[0][descricao]=Mensalidade'</span> <span class="se">\</span>
+    -d <span class="s1">'itens[0][valor]=10.50'</span>
+</code></pre><pre class="highlight php"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'WidePay.php'</span><span class="p">);</span>
+
+<span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'1001-2'</span><span class="p">,</span><span class="s1">'a436691a169d06e56d4abc8e821c212b'</span><span class="p">);</span>
+
+<span class="nv">$dados</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/transacoes/adicionar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'tipo'</span> <span class="o">=&gt;</span> <span class="s1">'Boleto'</span><span class="p">,</span>
+    <span class="s1">'vencimento'</span> <span class="o">=&gt;</span> <span class="s1">'2016-03-30'</span><span class="p">,</span>
+    <span class="s1">'pessoa'</span> <span class="o">=&gt;</span> <span class="s1">'Física'</span><span class="p">,</span>
+    <span class="s1">'cliente'</span> <span class="o">=&gt;</span> <span class="s1">'Claudio Almeida'</span><span class="p">,</span>
+    <span class="s1">'itens'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'descricao'</span> <span class="o">=&gt;</span> <span class="s1">'Mensalidade de Internet'</span><span class="p">,</span>
+            <span class="s1">'valor'</span> <span class="o">=&gt;</span> <span class="mi">30</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+</code></pre>
+<blockquote>
+<p>Retorno JSON da requisição:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"39147EA89103C909"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/39147EA89103C909"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"boleto"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4842590"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03399.71095 28800.000482 42590.701027 6 00000000001050"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"configuracoes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"033"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"agencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4582"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7109288"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"carteira"</span><span class="p">:</span><span class="w"> </span><span class="s2">"102"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"empresa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Almeida Desenvolvimento de Softwares Ltda - ME"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.655.911/0001-36"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="transa-es-consultar">Transações / Consultar</h3>
+
+<blockquote>
+<p>Consulta as transacoes</p>
+</blockquote>
+
+<p><code class="prettyprint">Autenticação obrigatória usando os parametros ws-conta e ws-token</code></p>
+
+<h6 id="url">URL</h6>
+
+<p>widepay.com/api/transacoes/consultar</p>
+
+<h6 id="parametros">PARAMETROS</h6>
+
+<table><thead>
+<tr>
+<th>Campos</th>
+<th>Obrigatório</th>
+<th>Tipo</th>
+<th>Observações</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Não</td>
+<td>String</td>
+<td>Pode ser múltiplo</td>
+</tr>
+</tbody></table>
+
+<h6 id="retorno">RETORNO</h6>
+<pre class="highlight php"><code>Array(3) {
+    ['success'] = Boolean(1) true
+    ['total'] = Integer(1) 2
+    ['transacoes'] =&gt; Array(2) {
+        ['0'] =&gt; Array(16) {
+            ['id'] = String(16) 2b1197bb86714ab1
+            ['tipo'] = String(6) Boleto
+            ['cliente'] =&gt; Array(13) {
+                ['pessoa'] = String(7) Física
+                ['nome'] = String(14) Lays Pontarolo
+                ['cpf'] = NULL(0) null
+                ['cnpj'] = NULL(0) null
+                ['email'] = NULL(0) null
+                ['celular'] = NULL(0) null
+                ['rua'] = NULL(0) null
+                ['numero'] = NULL(0) null
+                ['complemento'] = NULL(0) null
+                ['bairro'] = NULL(0) null
+                ['cep'] = NULL(0) null
+                ['cidade'] = NULL(0) null
+                ['estado'] = NULL(0) null
+            }
+            ['itens'] =&gt; Array(1) {
+                ['0'] =&gt; Array(4) {
+                    ['descricao'] = String(7) Produto
+                    ['valor'] = Integer(2) 50
+                    ['quantidade'] = String(1) 1
+                    ['desconto'] = Integer(1) 0
+                }
+            }
+            ['desconto'] = NULL(0) null
+            ['valor'] = String(5) 50.00
+            ['identificador'] = NULL(0) null
+            ['notificacao'] = NULL(0) null
+            ['redirecionamento'] = NULL(0) null
+            ['vencimento'] = String(10) 2015-10-10
+            ['criacao'] = String(19) 2015-08-19 15:40:09
+            ['status'] = String(10) Compensada
+            ['cancelamento'] = NULL(0) null
+            ['pagamento'] =&gt; Array(4) {
+                ['data'] = String(10) 2015-08-10
+                ['valor'] = Integer(2) 50
+                ['tarifa'] = Double/Float(4) 1.95
+                ['disponivel'] =&gt; Array(2) {
+                    ['data'] = String(10) 2015-08-13
+                    ['valor'] = Double/Float(5) 48.05
+                }
+            }
+            ['historico'] =&gt; Array(2) {
+                ['0'] =&gt; Array(2) {
+                    ['status'] = String(20) Aguardando pagamento
+                    ['data'] = String(19) 2015-08-19 15:40:09
+                }
+                ['1'] =&gt; Array(2) {
+                    ['status'] = String(10) Compensada
+                    ['data'] = String(19) 2015-08-19 15:56:14
+                }
+            }
+            ['boleto'] =&gt; Array(6) {
+                ['beneficiario'] = String(7) Almeida
+                ['banco'] = String(3) 033
+                ['agencia'] = String(4) 4582
+                ['codigo'] = String(7) 7109288
+                ['carteira'] = String(3) 102
+                ['numero'] = String(3) 262
+            }
+        }
+        ['1'] =&gt; Array(16) {
+            ['id'] = String(16) 2b797d2775b357a3
+            ['tipo'] = String(7) Cartão
+            ['cliente'] =&gt; Array(13) {
+                ['pessoa'] = String(7) Física
+                ['nome'] = String(14) Lays Pontarolo
+                ['cpf'] = NULL(0) null
+                ['cnpj'] = NULL(0) null
+                ['email'] = NULL(0) null
+                ['celular'] = NULL(0) null
+                ['rua'] = NULL(0) null
+                ['numero'] = NULL(0) null
+                ['complemento'] = NULL(0) null
+                ['bairro'] = NULL(0) null
+                ['cep'] = NULL(0) null
+                ['cidade'] = NULL(0) null
+                ['estado'] = NULL(0) null
+            }
+            ['itens'] =&gt; Array(1) {
+                ['0'] =&gt; Array(4) {
+                    ['descricao'] = String(7) Produto
+                    ['valor'] = Integer(2) 50
+                    ['quantidade'] = String(1) 1
+                    ['desconto'] = Integer(1) 0
+                }
+            }
+            ['desconto'] = NULL(0) null
+            ['valor'] = String(5) 50.00
+            ['identificador'] = NULL(0) null
+            ['notificacao'] = NULL(0) null
+            ['redirecionamento'] = NULL(0) null
+            ['vencimento'] = NULL(0) null
+            ['criacao'] = String(19) 2015-08-19 15:42:03
+            ['status'] = String(14) Em compensação
+            ['cancelamento'] = NULL(0) null
+            ['pagamento'] =&gt; Array(6) {
+                ['data'] = String(19) 2015-08-19 15:51:48
+                ['valor'] = String(5) 50.00
+                ['parcelas'] = Integer(1) 1
+                ['tarifa'] =&gt; Array(2) {
+                    ['recebimento'] = Double/Float(3) 2.5
+                    ['parcelamento'] = Integer(1) 0
+                }
+                ['disponivel'] =&gt; Array(2) {
+                    ['data'] = String(10) 2015-09-18
+                    ['valor'] = Double/Float(4) 47.5
+                }
+                ['cartao'] =&gt; Array(2) {
+                    ['bandeira'] = String(4) Visa
+                    ['final'] = Integer(4) 5466
+                }
+            }
+            ['historico'] =&gt; Array(2) {
+                ['0'] =&gt; Array(2) {
+                    ['status'] = String(20) Aguardando pagamento
+                    ['data'] = String(19) 2015-08-19 15:42:03
+                }
+                ['1'] =&gt; Array(2) {
+                    ['status'] = String(14) Em compensação
+                    ['data'] = String(19) 2015-08-19 15:51:48
+                }
+            }
+            ['boleto'] = NULL(0) null
+        }
+    }
+}
+</code></pre>
+<hr>
+
+<h3 id="transa-es-gerar">Transações / Gerar</h3>
+
+<blockquote>
+<p>Gera transação</p>
+</blockquote>
+
+<p><code class="prettyprint">Autenticação obrigatória usando os parametros ws-conta e ws-token</code></p>
+
+<h6 id="url">URL</h6>
+
+<p>widepay.com/api/transacoes/gerar</p>
+
+<h6 id="parametros">PARAMETROS</h6>
+
+<table><thead>
+<tr>
+<th>Campos</th>
+<th>Obrigatório</th>
+<th>Tipo</th>
+<th>Observações</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tipo</td>
+<td>Sim</td>
+<td>Definido</td>
+<td>Boleto / Cartão</td>
+</tr>
+<tr>
+<td>desconto</td>
+<td>Não</td>
+<td>Decimal</td>
+<td>-</td>
+</tr>
+<tr>
+<td>identificador</td>
+<td>Não</td>
+<td>String</td>
+<td>Tamanho máximo: 30</td>
+</tr>
+<tr>
+<td>notificacao</td>
+<td>Não</td>
+<td>URL</td>
+<td>-</td>
+</tr>
+<tr>
+<td>redirecionamento</td>
+<td>Não</td>
+<td>URL</td>
+<td>Somente para tipo: Cartão</td>
+</tr>
+<tr>
+<td>vencimento</td>
+<td>Sim</td>
+<td>Data</td>
+<td>Somente para tipo: Boleto</td>
+</tr>
+<tr>
+<td>cliente</td>
+<td>Sim</td>
+<td>Array</td>
+<td>-</td>
+</tr>
+<tr>
+<td>cliente[pessoa]</td>
+<td>Sim</td>
+<td>Definido</td>
+<td>Física / Jurídica</td>
+</tr>
+<tr>
+<td>cliente[nome]</td>
+<td>Sim</td>
+<td>String</td>
+<td>Tamanho máximo: 100</td>
+</tr>
+<tr>
+<td>cliente[cpf]</td>
+<td>Não</td>
+<td>CPF</td>
+<td>Somente para pessoa: Física</td>
+</tr>
+<tr>
+<td>cliente[cnpj]</td>
+<td>Não</td>
+<td>CNPJ</td>
+<td>Somente para pessoa: Jurídica</td>
+</tr>
+<tr>
+<td>cliente[email]</td>
+<td>Não</td>
+<td>E-mail</td>
+<td>-</td>
+</tr>
+<tr>
+<td>cliente[celular]</td>
+<td>Não</td>
+<td>Telefone</td>
+<td>-</td>
+</tr>
+<tr>
+<td>cliente[rua]</td>
+<td>Não</td>
+<td>String</td>
+<td>Tamanho máximo: 100</td>
+</tr>
+<tr>
+<td>cliente[numero]</td>
+<td>Não</td>
+<td>String</td>
+<td>Tamanho máximo: 10</td>
+</tr>
+<tr>
+<td>cliente[complemento]</td>
+<td>Não</td>
+<td>String</td>
+<td>Tamanho máximo: 100</td>
+</tr>
+<tr>
+<td>cliente[bairro]</td>
+<td>Não</td>
+<td>String</td>
+<td>Tamanho máximo: 100</td>
+</tr>
+<tr>
+<td>cliente[cep]</td>
+<td>Não</td>
+<td>CEP</td>
+<td>-</td>
+</tr>
+<tr>
+<td>cliente[estado]</td>
+<td>Não</td>
+<td>String</td>
+<td>Tamanho: 2</td>
+</tr>
+<tr>
+<td>cliente[cidade]</td>
+<td>Não</td>
+<td>String</td>
+<td>Tamanho máximo: 100</td>
+</tr>
+<tr>
+<td>itens</td>
+<td>Sim</td>
+<td>Array</td>
+<td>Múltiplo</td>
+</tr>
+<tr>
+<td>itens[descricao]</td>
+<td>Sim</td>
+<td>String</td>
+<td>Tamanho máximo: 255</td>
+</tr>
+<tr>
+<td>itens[valor]</td>
+<td>Sim</td>
+<td>Decimal</td>
+<td>-</td>
+</tr>
+<tr>
+<td>itens[quantidade]</td>
+<td>Não</td>
+<td>Numérico</td>
+<td>Valor mínimo: 1, Valor máximo: 99999</td>
+</tr>
+<tr>
+<td>itens[desconto]</td>
+<td>Não</td>
+<td>Decimal</td>
+<td>-</td>
+</tr>
+<tr>
+<td>instrucoes</td>
+<td>Não</td>
+<td>Array</td>
+<td>Múltiplo até 5 itens, Tamanho máximo: 1024, Somente para tipo: Boleto</td>
+</tr>
+<tr>
+<td>enviar</td>
+<td>Não</td>
+<td>Definido</td>
+<td>E-mail / SMS (Pode ser um ou mais)</td>
+</tr>
+</tbody></table>
+
+<h6 id="retorno-tipo-boleto">RETORNO (TIPO BOLETO)</h6>
+<pre class="highlight php"><code>Array(4) {
+    ['success'] = Boolean(1) true
+    ['id'] = String(16) 2b1197bb86714ab1
+    ['link'] = String(44) https://widepay.com/2b1197bb86714ab1
+    ['boleto'] =&gt; Array(6) {
+        ['beneficiario'] = String(7) Almeida Desenvolvimento de Softwares
+        ['banco'] = String(3) 033
+        ['agencia'] = String(4) 4582
+        ['codigo'] = String(7) 7109288
+        ['carteira'] = String(3) 102
+        ['numero'] = String(3) 262
+    }
+}
+</code></pre>
+<h6 id="retorno-tipo-cart-o">RETORNO (TIPO CARTÃO)</h6>
+<pre class="highlight php"><code>Array(3) {
+    ['success'] = Boolean(1) true
+    ['id'] = String(16) 2b797d2775b357a3
+    ['link'] = String(44) https://widepay.com/2b797d2775b357a3
+}
+</code></pre>
+<hr>
+
+<h3 id="transa-es-vender">Transações / Vender</h3>
+
+<blockquote>
+<p>Processo de venda para aplicativo mobile</p>
+</blockquote>
+
+<p><code class="prettyprint">Autenticação obrigatória usando os parametros ws-conta e ws-token</code></p>
+
+<p><code class="prettyprint">É obrigatória uma conexão HTTPS</code></p>
+
+<h6 id="url">URL</h6>
+
+<p>widepay.com/api/transacoes/vender</p>
+
+<h6 id="parametros">PARAMETROS</h6>
+
+<table><thead>
+<tr>
+<th>Campos</th>
+<th>Obrigatório</th>
+<th>Tipo</th>
+<th>Observações</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identificador</td>
+<td>Não</td>
+<td>String</td>
+<td>Tamanho máximo: 30</td>
+</tr>
+<tr>
+<td>descricao</td>
+<td>Sim</td>
+<td>String</td>
+<td>Tamanho máximo: 255</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Sim</td>
+<td>Decimal</td>
+<td>Valor mínimo: 1</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Sim</td>
+<td>Numérico</td>
+<td>Valor mínimo: 1, Valor máximo: 12</td>
+</tr>
+<tr>
+<td>parcelamento</td>
+<td>Sim</td>
+<td>Definido</td>
+<td>Vendedor / Comprador (Somente se parcelas for maior que 1)</td>
+</tr>
+<tr>
+<td>numero</td>
+<td>Sim</td>
+<td>Numérico</td>
+<td>Tamanho mínimo: 14, Tamanho máximo: 19</td>
+</tr>
+<tr>
+<td>validade</td>
+<td>Sim</td>
+<td>Data (AAAAMM)</td>
+<td>Valor mínimo ano e mês atual, Valor máximo ano + 10 e mês atual</td>
+</tr>
+<tr>
+<td>codigo</td>
+<td>Sim</td>
+<td>Numérico</td>
+<td>Tamanho mínimo: 3, Tamanho máximo: 4</td>
+</tr>
+</tbody></table>
+
+<h6 id="retorno">RETORNO</h6>
+<pre class="highlight php"><code>Array(3) {
+    ['success'] = Boolean(1) true
+    ['id'] = String(16) 2b797d2775b357a3
+    ['status'] = String(14) Em compensação
+}
+</code></pre>
+<hr>
+
+<h3 id="transa-es-parcelamento">Transações / Parcelamento</h3>
+
+<blockquote>
+<p>Retorna cálculo de parcelamento sobre os valores</p>
+</blockquote>
+
+<p><code class="prettyprint">Autenticação obrigatória usando os parametros ws-conta e ws-token</code></p>
+
+<h6 id="url">URL</h6>
+
+<p>widepay.com/api/transacoes/parcelamento</p>
+
+<h6 id="parametros">PARAMETROS</h6>
+
+<table><thead>
+<tr>
+<th>Campos</th>
+<th>Obrigatório</th>
+<th>Tipo</th>
+<th>Observações</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>valor</td>
+<td>Sim</td>
+<td>Decimal</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<h6 id="retorno">RETORNO</h6>
+<pre class="highlight php"><code>Array(2) {
+    ['success'] = Boolean(1) true
+    ['parcelamento'] =&gt; Array(3) {
+        ['0'] =&gt; Array(3) {
+            ['parcela'] = Integer(1) 1
+            ['valor'] = Double/Float(2) 20
+            ['total'] = Double/Float(2) 20
+        }
+        ['1'] =&gt; Array(3) {
+            ['parcela'] = Integer(1) 2
+            ['valor'] = Double/Float(5) 10.23
+            ['total'] = Double/Float(5) 20.46
+        }
+        ['2'] =&gt; Array(3) {
+            ['parcela'] = Integer(1) 3
+            ['valor'] = Double/Float(4) 6.87
+            ['total'] = Double/Float(5) 20.61
+        }
+        ['3'] =&gt; Array(3) {
+            ['parcela'] = Integer(1) 4
+            ['valor'] = Double/Float(3) 5.2
+            ['total'] = Double/Float(4) 20.8
+        }
+    }
+}
+</code></pre>
+<hr>
+
+<h3 id="transa-es-enviar">Transações / Enviar</h3>
+
+<blockquote>
+<p>Envia transação como solicitação de pagamento para o comprador via e-mail e SMS</p>
+</blockquote>
+
+<p><code class="prettyprint">Autenticação obrigatória usando os parametros ws-conta e ws-token</code></p>
+
+<h6 id="url">URL</h6>
+
+<p>widepay.com/api/transacoes/enviar</p>
+
+<h6 id="parametros">PARAMETROS</h6>
+
+<table><thead>
+<tr>
+<th>Campos</th>
+<th>Obrigatório</th>
+<th>Tipo</th>
+<th>Observações</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Sim</td>
+<td>String</td>
+<td>-</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Sim</td>
+<td>E-mail</td>
+<td>Obrigatório se não existir o parametro celular</td>
+</tr>
+<tr>
+<td>celular</td>
+<td>Não</td>
+<td>Telefone</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<h6 id="retorno">RETORNO</h6>
+<pre class="highlight php"><code>Array(1) {
+    ['success'] = Boolean(1) true
+}
+</code></pre>
+<hr>
+
+<h3 id="transa-es-comprovante">Transações / Comprovante</h3>
+
+<blockquote>
+<p>Envia comprovante do pagamento para o comprador via e-mail e SMS</p>
+</blockquote>
+
+<p><code class="prettyprint">Autenticação obrigatória usando os parametros ws-conta e ws-token</code></p>
+
+<h6 id="url">URL</h6>
+
+<p>widepay.com/api/transacoes/comprovante</p>
+
+<h6 id="parametros">PARAMETROS</h6>
+
+<table><thead>
+<tr>
+<th>Campos</th>
+<th>Obrigatório</th>
+<th>Tipo</th>
+<th>Observações</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Sim</td>
+<td>String</td>
+<td>-</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Sim</td>
+<td>E-mail</td>
+<td>Obrigatório se não existir o parametro celular</td>
+</tr>
+<tr>
+<td>celular</td>
+<td>Não</td>
+<td>Telefone</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<h6 id="retorno">RETORNO</h6>
+<pre class="highlight php"><code>Array(1) {
+    ['success'] = Boolean(1) true
+}
+</code></pre>
+<hr>
+
+<h3 id="transa-es-cancelar">Transações / Cancelar</h3>
+
+<blockquote>
+<p>Cancela a transação</p>
+</blockquote>
+
+<p><code class="prettyprint">Autenticação obrigatória usando os parametros ws-conta e ws-token</code></p>
+
+<h6 id="url">URL</h6>
+
+<p>widepay.com/api/transacoes/cancelar</p>
+
+<h6 id="parametros">PARAMETROS</h6>
+
+<table><thead>
+<tr>
+<th>Campos</th>
+<th>Obrigatório</th>
+<th>Tipo</th>
+<th>Observações</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Sim</td>
+<td>String</td>
+<td>Pode ser múltiplo</td>
+</tr>
+</tbody></table>
+
+<h6 id="retorno">RETORNO</h6>
+<pre class="highlight php"><code>Array(2) {
+    ['success'] = Boolean(1) true
+    ['total'] = Integer(1) 1
+}
+</code></pre>
+<hr>
+
+<h3 id="transa-es-notifica-o">Transações / Notificação</h3>
+
+<blockquote>
+<p>Retorna dados transação referente a um disparo de alteração de status</p>
+</blockquote>
+
+<h6 id="url">URL</h6>
+
+<p>widepay.com/api/transacoes/notificacao</p>
+
+<h6 id="parametros">PARAMETROS</h6>
+
+<table><thead>
+<tr>
+<th>Campos</th>
+<th>Obrigatório</th>
+<th>Tipo</th>
+<th>Observações</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Sim</td>
+<td>String</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<h6 id="retorno">RETORNO</h6>
+<pre class="highlight php"><code>Array(2) {
+    ['success'] = Boolean(1) true
+    ['transacao'] =&gt; Array(16) {
+        ['id'] = String(16) 2b1197bb86714ab1
+        ['tipo'] = String(6) Boleto
+        ['cliente'] =&gt; Array(13) {
+            ['pessoa'] = String(7) Física
+            ['nome'] = String(14) Lays Pontarolo
+            ['cpf'] = NULL(0) null
+            ['cnpj'] = NULL(0) null
+            ['email'] = NULL(0) null
+            ['celular'] = NULL(0) null
+            ['rua'] = NULL(0) null
+            ['numero'] = NULL(0) null
+            ['complemento'] = NULL(0) null
+            ['bairro'] = NULL(0) null
+            ['cep'] = NULL(0) null
+            ['cidade'] = NULL(0) null
+            ['estado'] = NULL(0) null
+        }
+        ['itens'] =&gt; Array(1) {
+            ['0'] =&gt; Array(4) {
+                ['descricao'] = String(7) Produto
+                ['valor'] = Integer(2) 50
+                ['quantidade'] = String(1) 1
+                ['desconto'] = Integer(1) 0
+            }
+        }
+        ['desconto'] = NULL(0) null
+        ['valor'] = String(5) 50.00
+        ['identificador'] = NULL(0) null
+        ['notificacao'] = NULL(0) null
+        ['redirecionamento'] = NULL(0) null
+        ['vencimento'] = String(10) 2015-10-10
+        ['criacao'] = String(19) 2015-08-19 15:40:09
+        ['status'] = String(10) Compensada
+        ['cancelamento'] = NULL(0) null
+        ['pagamento'] =&gt; Array(4) {
+            ['data'] = String(10) 2015-08-10
+            ['valor'] = Integer(2) 50
+            ['tarifa'] = Double/Float(4) 1.95
+            ['disponivel'] =&gt; Array(2) {
+                ['data'] = String(10) 2015-08-13
+                ['valor'] = Double/Float(5) 48.05
+            }
+        }
+        ['historico'] =&gt; Array(2) {
+            ['0'] =&gt; Array(2) {
+                ['status'] = String(20) Aguardando pagamento
+                ['data'] = String(19) 2015-08-19 15:40:09
+            }
+            ['1'] =&gt; Array(2) {
+                ['status'] = String(10) Compensada
+                ['data'] = String(19) 2015-08-19 15:56:14
+            }
+        }
+        ['boleto'] =&gt; Array(6) {
+            ['beneficiario'] = String(7) Almeida
+            ['banco'] = String(3) 033
+            ['agencia'] = String(4) 4582
+            ['codigo'] = String(7) 7109288
+            ['carteira'] = String(3) 102
+            ['numero'] = String(3) 262
+        }
+    }
+}
+</code></pre>
+<h2 id="gerando-carn-s">Gerando Carnês</h2>
+
+<p>&hellip;</p>
+
+<h2 id="gerando-assinaturas">Gerando Assinaturas</h2>
+
+<p>&hellip;</p>
+
+<h2 id="recebendo-notifica-es">Recebendo Notificações</h2>
+
+<p>&hellip;</p>
+
+          <h1 id="checkouts">Checkouts</h1>
+
+<p>O Checkout é o momento no qual seu cliente escolhe a forma de pagamento desejada entre as opções habilitadas por você e realiza o pagamento. O Wide Pay dispõe de um ambiente seguro para que você possa oferecer esse serviço sem necessidade de se preocupar com o desenvolvimento de checkout.</p>
+
+<p>Para utilização do checkout do Wide Pay só é necessário ter o ID da transação obtido via API e montar a url, como o exemplo abaixo:</p>
+
+<p><code class="prettyprint">https://www.widepay.com/7CB46D426870A512</code></p>
+
+<p>Você pode conferir nosso de checkout de pagamento <a href="https://www.widepay.com/7CB46D426870A512">clicando aqui</a>.</p>
+
+<h2 id="checkout-via-lightbox">Checkout via LightBox</h2>
+
+<p>&hellip;</p>
+
+<!--
+https://dev.gerencianet.com.br/docs/checkout-ligthbox
+-->
+
+<h2 id="checkout-transparente">Checkout Transparente</h2>
+
+<p>&hellip;</p>
+
+<!-- 
+http://localhost/Documentacao_API_antiga/desenvolvedores-checkout-transparente.html
+https://labs.moip.com.br/integracao/transparente/
+-->
+
+          <h1 id="bot-es-de-pagamento">Botões de pagamento</h1>
+
+<p>&hellip;</p>
+
+<!-- 
+https://labs.moip.com.br/integracao/botoes/
+https://pagseguro.uol.com.br/desenvolvedor/botoes_de_pagamento.jhtml
+-->
+
+          <h1 id="m-dulos">Módulos</h1>
+
+<p>Confira nossos módulos de integração disponíveis, caso não encontre o módulo que procura, entre em contato conosco sugerindo a integração desejada.</p>
+
+<h2 id="whmcs">WHMCS</h2>
+
+<p>&hellip;</p>
+
+          <h1 id="sistemas-integrados">Sistemas integrados</h1>
+
+<p>O Wide Pay também conta com integrações nativas em sistemas. Confira os sistemas disponíveis e informações de como fazer a integração.</p>
+
+<h2 id="webmikrotik">WebMikrotik</h2>
+
+<p>&hellip;</p>
+
+          <h1 id="_">_</h1>
+
+<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Your request sucks</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified kitten could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&rsquo;m a teapot</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+</code></pre><pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+</code></pre><pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre><pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+</blockquote>
+
+<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+
+<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeow</code> with your personal API key.
+</aside>
+
+<h3 id="get-all-kittens">Get All Kittens</h3>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</code></pre><pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre><pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre><pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all kittens.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include_cats</td>
+<td>false</td>
+<td>If set to true, the result will also include cats.</td>
+</tr>
+<tr>
+<td>available</td>
+<td>true</td>
+<td>If set to false, the result will include kittens that have already been adopted.</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+Remember — a happy kitten is an authenticated kitten!
+</aside>
+
+<h3 id="get-a-specific-kitten">Get a Specific Kitten</h3>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre><pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre><pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre><pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific kitten.</p>
+
+<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the kitten to retrieve</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">cURL</a>
+                <a href="#" data-language-name="php">PHP</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
