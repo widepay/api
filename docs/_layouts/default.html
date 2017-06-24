@@ -7,7 +7,7 @@
   <title>{{site.name}}</title>
 
   {% if site.favicon %}
-  <link rel="icon" type="{% if site.favicon == 'png' %}image/png{% else %}image/x-icon{% endif %}" href="{{site.github.url}}/favicon.{{site.favicon}}"/>
+  <link rel="icon" type="{% if site.favicon == 'png' %}image/png{% else %}image/x-icon{% endif %}" href="./favicon.{{site.favicon}}"/>
   {% endif %}
 
   <!--[if lt IE 9]>
@@ -16,8 +16,8 @@
   <![endif]-->
 
   <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-  <link href="{{site.github.url}}/assets/css/docs.min.css" rel="stylesheet">
-  <link href="{{site.github.url}}/assets/css/style.css" rel="stylesheet">
+  <link href="./assets/css/docs.min.css" rel="stylesheet">
+  <link href="./assets/css/style.css" rel="stylesheet">
 
   <style>
     #content {
@@ -28,8 +28,8 @@
 
   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-  <script src="{{site.github.url}}/assets/js/docs.min.js"></script>
-  <script src="{{site.github.url}}/assets/js/script.js"></script>
+  <script src="./assets/js/docs.min.js"></script>
+  <script src="./assets/js/script.js"></script>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{site.github.url}}/index.html">API</a>
+        <a class="navbar-brand" href="./index.html">API</a>
       </div>
       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
         <ul class="nav navbar-nav">
@@ -51,7 +51,7 @@
           {% for p in sorted_pages %}
             {% if p.isHome != true and p.hide != true and p.title %}
             <li {% if page.title == p.title %}class="active"{% endif %}>
-              <a href="{{site.github.url}}{{p.url}}">{{p.title}}</a>
+              <a href="./{{p.url}}">{{p.title}}</a>
             </li>
             {% endif %}
           {% endfor %}
