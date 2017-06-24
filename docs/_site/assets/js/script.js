@@ -40,17 +40,6 @@ var jekyllBootstrapDoc = {
     });
   },
 
-  enableBootbox: function() {
-    $('[data-bootbox]').off('click').on('click', function() {
-      var $target = $('#' + $(this).data('bootbox'));
-      bootbox.alert({
-        title: $target.attr('title'),
-        message: $target.html(),
-        size: $(this).data('bootbox-size')
-      });
-    });
-  },
-
   trianglify: function(color1, color2, seed) {
     var header = $('#content');
     var pattern = Trianglify({
@@ -68,5 +57,4 @@ var jekyllBootstrapDoc = {
 $(function() {
   jekyllBootstrapDoc.buildSideMenu();
   jekyllBootstrapDoc.addHeadingAnchors();
-  jekyllBootstrapDoc.enableBootbox();
 });

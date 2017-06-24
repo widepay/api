@@ -32,7 +32,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  height: 50px;
+  height: 30px;
   width: 30%;
   min-width: 300px;
   background: linear-gradient(135deg, transparent 50px, white 50px);
@@ -163,4 +163,36 @@ h5:hover .anchor-link {
     -webkit-transform: rotateZ(-360deg);
     transform: rotateZ(-360deg);
   }
+}
+
+@media (max-width: 768px) {
+  #content::after {
+    display: none;
+  }
+}
+.bs-docs-header {
+    color: #fff;
+}
+.bs-docs-nav .navbar-nav > li > a:hover,
+.bs-docs-nav .navbar-nav > .active > a,
+.bs-docs-nav .navbar-nav > .active > a:hover {
+    color: #35592c;
+}
+.bs-docs-nav .navbar-brand,
+.bs-docs-nav .navbar-nav > li > a {
+    color: #35592c;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    color: #35592c;
+    border-left: 1px solid transparent;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    color: #35592c;
+    border-left: 2px solid #35592c;
+}
+.back-to-top:hover {
+    color: #35592c;
 }
