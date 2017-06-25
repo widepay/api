@@ -423,7 +423,22 @@ curl \
 {% highlight php %}
 <?php
 
-  echo "teste";
+require_once('WidePay.php');
+
+$wp = new WidePay('1001-2','a436691a169d06e56d4abc8e821c212b');
+
+$dados = $wp->api('recebimentos/transacoes/adicionar', array(
+    'tipo' => 'Boleto',
+    'vencimento' => '2016-03-30',
+    'pessoa' => 'Física',
+    'cliente' => 'Claudio Almeida',
+    'itens' => array(
+        array(
+            'descricao' => 'Mensalidade de Internet',
+            'valor' => 30
+        )
+    )
+));
 {% endhighlight %}
 
   </div>
