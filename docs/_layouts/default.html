@@ -51,7 +51,7 @@
           {% for p in sorted_pages %}
             {% if p.isHome != true and p.hide != true and p.title %}
             <li {% if page.title == p.title %}class="active"{% endif %}>
-              <a href="./{{p.url}}">{{p.title}}</a>
+              <a href="{{p.url}}">{{p.title}}</a>
             </li>
             {% endif %}
           {% endfor %}
