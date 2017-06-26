@@ -110,7 +110,7 @@
 
   <p>Para utilização da API é necessário ter o ID da carteira e o token de autenticação.</p>
 
-  <p>O conceito de carteiras do Wide Pay serve para que você possa separar os recebimentos, pagamentos e transferências. Caso de você tenhha duas lojas por exemplo.</p>
+  <p>O conceito de carteiras do Wide Pay serve para que você possa separar os recebimentos, pagamentos e transferências. Caso de você tenha duas lojas por exemplo.</p>
 
   <p>Para ter um gerenciamento completo de suas carteiras como criar, editar, obter ID e token, logue em sua conta Wide Pay, acesse o menu superior <strong>Configurações</strong>, depois clique em <strong>Carteiras</strong>.</p>
 
@@ -272,7 +272,7 @@
       <tr>
         <th style="width: 190px;">Atributo</th>
         <th style="width: 110px;">Obrigatório</th>
-        <th style="width: 90px;">Tipo</th>
+        <th style="width: 100px;">Tipo</th>
         <th>Descrição</th>
       </tr>
     </thead>
@@ -307,7 +307,7 @@
       <tr>
         <td>cnpj</td>
         <td><strong>Condicional</strong></td>
-        <td>CPF</td>
+        <td>CNPJ</td>
         <td>Obrigatório se o atributo pessoa for <code>Jurídica</code>
 </td>
       </tr>
@@ -387,7 +387,7 @@
         <td>itens[][valor]</td>
         <td><strong>Sim</strong></td>
         <td>Decimal</td>
-        <td>Casas decimais: 2, valor máximo: 999999.99</td>
+        <td>Casas decimais: 2, valor mínimo: -999999.99, valor máximo: 999999.99</td>
       </tr>
       <tr>
         <td>itens[][quantidade]</td>
@@ -724,7 +724,7 @@
       <tr>
         <th style="width: 190px;">Atributo</th>
         <th style="width: 110px;">Obrigatório</th>
-        <th style="width: 90px;">Tipo</th>
+        <th style="width: 100px;">Tipo</th>
         <th>Descrição</th>
       </tr>
     </thead>
@@ -732,7 +732,7 @@
       <tr>
         <td>id</td>
         <td>Não</td>
-        <td>Array</td>
+        <td>String, Array</td>
         <td>ID da cobrança a ser consultada, pode ser um ou mais, caso não seja passado o ID, será retornado as últimas cobranças geradas</td>
       </tr>
     </tbody>
@@ -804,7 +804,7 @@
     </div>
   </div>
 
-  <p>Alguns atributos do retorno variam de acordo com o forma do recebimento, abaixo você encontrará a descrição de alguns atributos importantes de uma cobrança, e mais abaixo, alguns exemplos de retornos:</p>
+  <p>Alguns atributos do retorno variam de acordo com a forma do recebimento, abaixo você encontrará a descrição de alguns atributos importantes de uma cobrança, e mais abaixo, alguns exemplos de retornos:</p>
 
   <ul>
     <li>
@@ -1045,7 +1045,7 @@
       <tr>
         <th style="width: 190px;">Atributo</th>
         <th style="width: 110px;">Obrigatório</th>
-        <th style="width: 90px;">Tipo</th>
+        <th style="width: 100px;">Tipo</th>
         <th>Descrição</th>
       </tr>
     </thead>
@@ -1188,7 +1188,7 @@
       <tr>
         <th style="width: 190px;">Atributo</th>
         <th style="width: 110px;">Obrigatório</th>
-        <th style="width: 90px;">Tipo</th>
+        <th style="width: 100px;">Tipo</th>
         <th>Descrição</th>
       </tr>
     </thead>
@@ -1337,7 +1337,7 @@
       <tr>
         <th style="width: 190px;">Atributo</th>
         <th style="width: 110px;">Obrigatório</th>
-        <th style="width: 90px;">Tipo</th>
+        <th style="width: 100px;">Tipo</th>
         <th>Descrição</th>
       </tr>
     </thead>
@@ -1521,7 +1521,7 @@
       <tr>
         <th style="width: 190px;">Atributo</th>
         <th style="width: 110px;">Obrigatório</th>
-        <th style="width: 90px;">Tipo</th>
+        <th style="width: 100px;">Tipo</th>
         <th>Descrição</th>
       </tr>
     </thead>
@@ -1547,7 +1547,7 @@
       <tr>
         <td>cnpj</td>
         <td><strong>Condicional</strong></td>
-        <td>CPF</td>
+        <td>CNPJ</td>
         <td>Obrigatório se o atributo pessoa for <code>Jurídica</code></td>
       </tr>
       <tr>
@@ -1626,7 +1626,7 @@
         <td>itens[][valor]</td>
         <td><strong>Sim</strong></td>
         <td>Decimal</td>
-        <td>Casas decimais: 2, valor máximo: 999999.99</td>
+        <td>Casas decimais: 2, valor mínimo: -999999.99, valor máximo: 999999.99</td>
       </tr>
       <tr>
         <td>itens[][quantidade]</td>
