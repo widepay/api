@@ -97,125 +97,150 @@
       <div class="col-md-9" role="main">
         <section class="bs-docs-section">
 
-  <p class="lead">Confira nossos módulos de integração disponíveis, caso não encontre o módulo que procura, entre em contato conosco sugerindo a integração desejada.</p>
+    <p class="lead">Confira nossos módulos de integração disponíveis, caso não encontre o módulo que procura, entre em
+        contato conosco sugerindo a integração desejada.</p>
 
-  <h1 id="whmcs" class="page-header">WHMCS</h1>
+    <h1 id="whmcs" class="page-header">WHMCS</h1>
 
-  <p>Módulo desenvolvido para integração entre o WHMCS e Wide Pay. Com o módulo é possível gerar boletos para pagamento e liquidação automática pelo Wide Pay após o recebimento.</p>
+    <p>Módulo desenvolvido para integração entre o WHMCS e Wide Pay. Com o módulo é possível gerar boletos para
+        pagamento e liquidação automática pelo Wide Pay após o recebimento.</p>
 
-  <h2 id="whmcs-instalacao">Instalação Plugin</h2>
+    <h2 id="whmcs-instalacao">Instalação Plugin</h2>
 
-  <p>Para a instalação do plugin realize o download pelo link: <a href="https://github.com/widepay/mod-whmcs" target="_blank">https://github.com/widepay/mod-whmcs</a></p>
+    <p>Para a instalação do plugin realize o download pelo link:
+    <ul>
+        <li>
+            <strong>Versão mínima 6</strong> <a href="https://github.com/widepay/mod-whmcs" target="_blank">https://github.com/widepay/mod-whmcs</a>
+        </li>
+        <li>
+            <strong>Versão 5</strong> <a href="https://github.com/widepay/mod-whmcs-5" target="_blank">https://github.com/widepay/mod-whmcs-5</a>
+        </li>
+    </ul>
 
-  <p>Após o download concluído haverá 3 arquivos para serem enviados ao sistema.</p>
+    <p>Após o download concluído haverá 3 arquivos para serem enviados ao sistema.</p>
 
-  <ul>
-      <li>modules/gateways/callback/widepay.php</li>
-      <li>modules/gateways/widepay/WidePay.php</li>
-      <li>modules/gateways/widepay.php</li>
-  </ul>
+    <ul>
+        <li>modules/gateways/callback/widepay.php</li>
+        <li>modules/gateways/widepay/WidePay.php</li>
+        <li>modules/gateways/widepay.php</li>
+    </ul>
 
-  <p>Você pode mesclar a pasta <strong>modules</strong> com o seu sistema, assim os arquivos serão enviados aos locais corretos.</p>
+    <p>Você pode mesclar a pasta <strong>modules</strong> com o seu sistema, assim os arquivos serão enviados aos locais
+        corretos.</p>
 
-  <h2 id="whmcs-ativacao">Ativar Plugin</h2>
+    <h2 id="whmcs-ativacao">Ativar Plugin</h2>
 
-  <p>Para ativar o Wide Pay clique no botão:</p>
+    <p>Para ativar o Wide Pay clique no botão:</p>
 
-  <ul>
-      <li>Inglês: Setup -> Payments -> Payment Gateways -> All Payment Gateways -> "Wide Pay".</li>
-      <li>Portugues: Opções -> Pagamentos -> Portais para Pagamento-> All Payment Gateways -> "Wide Pay".</li>
-  </ul>
+    <ul>
+        <li>Inglês: Setup -> Payments -> Payment Gateways -> All Payment Gateways -> "Wide Pay".</li>
+        <li>Portugues: Opções -> Pagamentos -> Portais para Pagamento-> All Payment Gateways -> "Wide Pay".</li>
+    </ul>
 
-  <h2 id="whmcs-configuracao">Configuração do Plugin</h2>
+    <h2 id="whmcs-configuracao">Configuração do Plugin</h2>
 
-  <p>Para acessar o menu de configuração do Wide Pay clique no botão:</p>
+    <p>Para acessar o menu de configuração do Wide Pay clique no botão:</p>
 
-  <ul>
-      <li>Inglês: Setup -> Payments -> Payment Gateways -> Manage Existing Gateways -> "Wide Pay"</li>
-      <li>Portugues: Opções -> Pagamentos -> Portais para Pagamento-> Manage Existing Gateways -> "Wide Pay".</li>
-  </ul>
+    <ul>
+        <li>Inglês: Setup -> Payments -> Payment Gateways -> Manage Existing Gateways -> "Wide Pay"</li>
+        <li>Portugues: Opções -> Pagamentos -> Portais para Pagamento-> Manage Existing Gateways -> "Wide Pay".</li>
+    </ul>
 
-  <p>Para configuração do Wide Pay é preciso que pelo menos os 3 campos obrigatórios sejam preenchidos. Segue a lista dos campos e descrição.</p>
+    <p>Para configuração do Wide Pay é preciso que pelo menos os 3 campos obrigatórios sejam preenchidos. Segue a lista
+        dos campos e descrição.</p>
 
-  <table class="table table-bordered">
-      <thead>
-      <tr>
-          <th style="width: 200px;">Campo</th>
-          <th style="width: 95px;">Obrigatório</th>
-          <th>Descrição</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-          <td>ID da Carteira Wide Pay</td>
-          <td><strong>Sim</strong></td>
-          <td>Preencha este campo com o ID da carteira que deseja receber os pagamentos do sistema. O ID de sua carteira estará presente neste link: <a href="https://www.widepay.com/conta/configuracoes/carteiras" target="_blank">https://www.widepay.com/conta/configuracoes/carteiras</a></td>
-      </tr>
-      <tr>
-          <td>Token da Carteira Wide Pay</td>
-          <td><strong>Sim</strong></td>
-          <td>Preencha com o token referente a sua carteira escolhida no campo acima. Clique no botão: "Integrações" na <a href="https://www.widepay.com/conta/configuracoes/carteiras" target="_blank">página do Wide Pay</a>, será exibido o Token</td>
-      </tr>
-      <tr>
-          <td>Taxa de Variação</td>
-          <td>Não</td>
-          <td>O valor final da fatura será recalculado de acordo com este campo.</td>
-      </tr>
-      <tr>
-          <td>Tipo da Taxa de Variação</td>
-          <td>Não</td>
-          <td>O campo acima "Taxa de Variação" será aplicado de acordo com este campo.</td>
-      </tr>
-      <tr>
-          <td>Acréscimo de Dias no Vencimento</td>
-          <td>Não</td>
-          <td>Qual a quantidade de dias para o vencimento após a data da geração da fatura.</td>
-      </tr>
-      <tr>
-          <td>Permitir que Wide Pay envie e-mails</td>
-          <td>Não</td>
-          <td>Wide Pay enviará e-mail com boleto para o cliente após fatura gerada</td>
-      </tr>
-      <tr>
-          <td>Configuração de Multa</td>
-          <td>Não</td>
-          <td>Configuração de multa após o vencimento, máximo 20</td>
-      </tr>
-      <tr>
-          <td>Configuração de Juros</td>
-          <td>Não</td>
-          <td>Configuração de juros após o vencimento, máximo 20</td>
-      </tr>
-      <tr>
-          <td>Campo referente ao CPF e CNPJ</td>
-          <td>Não</td>
-          <td>Preencha com o ID do campo personalizado para evitar que o cliente digite todas às vezes ao gerar o boleto na página Wide Pay.</td>
-      </tr>
-      <tr>
-          <td>Login Admin WHMCS</td>
-          <td><strong>Sim</strong></td>
-          <td>Cobrança criada, e está aguardando pagamento</td>
-      </tr>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th style="width: 200px;">Campo</th>
+            <th style="width: 95px;">Obrigatório</th>
+            <th>Descrição</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>ID da Carteira Wide Pay</td>
+            <td><strong>Sim</strong></td>
+            <td>Preencha este campo com o ID da carteira que deseja receber os pagamentos do sistema. O ID de sua
+                carteira estará presente neste link: <a href="https://www.widepay.com/conta/configuracoes/carteiras"
+                                                        target="_blank">https://www.widepay.com/conta/configuracoes/carteiras</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Token da Carteira Wide Pay</td>
+            <td><strong>Sim</strong></td>
+            <td>Preencha com o token referente a sua carteira escolhida no campo acima. Clique no botão: "Integrações"
+                na <a href="https://www.widepay.com/conta/configuracoes/carteiras" target="_blank">página do Wide
+                    Pay</a>, será exibido o Token
+            </td>
+        </tr>
+        <tr>
+            <td>Taxa de Variação</td>
+            <td>Não</td>
+            <td>O valor final da fatura será recalculado de acordo com este campo.</td>
+        </tr>
+        <tr>
+            <td>Tipo da Taxa de Variação</td>
+            <td>Não</td>
+            <td>O campo acima "Taxa de Variação" será aplicado de acordo com este campo.</td>
+        </tr>
+        <tr>
+            <td>Acréscimo de Dias no Vencimento</td>
+            <td>Não</td>
+            <td>Qual a quantidade de dias para o vencimento após a data da geração da fatura.</td>
+        </tr>
+        <tr>
+            <td>Permitir que Wide Pay envie e-mails</td>
+            <td>Não</td>
+            <td>Wide Pay enviará e-mail com boleto para o cliente após fatura gerada</td>
+        </tr>
+        <tr>
+            <td>Configuração de Multa</td>
+            <td>Não</td>
+            <td>Configuração de multa após o vencimento, máximo 20</td>
+        </tr>
+        <tr>
+            <td>Configuração de Juros</td>
+            <td>Não</td>
+            <td>Configuração de juros após o vencimento, máximo 20</td>
+        </tr>
+        <tr>
+            <td>Campo referente ao CPF e CNPJ</td>
+            <td>Não</td>
+            <td>Preencha com o ID do campo personalizado para evitar que o cliente digite todas às vezes ao gerar o
+                boleto na página Wide Pay.
+            </td>
+        </tr>
+        <tr>
+            <td>Login Admin WHMCS</td>
+            <td><strong>Sim</strong></td>
+            <td>Cobrança criada, e está aguardando pagamento</td>
+        </tr>
 
-      </tbody>
-  </table>
+        </tbody>
+    </table>
 
-  <h2 id="whmcs-campo-cpf-cnpj">Configuração do Campo Personalizado CPF/CNPJ</h2>
+    <h2 id="whmcs-campo-cpf-cnpj">Configuração do Campo Personalizado CPF/CNPJ</h2>
 
-  <p>Configurando o campo personalizado CPF e CNPJ evitamos que o cliente preencha toda vez na página Wide Pay esta informação. Ela é obrigatória para gerar o boleto ao cliente embora o campo não seja obrigatório nas configurações do plugin.</p>
+    <p>Configurando o campo personalizado CPF e CNPJ evitamos que o cliente preencha toda vez na página Wide Pay esta
+        informação. Ela é obrigatória para gerar o boleto ao cliente embora o campo não seja obrigatório nas
+        configurações do plugin.</p>
 
-  <h3 id="whmcs-campo-cpf-cnpj-criar">Criando Campo Personalizado CPF/CNPJ</h3>
+    <h3 id="whmcs-campo-cpf-cnpj-criar">Criando Campo Personalizado CPF/CNPJ</h3>
 
-  <p>Caso não possua o campo em seu sistema é preciso adicioná-lo. Para isto acesse o menu:</p>
+    <p>Caso não possua o campo em seu sistema é preciso adicioná-lo. Para isto acesse o menu:</p>
 
-  <ul>
-      <li>Inglês: Setup -> Custom Client Fields -> Add New Custom Field.</li>
-      <li>Portugues: Opções -> Campos Personalizados dos Clientes -> Adicionar Novo Campo Personalizado.</li>
-  </ul>
+    <ul>
+        <li>Inglês: Setup -> Custom Client Fields -> Add New Custom Field.</li>
+        <li>Portugues: Opções -> Campos Personalizados dos Clientes -> Adicionar Novo Campo Personalizado.</li>
+    </ul>
 
-  <p>Preencha os campos: Nome do Campo, Tipo do Campo. Também marque as opções: Campo Obrigatório, Mostrar no Formulário de Pedido e Exibir na Fatura. Quando as opções estiverem completas, clique em "Salvar Alterações".</p>
+    <p>Preencha os campos: Nome do Campo, Tipo do Campo. Também marque as opções: Campo Obrigatório, Mostrar no
+        Formulário de Pedido e Exibir na Fatura. Quando as opções estiverem completas, clique em "Salvar
+        Alterações".</p>
 
-  <p>Retorne ao menu de configuração Wide Pay, lá estará listado o ID do campo personalizado que criamos. Copie e cole o ID em "Campo referente ao CPF e CNPJ".</p>
+    <p>Retorne ao menu de configuração Wide Pay, lá estará listado o ID do campo personalizado que criamos. Copie e cole
+        o ID em "Campo referente ao CPF e CNPJ".</p>
 
 </section>
       </div>
