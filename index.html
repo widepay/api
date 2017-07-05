@@ -402,12 +402,6 @@
         <td>Casas decimais: 2, não pode ultrapassar a quantidade x valor do item</td>
       </tr>
       <tr>
-        <td>desconto</td>
-        <td>Não</td>
-        <td>Decimal</td>
-        <td>Desconto aplicado no valor total dos itens, casas decimais: 2</td>
-      </tr>
-      <tr>
         <td>referencia</td>
         <td>Não</td>
         <td>String</td>
@@ -606,7 +600,6 @@
     -d <span class="s1">'itens[0][desconto]=4.99'</span> <span class="se">\</span>
     -d <span class="s1">'itens[1][descricao]=Descrição item 2'</span> <span class="se">\</span>
     -d <span class="s1">'itens[1][valor]=10.50'</span> <span class="se">\</span>
-    -d <span class="s1">'desconto=5'</span> <span class="se">\</span>
     -d <span class="s1">'referencia=Fatura 12345'</span> <span class="se">\</span>
     -d <span class="s1">'notificacao=http://www.minhaaplicacao.com/script-notificacao.php'</span> <span class="se">\</span>
     -d <span class="s1">'redirecionamento=http://www.minhaaplicacao.com/script-redirecionamento.php'</span> <span class="se">\</span>
@@ -659,7 +652,6 @@
             <span class="s1">'valor'</span> <span class="o">=&gt;</span> <span class="mf">10.50</span>
         <span class="p">)</span>
     <span class="p">),</span>
-    <span class="s1">'desconto'</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
     <span class="s1">'referencia'</span> <span class="o">=&gt;</span> <span class="s1">'Fatura 12345'</span><span class="p">,</span>
     <span class="s1">'notificacao'</span> <span class="o">=&gt;</span> <span class="s1">'http://www.minhaaplicacao.com/script-notificacao.php'</span><span class="p">,</span>
     <span class="s1">'redirecionamento'</span> <span class="o">=&gt;</span> <span class="s1">'http://www.minhaaplicacao.com/script-redirecionamento.php'</span><span class="p">,</span>
@@ -867,7 +859,6 @@
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="nt">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fatura 12345"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.51"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -927,7 +918,6 @@
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="nt">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.50"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.50"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.15"</span><span class="p">,</span><span class="w">
@@ -995,7 +985,6 @@
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="nt">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.75"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.75"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.91"</span><span class="p">,</span><span class="w">
@@ -1447,7 +1436,6 @@
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60.00"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1639,12 +1627,6 @@
         <td>Não</td>
         <td>Decimal</td>
         <td>Casas decimais: 2, não pode ultrapassar a quantidade x valor do item</td>
-      </tr>
-      <tr>
-        <td>desconto</td>
-        <td>Não</td>
-        <td>Decimal</td>
-        <td>Desconto aplicado no valor total dos itens, casas decimais: 2</td>
       </tr>
       <tr>
         <td>referencia</td>
