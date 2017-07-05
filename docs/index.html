@@ -315,12 +315,6 @@ hide: true
         <td>Casas decimais: 2, não pode ultrapassar a quantidade x valor do item</td>
       </tr>
       <tr>
-        <td>desconto</td>
-        <td>Não</td>
-        <td>Decimal</td>
-        <td>Desconto aplicado no valor total dos itens, casas decimais: 2</td>
-      </tr>
-      <tr>
         <td>referencia</td>
         <td>Não</td>
         <td>String</td>
@@ -518,7 +512,6 @@ curl \
     -d 'itens[0][desconto]=4.99' \
     -d 'itens[1][descricao]=Descrição item 2' \
     -d 'itens[1][valor]=10.50' \
-    -d 'desconto=5' \
     -d 'referencia=Fatura 12345' \
     -d 'notificacao=http://www.minhaaplicacao.com/script-notificacao.php' \
     -d 'redirecionamento=http://www.minhaaplicacao.com/script-redirecionamento.php' \
@@ -573,7 +566,6 @@ $adicionar = $wp->api('recebimentos/cobrancas/adicionar', array(
             'valor' => 10.50
         )
     ),
-    'desconto' => 5,
     'referencia' => 'Fatura 12345',
     'notificacao' => 'http://www.minhaaplicacao.com/script-notificacao.php',
     'redirecionamento' => 'http://www.minhaaplicacao.com/script-redirecionamento.php',
@@ -780,7 +772,6 @@ if ($consultar->sucesso) {
         }
       ],
       "referencia": "Fatura 12345",
-      "desconto": "5.00",
       "valor": "40.51",
       "recebido": null,
       "tarifa": null,
@@ -842,7 +833,6 @@ if ($consultar->sucesso) {
         }
       ],
       "referencia": null,
-      "desconto": null,
       "valor": "22.50",
       "recebido": "22.50",
       "tarifa": "2.15",
@@ -912,7 +902,6 @@ if ($consultar->sucesso) {
         }
       ],
       "referencia": null,
-      "desconto": null,
       "valor": "51.75",
       "recebido": "51.75",
       "tarifa": "2.91",
@@ -1389,7 +1378,6 @@ if ($notificacao->sucesso) {
       }
     ],
     "referencia": null,
-    "desconto": null,
     "valor": "60.00",
     "recebido": null,
     "tarifa": null,
@@ -1582,12 +1570,6 @@ if ($notificacao->sucesso) {
         <td>Não</td>
         <td>Decimal</td>
         <td>Casas decimais: 2, não pode ultrapassar a quantidade x valor do item</td>
-      </tr>
-      <tr>
-        <td>desconto</td>
-        <td>Não</td>
-        <td>Decimal</td>
-        <td>Desconto aplicado no valor total dos itens, casas decimais: 2</td>
       </tr>
       <tr>
         <td>referencia</td>
