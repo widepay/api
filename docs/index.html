@@ -39,14 +39,14 @@ hide: true
 
 {% highlight json %}
 {
-    "sucesso": true
+  "sucesso": true
 }
 {% endhighlight %}
 
 {% highlight json %}
 {
-    "sucesso": false,
-    "erro": "Mensagem de erro..."
+  "sucesso": false,
+  "erro": "Mensagem de erro..."
 }
 {% endhighlight %}
 
@@ -58,18 +58,18 @@ hide: true
 
 {% highlight json %}
 {
-    "sucesso": false,
-    "erro": "Erro na validação dos campos.",
-    "validacao": [
-      {
-        "id":  "cpf",
-        "erro":  "O CPF informado é inválido."
-      },
-      {
-        "id":  "vencimento",
-        "erro":  "O preenchimento do campo é obrigatório."
-      }
-    ]
+  "sucesso": false,
+  "erro": "Erro na validação dos campos.",
+  "validacao": [
+    {
+      "id":  "cpf",
+      "erro":  "O CPF informado é inválido."
+    },
+    {
+      "id":  "vencimento",
+      "erro":  "O preenchimento do campo é obrigatório."
+    }
+  ]
 }
 {% endhighlight %}
 
@@ -79,18 +79,18 @@ hide: true
 
 {% highlight json %}
 {
-    "sucesso": false,
-    "erro": "Erro na execução da solicitação.",
-    "execucao": [
-      {
-        "id":  "8FA0E7B48E882379",
-        "erro":  "Cobrança não encontrada."
-      },
-      {
-        "id":  "5C5C051E86177A22",
-        "erro":  "A cobrança já está baixada."
-      }
-    ]
+  "sucesso": false,
+  "erro": "Erro na execução da solicitação.",
+  "execucao": [
+    {
+      "id":  "8FA0E7B48E882379",
+      "erro":  "Cobrança não encontrada."
+    },
+    {
+      "id":  "5C5C051E86177A22",
+      "erro":  "A cobrança já está baixada."
+    }
+  ]
 }
 {% endhighlight %}
 
@@ -614,9 +614,153 @@ if ($adicionar->sucesso) {
 
 {% highlight json %}
 {
-   "sucesso": true,
-   "id": "4A13E8BE9842C174",
-   "link": "https://www.widepay.com/4A13E8BE9842C174"
+  "sucesso": true,
+  "id": "4A13E8BE9842C174",
+  "link": "https://www.widepay.com/4A13E8BE9842C174"
+}
+{% endhighlight %}
+
+  <h3 id="cobranca-boleto">Boleto de uma cobrança</h3>
+
+  <p>Lembramos que para obter os dados do boleto de uma cobrança, a forma de recebimento da mesma deve ser <code>Boleto</code>.</p>
+
+  <h6>URL</h6>
+
+  <pre>https://api.widepay.com/v1/recebimentos/cobrancas/boleto</pre>
+
+  <h6>ATRIBUTOS DE ENVIO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th style="width: 110px;">Obrigatório</th>
+        <th style="width: 100px;">Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td><strong>Sim</strong></td>
+        <td>String</td>
+        <td>ID da cobrança</td>
+      </tr>
+      <tr>
+        <td>atualizar</td>
+        <td>Não</td>
+        <td>Definido</td>
+        <td>Atualiza automaticamente a data do boleto caso esteja vencido, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Sim</code></td>
+      </tr>
+      <tr>
+        <td>html</td>
+        <td>Não</td>
+        <td>Definido</td>
+        <td>Traz no retorno da requisição o HTML do boleto, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
+      </tr>
+      <tr>
+        <td>carne</td>
+        <td>Não</td>
+        <td>Definido</td>
+        <td>Muda o layout HTML do boleto do formato convencional para o formato de carnê, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h6>ATRIBUTOS DE RETORNO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>parametros</td>
+        <td>Parâmetros da configuração do boleto, pode ser usado para gerar o boleto por sistema próprio, os dados mudam dependendo do banco configurado no Wide Pay</td>
+      </tr>
+      <tr>
+        <td>codigo</td>
+        <td>Código de barras do boleto</td>
+      </tr>
+      <tr>
+        <td>html</td>
+        <td>HTML do boleto</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <blockquote><strong>Exemplo 3</strong><br>Obtendo dados do boleto de uma cobrança</blockquote>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-3-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-3-php" role="tab" data-toggle="tab">PHP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-3-curl"> 
+
+{% highlight bash %}
+curl \
+    -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/boleto' \
+    -u '148446:800440511285a9b0808ea85a94f3dd62' \
+    -d 'id=8AF962B49E3920BB' \
+    -d 'atualizar=Sim' \
+    -d 'html=Sim' \
+    -d 'carne=Não'
+{% endhighlight %}
+
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-3-php"">
+
+{% highlight php %}
+<?php
+
+require_once('../src/WidePay.php'); // Caminho para o SDK
+
+$wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd61'); // ID e token da carteira
+
+$boleto = $wp->api('recebimentos/cobrancas/boleto', array(
+    'id' => '8AF962B49E3920BB',
+    'atualizar' => 'Sim',
+    'html' => 'Sim',
+    'carne' => 'Não'
+));
+
+if ($boleto->sucesso) {
+
+    print_r($boleto->parametros); // Imprime os parametros de configuração do boleto
+
+    echo $boleto->codigo; // Código de barras do boleto
+    echo $boleto->html; // HTML do boleto
+
+} else {
+
+    echo $boleto->erro; // Erro
+
+}
+{% endhighlight %}
+
+    </div>
+  </div>
+
+  <p>Retorno do exemplo:</p>
+
+{% highlight json %}
+{
+  "sucesso": true,
+  "parametros": {
+    "banco": "033",
+    "agencia": "4582",
+    "conta": "13001057-3",
+    "codigo": "208822",
+    "carteira": "101",
+    "numero": "1"
+  },
+  "codigo": "03399.81276 22000.000004 00001.901016 1 73280000002250",
+  "html": "..."
 }
 {% endhighlight %}
 
@@ -671,12 +815,12 @@ if ($adicionar->sucesso) {
   <blockquote><strong>Exemplo 3</strong><br>Efetuando a consulta de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-3-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-3-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-4-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-4-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-3-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-4-curl"> 
 
 {% highlight bash %}
 curl \
@@ -686,7 +830,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-3-php"">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-4-php"">
 
 {% highlight php %}
 <?php
@@ -986,12 +1130,12 @@ if ($consultar->sucesso) {
   <blockquote><strong>Exemplo 4</strong><br>Efetuando o cancelamento de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-4-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-4-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-5-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-5-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-4-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-5-curl"> 
 
 {% highlight bash %}
 curl \
@@ -1001,7 +1145,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-4-php"">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-5-php"">
 
 {% highlight php %}
 <?php
@@ -1032,20 +1176,20 @@ if ($cancelar->sucesso) {
 
 {% highlight json %}
 {
-   "sucesso": true,
-   "total": 1
+  "sucesso": true,
+  "total": 1
 }
 {% endhighlight %}
 
   <blockquote><strong>Exemplo 5</strong><br>Efetuando o cancelamento de duas ou mais cobranças</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-5-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-5-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-6-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-6-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-5-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-6-curl"> 
 
 {% highlight bash %}
 curl \
@@ -1056,7 +1200,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-5-php"">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-6-php"">
 
 {% highlight php %}
 <?php
@@ -1087,8 +1231,8 @@ if ($cancelar->sucesso) {
 
 {% highlight json %}
 {
-   "sucesso": true,
-   "total": 2
+  "sucesso": true,
+  "total": 2
 }
 {% endhighlight %}
 
@@ -1139,12 +1283,12 @@ if ($cancelar->sucesso) {
   <blockquote><strong>Exemplo 6</strong><br>Efetuando a baixa de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-6-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-6-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-7-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-6-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-7-curl"> 
 
 {% highlight bash %}
 curl \
@@ -1154,7 +1298,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-6-php"">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-7-php"">
 
 {% highlight php %}
 <?php
@@ -1185,20 +1329,20 @@ if ($baixar->sucesso) {
 
 {% highlight json %}
 {
-   "sucesso": true,
-   "total": 1
+  "sucesso": true,
+  "total": 1
 }
 {% endhighlight %}
 
   <blockquote><strong>Exemplo 7</strong><br>Efetuando a baixa de duas ou mais cobranças</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-7-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-8-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-7-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-8-curl"> 
 
 {% highlight bash %}
 curl \
@@ -1209,7 +1353,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-7-php"">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-8-php"">
 
 {% highlight php %}
 <?php
@@ -1240,8 +1384,8 @@ if ($baixar->sucesso) {
 
 {% highlight json %}
 {
-   "sucesso": true,
-   "total": 2
+  "sucesso": true,
+  "total": 2
 }
 {% endhighlight %}
 
@@ -1298,12 +1442,12 @@ if ($baixar->sucesso) {
   <blockquote><strong>Exemplo 8</strong><br>Efetuando a consulta de uma notificação</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-8-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-9-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-9-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-8-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-9-curl"> 
 
 {% highlight bash %}
 curl \
@@ -1313,7 +1457,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-8-php"">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-9-php"">
 
 {% highlight php %}
 <?php
