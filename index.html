@@ -129,12 +129,12 @@
   <p>Toda chamada para a API tem, no retorno, o atributo <code>sucesso</code> e, em caso de erro, também virá o atributo <code>erro</code>, conforme os exemplos abaixo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mensagem de erro..."</span><span class="w">
+  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mensagem de erro..."</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <p>As mensagens de erros variam de acordo com o método e existe uma condição especial para os erros abaixo:</p>
@@ -144,18 +144,18 @@
       <p>Caso a mensagem de erro seja <code>Erro na validação dos campos.</code> será porque algum atributo obrigatório do método não foi enviado ou é inválido e também virá o atributo <code>validacao</code>, com o detalhamento dos atributos inválidos, conforme o exemplo abaixo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erro na validação dos campos."</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"validacao"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"cpf"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"O CPF informado é inválido."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"vencimento"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"O preenchimento do campo é obrigatório."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erro na validação dos campos."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"validacao"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"cpf"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"O CPF informado é inválido."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"vencimento"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"O preenchimento do campo é obrigatório."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
     </li>
@@ -163,18 +163,18 @@
       <p>Caso a mensagem de erro seja <code>Erro na execução da solicitação.</code> será porque não houve sucesso da chamada em nenhum dos itens e também virá o atributo <code>execucao</code>, com o detalhamento dos erros, conforme o exemplo abaixo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erro na execução da solicitação."</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"execucao"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"8FA0E7B48E882379"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"Cobrança não encontrada."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"5C5C051E86177A22"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"A cobrança já está baixada."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erro na execução da solicitação."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"execucao"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"8FA0E7B48E882379"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"Cobrança não encontrada."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"5C5C051E86177A22"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"A cobrança já está baixada."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
     </li>
@@ -698,9 +698,151 @@
   <p>Retorno dos exemplos:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-   </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4A13E8BE9842C174"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/4A13E8BE9842C174"</span><span class="w">
+  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4A13E8BE9842C174"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/4A13E8BE9842C174"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+  <h3 id="cobranca-boleto">Boleto de uma cobrança</h3>
+
+  <p>Lembramos que para obter os dados do boleto de uma cobrança, a forma de recebimento da mesma deve ser <code>Boleto</code>.</p>
+
+  <h6>URL</h6>
+
+  <pre>https://api.widepay.com/v1/recebimentos/cobrancas/boleto</pre>
+
+  <h6>ATRIBUTOS DE ENVIO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th style="width: 110px;">Obrigatório</th>
+        <th style="width: 100px;">Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td><strong>Sim</strong></td>
+        <td>String</td>
+        <td>ID da cobrança</td>
+      </tr>
+      <tr>
+        <td>atualizar</td>
+        <td>Não</td>
+        <td>Definido</td>
+        <td>Atualiza automaticamente a data do boleto caso esteja vencido, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Sim</code>
+</td>
+      </tr>
+      <tr>
+        <td>html</td>
+        <td>Não</td>
+        <td>Definido</td>
+        <td>Traz no retorno da requisição o HTML do boleto, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code>
+</td>
+      </tr>
+      <tr>
+        <td>carne</td>
+        <td>Não</td>
+        <td>Definido</td>
+        <td>Muda o layout HTML do boleto do formato convencional para o formato de carnê, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h6>ATRIBUTOS DE RETORNO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>parametros</td>
+        <td>Parâmetros da configuração do boleto, pode ser usado para gerar o boleto por sistema próprio, os dados mudam dependendo do banco configurado no Wide Pay</td>
+      </tr>
+      <tr>
+        <td>codigo</td>
+        <td>Código de barras do boleto</td>
+      </tr>
+      <tr>
+        <td>html</td>
+        <td>HTML do boleto</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <blockquote>
+<strong>Exemplo 3</strong><br>Obtendo dados do boleto de uma cobrança</blockquote>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-3-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-3-php" role="tab" data-toggle="tab">PHP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-3-curl"> 
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
+    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/boleto'</span> <span class="se">\</span>
+    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    -d <span class="s1">'id=8AF962B49E3920BB'</span> <span class="se">\</span>
+    -d <span class="s1">'atualizar=Sim'</span> <span class="se">\</span>
+    -d <span class="s1">'html=Sim'</span> <span class="se">\</span>
+    -d <span class="s1">'carne=Não'</span></code></pre></figure>
+
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-3-php">
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'../src/WidePay.php'</span><span class="p">);</span> <span class="c1">// Caminho para o SDK
+</span>
+<span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
+</span>
+<span class="nv">$boleto</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/boleto'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'8AF962B49E3920BB'</span><span class="p">,</span>
+    <span class="s1">'atualizar'</span> <span class="o">=&gt;</span> <span class="s1">'Sim'</span><span class="p">,</span>
+    <span class="s1">'html'</span> <span class="o">=&gt;</span> <span class="s1">'Sim'</span><span class="p">,</span>
+    <span class="s1">'carne'</span> <span class="o">=&gt;</span> <span class="s1">'Não'</span>
+<span class="p">));</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">parametros</span><span class="p">);</span> <span class="c1">// Imprime os parâmetros de configuração do boleto
+</span>
+    <span class="k">echo</span> <span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">codigo</span><span class="p">;</span> <span class="c1">// Código de barras do boleto
+</span>    <span class="k">echo</span> <span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">html</span><span class="p">;</span> <span class="c1">// HTML do boleto
+</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+    <span class="k">echo</span> <span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
+</span>
+<span class="p">}</span></code></pre></figure>
+
+    </div>
+  </div>
+
+  <p>Retorno do exemplo:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"parametros"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"033"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"agencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4582"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"conta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13001057-3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"208822"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"carteira"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03399.81276 22000.000004 00001.901016 1 73280000002250"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;table&gt;...&lt;/table&gt;"</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="cobranca-consultando">Consultando uma cobrança</h3>
@@ -755,12 +897,12 @@
 <strong>Exemplo 3</strong><br>Efetuando a consulta de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-3-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-3-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-4-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-4-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-3-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-4-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/consultar'</span> <span class="se">\</span>
@@ -768,7 +910,7 @@
     -d <span class="s1">'id=264C51BE984C7718'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-3-php">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-4-php">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1069,12 +1211,12 @@
 <strong>Exemplo 4</strong><br>Efetuando o cancelamento de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-4-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-4-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-5-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-5-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-4-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-5-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
@@ -1082,7 +1224,7 @@
     -d <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-4-php">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-5-php">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1110,20 +1252,20 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-   </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <blockquote>
 <strong>Exemplo 5</strong><br>Efetuando o cancelamento de duas ou mais cobranças</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-5-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-5-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-6-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-6-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-5-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-6-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
@@ -1132,7 +1274,7 @@
     -d <span class="s1">'id[1]=922FEDBE9835857A'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-5-php">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-6-php">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1160,8 +1302,8 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-   </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="cobranca-baixando">Baixando uma cobrança</h3>
@@ -1212,12 +1354,12 @@
 <strong>Exemplo 6</strong><br>Efetuando a baixa de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-6-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-6-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-7-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-6-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-7-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/baixar'</span> <span class="se">\</span>
@@ -1225,7 +1367,7 @@
     -d <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-6-php">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-7-php">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1253,20 +1395,20 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-   </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <blockquote>
 <strong>Exemplo 7</strong><br>Efetuando a baixa de duas ou mais cobranças</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-7-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-8-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-7-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-8-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
@@ -1275,7 +1417,7 @@
     -d <span class="s1">'id[1]=922FEDBE9835857A'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-7-php">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-8-php">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1303,8 +1445,8 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-   </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="cobranca-notificacao">Recebendo notificação da cobrança</h3>
@@ -1361,12 +1503,12 @@
 <strong>Exemplo 8</strong><br>Efetuando a consulta de uma notificação</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-8-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#cobranca-exemplo-9-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#cobranca-exemplo-9-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-8-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-9-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/notificacao'</span> <span class="se">\</span>
@@ -1374,7 +1516,7 @@
     -d <span class="s1">'id='</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-8-php">
+    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-9-php">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1686,7 +1828,7 @@
         <td>boleto</td>
         <td>Não</td>
         <td>Objeto</td>
-        <td>Parametros opcionais de configuração do boleto</td>
+        <td>Parâmetros opcionais de configuração do boleto</td>
       </tr>
       <tr>
         <td>boleto[desconto]</td>
