@@ -225,6 +225,85 @@
     <p>Retorne ao menu de configuração Wide Pay. Lá estará listado o ID do campo personalizado que criamos. Para finalizar, copie e cole o ID em "Campo referente ao CPF e CNPJ".</p>
 
 </section>
+<section class="bs-docs-section">
+
+
+    <h1 id="woocommerce" class="page-header">WooCommerce</h1>
+
+    <p>Módulo desenvolvido para integração entre o WooCommerce e Wide Pay. Com o módulo é possível gerar boletos para pagamento e liquidação automática pelo Wide Pay após o recebimento.</p>
+
+    <h2 id="woocommerce-instalacao">Instalação do plugin</h2>
+    <ol>
+        <li>Para a instalação do plugin realize o download pelo link: <a href="https://github.com/widepay/mod-woocommerce">https://github.com/widepay/mod-woocommerce</a></li>
+        <li>Após o download concluído, acesse o menu de plugins do WordPress, clique em Adicionar. Selecione o arquivo <em>.zip</em>. Clique em Upload.</li>
+        <li>Clique em Instalar.</li>
+        <li>Clique em Ativar.</li>
+    </ol>
+
+    <h2 id="woocommerce-configuracao">Configuração do plugin</h2>
+    <p>Lembre-se que para esta etapa, o plugin deve estar instalado e ativado no sistema Wordpress.</p>
+    <p>A configuração do Plugin Wide Pay pode ser encontrada no menu: Wordpress -&gt; Plugins -&gt; Woo Wide Pay -&gt; Configurações. Ou Wordpress -&gt; WooCommerce -&gt; Settings -&gt; Checkout -&gt; Wide Pay.</p>
+    <p>Para configuração do Wide Pay é preciso que pelo menos os 5 campos obrigatórios sejam preenchidos. Segue a lista dos campos e descrição.</p>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th style="width: 200px;">Campo</th>
+          <th style="width: 95px;">Obrigatório</th>
+          <th>Descrição</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Title</td>
+            <td><strong>Sim</strong></td>
+            <td>Nome do método de pagamento que será exibido no checkout</td>
+        </tr>
+        <tr>
+            <td>Descrição</td>
+            <td><strong>Sim</strong></td>
+            <td>Descrição do método de pagamento que será exibido no checkout</td>
+        </tr>
+        <tr>
+            <td>Item na fatura</td>
+            <td><strong>Sim</strong></td>
+            <td>Descrição do item presente na fatura Wide Pay</td>
+        </tr>
+        <tr>
+            <td>ID da Carteira Wide Pay</td>
+            <td><strong>Sim</strong></td>
+            <td>Preencha este campo com o ID da carteira que deseja receber os pagamentos do sistema. O ID de sua carteira estará presente neste link: <a href="https://www.widepay.com/conta/configuracoes/carteiras">https://www.widepay.com/conta/configuracoes/carteiras</a></td>
+        </tr>
+        <tr>
+            <td>Token da Carteira Wide Pay</td>
+            <td><strong>Sim</strong></td>
+            <td>Preencha com o token referente a sua carteira escolhida no campo acima. Clique no botão: "Integrações" na página do Wide Pay, será exibido o Token</td>
+        </tr>
+        <tr>
+            <td>Taxa de Variação</td>
+            <td>Não</td>
+            <td>O valor final da fatura será recalculado de acordo com este campo.</td>
+        </tr>
+        <tr>
+            <td>Tipo da Taxa de Variação</td>
+            <td>Não</td>
+            <td>O campo acima "Taxa de Variação" será aplicado de acordo com este campo.</td>
+        </tr>
+        <tr>
+            <td>Acréscimo de Dias no Vencimento</td>
+            <td>Não</td>
+            <td>Qual a quantidade de dias para o vencimento após a data da geração da fatura.</td>
+        </tr>
+        <tr>
+            <td>Configuração de Multa</td>
+            <td>Não</td>
+            <td>Configuração de multa após o vencimento, máximo 20</td>
+        </tr>
+        <tr>
+            <td>Configuração de Juros</td>
+            <td>Não</td>
+            <td>Configuração de juros após o vencimento, máximo 20</td>
+        </tr></tbody></table>
+</section>
       </div>
       <div class="col-md-3" role="complementary">
         <div class="bs-docs-sidebar hidden-print">
