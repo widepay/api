@@ -1395,7 +1395,7 @@ if ($baixar->sucesso) {
 
   <p>As notificações são enviadas quando uma cobrança possui uma URL de notificação definida na criação, ou, se não estiver definida, o sistema envia a notificação para a URL informada nas configurações do Wide Pay.</p>
 
-  <p>O envio da notificação é feito via <code>POST</code> via o parâmetro <code>notificacao</code>, que conterá o ID numérico da notificação que será usado para fazer a consulta dos dados da cobrança.</p>
+  <p>O envio da notificação é feito via <strong>POST</strong> via o parâmetro <code>notificacao</code>, que conterá o ID numérico da notificação que será usado para fazer a consulta dos dados da cobrança. Também virá o parâmetro <code>carteira</code>, contendo o ID da carteira dona da cobrança.</p>
 
   <h6>URL</h6>
 
