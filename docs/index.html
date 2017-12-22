@@ -345,6 +345,12 @@ hide: true
         <td>Formas de envio da cobrança, atualmente só pode ser <code>E-mail</code></td>
       </tr>
       <tr>
+        <td>mensagem</td>
+        <td>Não</td>
+        <td>String</td>
+        <td>Memsagem enviada ao cliente no e-mail de cobrança, tamanho máximo: 255 caracteres</td>
+      </tr>
+      <tr>
         <td>marketplace</td>
         <td>Não</td>
         <td>Array</td>
@@ -361,6 +367,12 @@ hide: true
         <td>Não</td>
         <td>Decimal</td>
         <td>Porcentagem da transferência, casas decimais: 2, valor máximo: 100.00</td>
+      </tr>
+      <tr>
+        <td>marketplace[][item]</td>
+        <td>Não</td>
+        <td>Numérico</td>
+        <td>Utilizado para que a regra de divisão seja calculada em cima de um item da cobrança</td>
       </tr>
       <tr>
         <td>boleto</td>
@@ -934,7 +946,9 @@ if ($consultar->sucesso) {
           "status": "Aguardando",
           "data": "2017-06-25 18:55:18"
         }
-      ]
+      ],
+      "comentario": null,
+      "favorito": null
     }
   ]
 }
@@ -1003,7 +1017,9 @@ if ($consultar->sucesso) {
           "status": "Recebido",
           "data": "2017-06-24 00:30:10"
         }
-      ]
+      ],
+      "comentario": null,
+      "favorito": null
     }
   ]
 }
@@ -1077,7 +1093,9 @@ if ($consultar->sucesso) {
           "status": "Recebido",
           "data": "2017-06-20 14:20:12"
         }
-      ]
+      ],
+      "comentario": null,
+      "favorito": null
     }
   ]
 }
@@ -1544,7 +1562,9 @@ if ($notificacao->sucesso) {
         "status": "Baixado",
         "data": "2017-06-25 15:22:41"
       }
-    ]
+    ],
+    "comentario": null,
+    "favorito": null
   }
 }
 {% endhighlight %}
@@ -1751,6 +1771,7 @@ if ($notificacao->sucesso) {
         <td>Definido</td>
         <td>Formas de envio do carnê, atualmente só pode ser <code>E-mail</code></td>
       </tr>
+      ...mensagem
       <tr>
         <td>marketplace</td>
         <td>Não</td>
