@@ -129,47 +129,47 @@ hide: true
     </thead>
     <tbody>
       <tr>
-        <td class="info"><span class="text-info">Aguardando</span></td>
+        <td><span class="label label-info">Aguardando</span></td>
         <td>Boleto e cartão</td>
         <td>Cobrança criada e aguardando pagamento</td>
       </tr>
       <tr>
-        <td class="success"><span class="text-success">Baixado</span></td>
+        <td><span class="label label-success">Baixado</span></td>
         <td>Boleto e cartão</td>
         <td>Cobrança baixada é uma forma de confirmação manual do pagamento</td>
       </tr>
       <tr>
-        <td class="danger"><span class="text-danger">Cancelado</span></td>
+        <td><span class="label label-danger">Cancelado</span></td>
         <td>Boleto e cartão</td>
         <td>Cobrança cancelada pelo solicitante</td>
       </tr>
       <tr>
-        <td class="danger"><span class="text-danger">Contestado</span></td>
+        <td><span class="label label-danger">Contestado</span></td>
         <td>Boleto e cartão</td>
         <td>Quando o pagador faz uma contestação do pagamento ao Wide Pay</td>
       </tr>
       <tr>
-        <td class="info"><span class="text-info">Em análise</span></td>
+        <td><span class="label label-info">Em análise</span></td>
         <td>Boleto e cartão</td>
         <td>Após o pagamento, a cobrança pode ser submetida a uma análise antifraude</td>
       </tr>
       <tr>
-        <td class="danger"><span class="text-danger">Estornado</span></td>
+        <td><span class="label label-danger">Estornado</span></td>
         <td>Cartão</td>
         <td>Quando a cobrança é estornada pelo solicitante</td>
       </tr>
       <tr>
-        <td class="success"><span class="text-success">Recebido</span></td>
+        <td><span class="label label-success">Recebido</span></td>
         <td>Boleto e cartão</td>
         <td>Pagamento recebido</td>
       </tr>
       <tr>
-        <td class="danger"><span class="text-danger">Recusado</span></td>
+        <td><span class="label label-danger">Recusado</span></td>
         <td>Cartão</td>
         <td>Pagamento recusado pela administradora de cartão ou pela análise antifraude</td>
       </tr>
       <tr>
-        <td class="warning"><span class="text-warning">Vencido</span></td>
+        <td><span class="label label-warning">Vencido</span></td>
         <td>Boleto e cartão</td>
         <td>Um dia após o vencimento caso não haja o pagamento, o status é alterado</td>
       </tr>
@@ -285,6 +285,12 @@ hide: true
         <td>Não</td>
         <td>String</td>
         <td>Tamanho: 2 caracteres</td>
+      </tr>
+      <tr>
+        <td>endereco[coletar]</td>
+        <td>Não</td>
+        <td>Definido</td>
+        <td>Opção para que a tela de pagamento solicite ao cliente que informe um endereço de entrega, pode ser <code>Não</code> ou <code>Sim</code></td>
       </tr>
       <tr>
         <td>itens</td>
@@ -433,12 +439,12 @@ hide: true
   <blockquote><strong>Exemplo 1</strong><br>Criando uma cobrança simples com o envio mínimo de atributos</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-1-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-1-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-1-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-1-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-1-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-1-curl"> 
 
 {% highlight bash %}
 curl \
@@ -453,7 +459,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-1-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-1-php"">
 
 {% highlight php %}
 <?php
@@ -478,6 +484,7 @@ $adicionar = $wp->api('recebimentos/cobrancas/adicionar', array(
 if ($adicionar->sucesso) {
 
     echo $adicionar->id; // ID da cobrança gerada
+    echo $adicionar->link; // Link da cobrança gerada
 
 } else {
 
@@ -496,12 +503,12 @@ if ($adicionar->sucesso) {
   <blockquote><strong>Exemplo 2</strong><br>Criando uma cobrança completa com o envio de todos os atributos disponíveis</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-2-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-2-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-2-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-2-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-2-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-2-curl"> 
 
 {% highlight bash %}
 curl \
@@ -520,6 +527,7 @@ curl \
     -d 'endereco[cep]=79005-610' \
     -d 'endereco[cidade]=Campo Grande' \
     -d 'endereco[estado]=MS' \
+    -d 'endereco[coletar]=Sim' \
     -d 'itens[0][descricao]=Descrição item 1' \
     -d 'itens[0][valor]=20' \
     -d 'itens[0][quantidade]=2' \
@@ -531,8 +539,10 @@ curl \
     -d 'redirecionamento=http://www.minhaaplicacao.com/script-redirecionamento.php' \
     -d 'vencimento=2017-08-10' \
     -d 'enviar=E-mail' \
+    -d 'mensagem=Mensagem personalizada no e-mail' \
     -d 'marketplace[0][carteira]=10500' \
     -d 'marketplace[0][valor]=10' \
+    -d 'marketplace[0][item]=0' \
     -d 'marketplace[1][carteira]=10800' \
     -d 'marketplace[1][valor]=5' \
     -d 'boleto[desconto]=4.5' \
@@ -543,7 +553,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-2-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-2-php"">
 
 {% highlight php %}
 <?php
@@ -566,7 +576,8 @@ $adicionar = $wp->api('recebimentos/cobrancas/adicionar', array(
         'bairro' => 'Vila Carvalho',
         'cep' => '79005-610',
         'cidade' => 'Campo Grande',
-        'estado' => 'MS'
+        'estado' => 'MS',
+        'coletar' => 'Sim'
     ),
     'itens' => array(
         array(
@@ -585,10 +596,12 @@ $adicionar = $wp->api('recebimentos/cobrancas/adicionar', array(
     'redirecionamento' => 'http://www.minhaaplicacao.com/script-redirecionamento.php',
     'vencimento' => '2017-08-10',
     'enviar' => 'E-mail',
+    'mensagem' => 'Mensagem personalizada no e-mail',
     'marketplace' => array(
         array(
             'carteira' => 10500,
-            'valor' => 10
+            'valor' => 10,
+            'item' => 0
         ),
         array(
             'carteira' => 10800,
@@ -609,6 +622,7 @@ $adicionar = $wp->api('recebimentos/cobrancas/adicionar', array(
 if ($adicionar->sucesso) {
 
     echo $adicionar->id; // ID da cobrança gerada
+    echo $adicionar->link; // Link da cobrança gerada
 
 } else {
 
@@ -630,7 +644,7 @@ if ($adicionar->sucesso) {
 {
   "sucesso": true,
   "id": "4A13E8BE9842C174",
-  "link": "https://www.widepay.com/148446-4A13E8BE9842C174"
+  "link": "https://www.widepay.com/cobranca/148446-4A13E8BE9842C174"
 }
 {% endhighlight %}
 
@@ -665,6 +679,12 @@ if ($adicionar->sucesso) {
         <td>Não</td>
         <td>Definido</td>
         <td>Atualiza automaticamente a data do boleto caso esteja vencido, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Sim</code></td>
+      </tr>
+      <tr>
+        <td>vencimento</td>
+        <td>Não</td>
+        <td>Data</td>
+        <td>Atualiza a data de vencimento, disponível somente se o atributo atualizar for <code>Sim</code></td>
       </tr>
       <tr>
         <td>html</td>
@@ -709,12 +729,12 @@ if ($adicionar->sucesso) {
   <blockquote><strong>Exemplo 3</strong><br>Obtendo dados do boleto de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-3-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-3-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-3-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-3-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-3-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-3-curl"> 
 
 {% highlight bash %}
 curl \
@@ -727,7 +747,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-3-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-3-php"">
 
 {% highlight php %}
 <?php
@@ -769,7 +789,7 @@ if ($boleto->sucesso) {
     "banco": "033",
     "agencia": "4582",
     "conta": "13001057-3",
-    "codigo": "208822",
+    "convenio": "208822",
     "carteira": "101",
     "numero": "1"
   },
@@ -800,7 +820,7 @@ if ($boleto->sucesso) {
         <td>id</td>
         <td>Não</td>
         <td>String, Array</td>
-        <td>ID da cobrança a ser consultada, pode ser um ou mais. Caso não seja passado o ID, será retornado às últimas cobranças geradas</td>
+        <td>ID da cobrança a ser consultada, pode ser um ou mais. Caso não seja passado o ID, será retornado as últimas cobranças geradas</td>
       </tr>
     </tbody>
   </table>
@@ -829,12 +849,12 @@ if ($boleto->sucesso) {
   <blockquote><strong>Exemplo 4</strong><br>Efetuando a consulta de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-4-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-4-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-4-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-4-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-4-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-4-curl"> 
 
 {% highlight bash %}
 curl \
@@ -844,7 +864,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-4-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-4-php"">
 
 {% highlight php %}
 <?php
@@ -1150,12 +1170,12 @@ if ($consultar->sucesso) {
   <blockquote><strong>Exemplo 5</strong><br>Efetuando o cancelamento de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-5-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-5-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-5-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-5-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-5-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-5-curl"> 
 
 {% highlight bash %}
 curl \
@@ -1165,7 +1185,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-5-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-5-php"">
 
 {% highlight php %}
 <?php
@@ -1204,12 +1224,12 @@ if ($cancelar->sucesso) {
   <blockquote><strong>Exemplo 6</strong><br>Efetuando o cancelamento de duas ou mais cobranças</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-6-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-6-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-6-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-6-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-6-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-6-curl"> 
 
 {% highlight bash %}
 curl \
@@ -1220,7 +1240,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-6-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-6-php"">
 
 {% highlight php %}
 <?php
@@ -1303,12 +1323,12 @@ if ($cancelar->sucesso) {
   <blockquote><strong>Exemplo 7</strong><br>Efetuando a baixa de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-7-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-7-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-7-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-7-curl"> 
 
 {% highlight bash %}
 curl \
@@ -1318,7 +1338,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-7-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-7-php"">
 
 {% highlight php %}
 <?php
@@ -1357,12 +1377,12 @@ if ($baixar->sucesso) {
   <blockquote><strong>Exemplo 8</strong><br>Efetuando a baixa de duas ou mais cobranças</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-8-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-8-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-8-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-8-curl"> 
 
 {% highlight bash %}
 curl \
@@ -1373,7 +1393,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-8-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-8-php"">
 
 {% highlight php %}
 <?php
@@ -1462,12 +1482,12 @@ if ($baixar->sucesso) {
   <blockquote><strong>Exemplo 9</strong><br>Efetuando a consulta de uma notificação</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#cobranca-exemplo-9-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#cobranca-exemplo-9-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-9-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-9-php" role="tab" data-toggle="tab">PHP</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="cobranca-exemplo-9-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-9-curl"> 
 
 {% highlight bash %}
 curl \
@@ -1477,7 +1497,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="cobranca-exemplo-9-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-9-php"">
 
 {% highlight php %}
 <?php
@@ -1571,7 +1591,6 @@ if ($notificacao->sucesso) {
 }
 {% endhighlight %}
 
-  <!---
   <h2 id="carnes">Carnês</h2>
 
   <p>Um carnê é formado por várias cobranças agrupadas, as parcelas de um carnê tem o vencimento mensal, por exemplo, ao gerar um carnê com o primeiro vencimento para 15/03, a próxima parcela terá o vencimento para 15/04, sempre com intervalo de 1 mês.</p>
@@ -1587,19 +1606,19 @@ if ($notificacao->sucesso) {
     </thead>
     <tbody>
       <tr>
-        <td class="info"><span class="text-info">Ativo</span></td>
+        <td><span class="label label-info">Ativo</span></td>
         <td>Carnê em dia e com as parcelas aguardando o pagamento</td>
       </tr>
       <tr>
-        <td class="danger"><span class="text-danger">Cancelado</span></td>
+        <td><span class="label label-danger">Cancelado</span></td>
         <td>Carnê cancelado pelo solicitante</td>
       </tr>
       <tr>
-        <td class="success"><span class="text-success">Finalizado</span></td>
+        <td><span class="label label-success">Finalizado</span></td>
         <td>Quando o carnê é finalizado pelo pagamento das parcelas ou por baixa manual</td>
       </tr>
       <tr>
-        <td class="warning"><span class="text-warning">Pendente</span></td>
+        <td><span class="label label-warning">Pendente</span></td>
         <td>Status aplicado quando existem uma ou mais parcelas vencidas</td>
       </tr>
     </tbody>
@@ -1639,13 +1658,13 @@ if ($notificacao->sucesso) {
         <td>cpf</td>
         <td><strong>Condicional</strong></td>
         <td>CPF</td>
-        <td>Obrigatório se o atributo pessoa for <code>Física</code></td>
+        <td>Obrigatório, se o atributo pessoa for <code>Física</code></td>
       </tr>
       <tr>
         <td>cnpj</td>
         <td><strong>Condicional</strong></td>
         <td>CNPJ</td>
-        <td>Obrigatório se o atributo pessoa for <code>Jurídica</code></td>
+        <td>Obrigatório, se o atributo pessoa for <code>Jurídica</code></td>
       </tr>
       <tr>
         <td>email</td>
@@ -1773,12 +1792,17 @@ if ($notificacao->sucesso) {
         <td>Definido</td>
         <td>Formas de envio do carnê, atualmente só pode ser <code>E-mail</code></td>
       </tr>
-      ...mensagem
+      <tr>
+        <td>mensagem</td>
+        <td>Não</td>
+        <td>String</td>
+        <td>Memsagem enviada ao cliente no e-mail de cobrança, tamanho máximo: 255 caracteres</td>
+      </tr>
       <tr>
         <td>marketplace</td>
         <td>Não</td>
         <td>Array</td>
-        <td>Regras da divisão por marketplace, máximo de itens: 5, se não definido, pegará o valor definido no Wide Pay</td>
+        <td>Regras da divisão por marketplace, máximo de itens: 5. Se não definido, utilizará o valor definido no Wide Pay</td>
       </tr>
       <tr>
         <td>marketplace[][carteira]</td>
@@ -1791,6 +1815,12 @@ if ($notificacao->sucesso) {
         <td>Não</td>
         <td>Decimal</td>
         <td>Porcentagem da transferência, casas decimais: 2, valor máximo: 100.00</td>
+      </tr>
+      <tr>
+        <td>marketplace[][item]</td>
+        <td>Não</td>
+        <td>Numérico</td>
+        <td>Utilizado para que a regra de divisão seja calculada em cima de um item da cobrança</td>
       </tr>
       <tr>
         <td>boleto</td>
@@ -1820,7 +1850,7 @@ if ($notificacao->sucesso) {
         <td>boleto[instrucoes]</td>
         <td>Não</td>
         <td>String, Array</td>
-        <td>Linhas de instruções, máximo de itens: 4, tamanho máximo de cada item: 100 caracteres, se não definido, pegará o valor definido no Wide Pay</td>
+        <td>Linhas de instruções, máximo de itens: 4, tamanho máximo de cada item: 100 caracteres. Se não definido, utilizará o valor definido no Wide Pay</td>
       </tr>
     </tbody>
   </table>
@@ -1850,32 +1880,1002 @@ if ($notificacao->sucesso) {
     </tbody>
   </table>
 
+  <blockquote><strong>Exemplo 10</strong><br>Criando um carnê simples com o envio mínimo de atributos</blockquote>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#exemplo-10-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-10-php" role="tab" data-toggle="tab">PHP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-10-curl"> 
+
+{% highlight bash %}
+curl \
+    -X POST 'https://api.widepay.com/v1/recebimentos/carnes/adicionar' \
+    -u '148446:800440511285a9b0808ea85a94f3dd62' \
+    -d 'cliente=Lívia Pontarolo Almeida' \
+    -d 'pessoa=Física' \
+    -d 'cpf=463.384.662-02' \
+    -d 'itens[0][descricao]=Descrição item 1' \
+    -d 'itens[0][valor]=22.50' \
+    -d 'vencimento=2018-04-10' \
+    -d 'parcelas=6' \
+    -d 'dividir=Não'
+{% endhighlight %}
+
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-10-php"">
+
+{% highlight php %}
+<?php
+
+require_once('../src/WidePay.php'); // Caminho para o SDK
+
+$wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
+
+$adicionar = $wp->api('recebimentos/carnes/adicionar', array(
+    'cliente' => 'Lívia Pontarolo Almeida',
+    'pessoa' => 'Física',
+    'cpf' => '463.384.662-02',
+    'itens' => array(
+        array(
+            'descricao' => 'Descrição item 1',
+            'valor' => 22.50
+        )
+    ),
+    'vencimento' => '2018-04-10',
+    'parcelas' => '6',
+    'dividir' => 'Não'
+));
+
+if ($adicionar->sucesso) {
+
+    echo $adicionar->id; // ID do carnê gerado
+    echo $adicionar->link; // Link do carnê gerado
+
+    print_r($adicionar->cobrancas); // Imprime todos os IDS das cobranças geradas
+
+} else {
+
+    echo $adicionar->erro;
+
+    if ($adicionar->erro == 'Erro na validação dos campos.') {
+        print_r($adicionar->validacao); // Imprime os erros de validação
+    }
+
+}
+{% endhighlight %}
+
+    </div>
+  </div>
+
+  <blockquote><strong>Exemplo 11</strong><br>Criando um carnê completo com o envio de todos os atributos disponíveis</blockquote>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#exemplo-11-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-11-php" role="tab" data-toggle="tab">PHP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-11-curl"> 
+
+{% highlight bash %}
+curl \
+    -X POST 'https://api.widepay.com/v1/recebimentos/carnes/adicionar' \
+    -u '148446:800440511285a9b0808ea85a94f3dd62' \
+    -d 'cliente=Lívia Pontarolo Almeida' \
+    -d 'pessoa=Física' \
+    -d 'cpf=463.384.662-02' \
+    -d 'email=emaildalivia@gmail.com' \
+    -d 'telefone=67 98888-0000' \
+    -d 'endereco[rua]=Rua Primeiro de Julho' \
+    -d 'endereco[numero]=192' \
+    -d 'endereco[complemento]=Sala 25' \
+    -d 'endereco[bairro]=Vila Carvalho' \
+    -d 'endereco[cep]=79005-610' \
+    -d 'endereco[cidade]=Campo Grande' \
+    -d 'endereco[estado]=MS' \
+    -d 'itens[0][descricao]=Descrição item 1' \
+    -d 'itens[0][valor]=20' \
+    -d 'itens[0][quantidade]=2' \
+    -d 'itens[0][desconto]=4.99' \
+    -d 'itens[1][descricao]=Descrição item 2' \
+    -d 'itens[1][valor]=10.50' \
+    -d 'referencia=Fatura 12345' \
+    -d 'notificacao=http://www.minhaaplicacao.com/script-notificacao.php' \
+    -d 'vencimento=2018-04-10' \
+    -d 'parcelas=6' \
+    -d 'dividir=Não' \
+    -d 'enviar=E-mail' \
+    -d 'mensagem=Mensagem personalizada no e-mail' \
+    -d 'marketplace[0][carteira]=10500' \
+    -d 'marketplace[0][valor]=10' \
+    -d 'marketplace[0][item]=0' \
+    -d 'marketplace[1][carteira]=10800' \
+    -d 'marketplace[1][valor]=5' \
+    -d 'boleto[desconto]=4.5' \
+    -d 'boleto[multa]=2' \
+    -d 'boleto[juros]=1' \
+    -d 'boleto[instrucoes][0]=Instrução personalizada ao cliente, linha 1' \
+    -d 'boleto[instrucoes][1]=Instrução personalizada ao cliente, linha 2'
+{% endhighlight %}
+
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-11-php"">
+
+{% highlight php %}
+<?php
+
+require_once('../src/WidePay.php'); // Caminho para o SDK
+
+$wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
+
+$adicionar = $wp->api('recebimentos/carnes/adicionar', array(
+    'cliente' => 'Lívia Pontarolo Almeida',
+    'pessoa' => 'Física',
+    'cpf' => '463.384.662-02',
+    'email' => 'emaildalivia@gmail.com',
+    'telefone' => '67 98888-0000',
+    'endereco' => array(
+        'rua' => 'Rua Primeiro de Julho',
+        'numero' => '192',
+        'complemento' => 'Sala 25',
+        'bairro' => 'Vila Carvalho',
+        'cep' => '79005-610',
+        'cidade' => 'Campo Grande',
+        'estado' => 'MS'
+    ),
+    'itens' => array(
+        array(
+            'descricao' => 'Descrição item 1',
+            'valor' => 20,
+            'quantidade' => 2,
+            'desconto' => 4.99
+        ),
+        array(
+            'descricao' => 'Descrição item 2',
+            'valor' => 10.50
+        )
+    ),
+    'referencia' => 'Fatura 12345',
+    'notificacao' => 'http://www.minhaaplicacao.com/script-notificacao.php',
+    'vencimento' => '2018-04-10',
+    'parcelas' => '6',
+    'dividir' => 'Não',
+    'enviar' => 'E-mail',
+    'mensagem' => 'Mensagem personalizada no e-mail',
+    'marketplace' => array(
+        array(
+            'carteira' => 10500,
+            'valor' => 10,
+            'item' => 0
+        ),
+        array(
+            'carteira' => 10800,
+            'valor' => 5
+        )
+    ),
+    'boleto' => array(
+        'desconto' => 4.5,
+        'multa' => 2,
+        'juros' => 1,
+        'instrucoes' => array(
+            'Instrução personalizada ao cliente, linha 1',
+            'Instrução personalizada ao cliente, linha 2'
+        )
+    )
+));
+
+if ($adicionar->sucesso) {
+
+    echo $adicionar->id; // ID do carnê gerado
+    echo $adicionar->link; // Link do carnê gerado
+
+    print_r($adicionar->cobrancas); // Imprime todos os IDS das cobranças geradas
+
+} else {
+
+    echo $adicionar->erro; // Erro
+
+    if ($adicionar->erro == 'Erro na validação dos campos.') {
+        print_r($adicionar->validacao); // Imprime os erros de validação
+    }
+
+}
+{% endhighlight %}
+
+    </div>
+  </div>
+
+  <p>Retorno dos exemplos:</p>
+
+{% highlight json %}
+{
+  "sucesso": true,
+  "id": "16758",
+  "link": "https://www.widepay.com/carne/148446-16758",
+  "cobrancas": ["387A98B52D924091","15CBD6BFCD924091","3A769A152392EA9B","4A22ACB5CD924A91","2E7966BF23924A91","94C8C9B52D92E091"]
+}
+{% endhighlight %}
+
+  <h3 id="carne-montando">Montando um carnê</h3>
+
+  <p>Com esse método você tem a possibilidade de montar um carnê a partir dos IDS de cobranças já geradas.</p>
+
+  <h6>URL</h6>
+
+  <pre>https://api.widepay.com/v1/recebimentos/carnes/montar</pre>
+
+  <h6>ATRIBUTOS DE ENVIO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th style="width: 110px;">Obrigatório</th>
+        <th style="width: 100px;">Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>cobrancas</td>
+        <td><strong>Sim</strong></td>
+        <td>Array</td>
+        <td>IDS das cobranças que serão vinculadas ao carnê, quantidade mínima: 2, quantidade máxima: 24</td>
+      </tr>
+      <tr>
+        <td>referencia</td>
+        <td>Não</td>
+        <td>String</td>
+        <td>Código de referência para associar ao carnê um ID específico do seu sistema ou aplicação, tamanho máximo: 100 caracteres</td>
+      </tr>
+      <tr>
+        <td>notificacao</td>
+        <td>Não</td>
+        <td>URL</td>
+        <td>URL que será chamada quando o carnê muda de status</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h6>ATRIBUTOS DE RETORNO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>ID do carnê gerado</td>
+      </tr>
+      <tr>
+        <td>link</td>
+        <td>Link de pagamento do carnê</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <blockquote><strong>Exemplo 12</strong><br>Efetuando a montagem de um carnê</blockquote>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#exemplo-12-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-12-php" role="tab" data-toggle="tab">PHP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-12-curl"> 
+
+{% highlight bash %}
+curl \
+    -X POST 'https://api.widepay.com/v1/recebimentos/carnes/montar' \
+    -u '148446:800440511285a9b0808ea85a94f3dd62' \
+    -d 'cobrancas[0]=5F151D278C9DDC80' \
+    -d 'cobrancas[1]=7CF34C1FF5E842B0' \
+    -d 'cobrancas[2]=6AB79C5F626436A8'
+{% endhighlight %}
+
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-12-php"">
+
+{% highlight php %}
+<?php
+
+require_once('../src/WidePay.php'); // Caminho para o SDK
+
+$wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
+
+$montar = $wp->api('recebimentos/carnes/montar', array(
+    'cobrancas' => array('5F151D278C9DDC80', '7CF34C1FF5E842B0', '6AB79C5F626436A8')
+));
+
+if ($montar->sucesso) {
+
+    echo $montar->id; // ID do carnê gerado
+    echo $montar->link; // Link do carnê gerado
+
+} else {
+
+    echo $montar->erro; // Erro
+
+    if ($montar->erro == 'Erro na validação dos campos.') {
+        print_r($montar->validacao); // Imprime os erros de validação
+    }
+
+}
+{% endhighlight %}
+
+    </div>
+  </div>
+
+  <p>Retorno do exemplo:</p>
+
+{% highlight json %}
+{
+  "sucesso": true,
+  "id": "16768",
+  "link": "https://www.widepay.com/carne/148446-16768"
+}
+{% endhighlight %}
+
   <h3 id="carne-consultando">Consultando um carnê</h3>
 
-  <p>...</p>
+  <h6>URL</h6>
+
+  <pre>https://api.widepay.com/v1/recebimentos/carnes/consultar</pre>
+
+  <h6>ATRIBUTOS DE ENVIO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th style="width: 110px;">Obrigatório</th>
+        <th style="width: 100px;">Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>Não</td>
+        <td>String, Array</td>
+        <td>ID do carnê a ser consultado, pode ser um ou mais. Caso não seja passado o ID, será retornado os últimos carnês gerados</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h6>ATRIBUTOS DE RETORNO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>total</td>
+        <td>Total de carnês retornados</td>
+      </tr>
+      <tr>
+        <td>carnes</td>
+        <td>Lista com os carnês encontrados</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <blockquote><strong>Exemplo 13</strong><br>Efetuando a consulta de um carnê</blockquote>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#exemplo-13-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-13-php" role="tab" data-toggle="tab">PHP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-13-curl"> 
+
+{% highlight bash %}
+curl \
+    -X POST 'https://api.widepay.com/v1/recebimentos/carnes/consultar' \
+    -u '148446:800440511285a9b0808ea85a94f3dd62' \
+    -d 'id=16758'
+{% endhighlight %}
+
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-13-php"">
+
+{% highlight php %}
+<?php
+
+require_once('../src/WidePay.php'); // Caminho para o SDK
+
+$wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
+
+$consultar = $wp->api('recebimentos/carnes/consultar', array(
+    'id' => '16758'
+));
+
+if ($consultar->sucesso) {
+
+    echo $consultar->carnes[0]['id']; // ID do carnê
+    echo $consultar->carnes[0]['status']; // Status do carnê
+
+    print_r($consultar->carnes[0]); // Imprime todos os dados do carnê
+
+} else {
+
+    echo $consultar->erro; // Erro
+
+}
+{% endhighlight %}
+
+    </div>
+  </div>
+
+  <p>Retorno do exemplo:</p>
+
+{% highlight json %}
+{
+  "sucesso": true,
+  "total": "1",
+  "carnes": [
+    {
+      "id": "16758",
+      "cliente": "Lívia Pontarolo Almeida",
+      "pessoa": "Física",
+      "cpf": "463.384.662-02",
+      "cnpj": null,
+      "email": "emaildalivia@gmail.com",
+      "telefone": "67 98888-0000",
+      "endereco": {
+        "rua": "Rua Primeiro de Julho",
+        "numero": "192",
+        "complemento": "Sala 25",
+        "bairro": "Vila Carvalho",
+        "cep": "79005-610",
+        "cidade": "Campo Grande",
+        "estado": "MS"
+      },
+      "itens": [
+        {
+          "descricao": "Descrição item 1",
+          "valor": "20",
+          "quantidade": "2",
+          "desconto": "4.99"
+        },
+        {
+          "descricao": "Descrição item 2",
+          "valor": "10.5",
+          "quantidade": "1",
+          "desconto": "0"
+        }
+      ],
+      "referencia": "Fatura 12345",
+      "valor": "40.51",
+      "dividir": "Não",
+      "parcelas": "6",
+      "notificacao": "http://www.minhaaplicacao.com/script-notificacao.php",
+      "vencimento": "2018-04-10",
+      "criacao": "2018-01-17 15:33:41",
+      "status": "Pendente",
+      "detalhamento": [
+        {
+          "cobranca": "8FA0DABF16210EC1",
+          "recebimento": "2018-04-07",
+          "valor": "40.51"
+        },
+        {
+          "cobranca": "5C8C1E1F16C20E2B",
+          "recebimento": "2018-05-22",
+          "valor": "42"
+        }
+      ],
+      "historico": [
+        {
+          "status": "Ativo",
+          "data": "2018-01-17 15:33:41"
+        },
+        {
+          "status": "Pendente",
+          "data": "2018-05-11 00:41:49"
+        },
+        {
+          "status": "Ativo",
+          "data": "2018-05-23 05:46:09"
+        }
+      ],
+      "comentario": null,
+      "favorito": null
+    }
+  ]
+}
+{% endhighlight %}
 
   <h3 id="carne-cancelando">Cancelando um carnê</h3>
 
-  <p>...</p>
+  <h6>URL</h6>
+
+  <pre>https://api.widepay.com/v1/recebimentos/carnes/cancelar</pre>
+
+  <h6>ATRIBUTOS DE ENVIO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th style="width: 110px;">Obrigatório</th>
+        <th style="width: 100px;">Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td><strong>Sim</strong></td>
+        <td>String, Array</td>
+        <td>ID do carnê a ser cancelado, pode ser um ou mais</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h6>ATRIBUTOS DE RETORNO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>total</td>
+        <td>Total de carnês cancelados</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <blockquote><strong>Exemplo 14</strong><br>Efetuando o cancelamento de um carnê</blockquote>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#exemplo-14-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-14-php" role="tab" data-toggle="tab">PHP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-14-curl"> 
+
+{% highlight bash %}
+curl \
+    -X POST 'https://api.widepay.com/v1/recebimentos/carnes/cancelar' \
+    -u '148446:800440511285a9b0808ea85a94f3dd62' \
+    -d 'id=16700'
+{% endhighlight %}
+
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-14-php"">
+
+{% highlight php %}
+<?php
+
+require_once('../src/WidePay.php'); // Caminho para o SDK
+
+$wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
+
+$cancelar = $wp->api('recebimentos/carnes/cancelar', array(
+    'id' => '16700'
+));
+
+if ($cancelar->sucesso) {
+
+    echo $cancelar->total; // Total de carnês cancelados
+
+} else {
+
+    echo $cancelar->erro; // Erro
+
+}
+{% endhighlight %}
+
+    </div>
+  </div>
+
+  <p>Retorno do exemplo:</p>
+
+{% highlight json %}
+{
+  "sucesso": true,
+  "total": 1
+}
+{% endhighlight %}
+
+  <blockquote><strong>Exemplo 15</strong><br>Efetuando o cancelamento de dois ou mais carnês</blockquote>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#exemplo-15-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-15-php" role="tab" data-toggle="tab">PHP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-15-curl"> 
+
+{% highlight bash %}
+curl \
+    -X POST 'https://api.widepay.com/v1/recebimentos/carnes/cancelar' \
+    -u '148446:800440511285a9b0808ea85a94f3dd62' \
+    -d 'id[0]=16700' \
+    -d 'id[1]=16701'
+{% endhighlight %}
+
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-15-php"">
+
+{% highlight php %}
+<?php
+
+require_once('../src/WidePay.php'); // Caminho para o SDK
+
+$wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
+
+$cancelar = $wp->api('recebimentos/carnes/cancelar', array(
+    'id' => array('16700', '16701')
+));
+
+if ($cancelar->sucesso) {
+
+    echo $cancelar->total; // Total de carnês cancelados
+
+} else {
+
+    echo $cancelar->erro; // Erro
+
+}
+{% endhighlight %}
+
+    </div>
+  </div>
+
+  <p>Retorno do exemplo:</p>
+
+{% highlight json %}
+{
+  "sucesso": true,
+  "total": 2
+}
+{% endhighlight %}
 
   <h3 id="carne-baixando">Baixando um carnê</h3>
 
-  <p>...</p>
+  <h6>URL</h6>
+
+  <pre>https://api.widepay.com/v1/recebimentos/carnes/baixar</pre>
+
+  <h6>ATRIBUTOS DE ENVIO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th style="width: 110px;">Obrigatório</th>
+        <th style="width: 100px;">Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td><strong>Sim</strong></td>
+        <td>String, Array</td>
+        <td>ID do carnê a ser baixado, pode ser um ou mais</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h6>ATRIBUTOS DE RETORNO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>total</td>
+        <td>Total de carnês baixados</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <blockquote><strong>Exemplo 16</strong><br>Efetuando a baixa de um carnê</blockquote>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#exemplo-16-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-16-php" role="tab" data-toggle="tab">PHP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-16-curl"> 
+
+{% highlight bash %}
+curl \
+    -X POST 'https://api.widepay.com/v1/recebimentos/carnes/baixar' \
+    -u '148446:800440511285a9b0808ea85a94f3dd62' \
+    -d 'id=16700'
+{% endhighlight %}
+
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-16-php"">
+
+{% highlight php %}
+<?php
+
+require_once('../src/WidePay.php'); // Caminho para o SDK
+
+$wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
+
+$baixar = $wp->api('recebimentos/carnes/baixar', array(
+    'id' => '16700'
+));
+
+if ($baixar->sucesso) {
+
+    echo $baixar->total; // Total de carnês cancelados
+
+} else {
+
+    echo $baixar->erro; // Erro
+
+}
+{% endhighlight %}
+
+    </div>
+  </div>
+
+  <p>Retorno do exemplo:</p>
+
+{% highlight json %}
+{
+  "sucesso": true,
+  "total": 1
+}
+{% endhighlight %}
+
+  <blockquote><strong>Exemplo 17</strong><br>Efetuando a baixa de dois ou mais carnês</blockquote>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#exemplo-17-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-17-php" role="tab" data-toggle="tab">PHP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-17-curl"> 
+
+{% highlight bash %}
+curl \
+    -X POST 'https://api.widepay.com/v1/recebimentos/carnes/cancelar' \
+    -u '148446:800440511285a9b0808ea85a94f3dd62' \
+    -d 'id[0]=16700' \
+    -d 'id[1]=16701'
+{% endhighlight %}
+
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-17-php"">
+
+{% highlight php %}
+<?php
+
+require_once('../src/WidePay.php'); // Caminho para o SDK
+
+$wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
+
+$baixar = $wp->api('recebimentos/carnes/baixar', array(
+    'id' => array('16700', '16701')
+));
+
+if ($baixar->sucesso) {
+
+    echo $baixar->total; // Total de carnês cancelados
+
+} else {
+
+    echo $baixar->erro; // Erro
+
+}
+{% endhighlight %}
+
+    </div>
+  </div>
+
+  <p>Retorno do exemplo:</p>
+
+{% highlight json %}
+{
+  "sucesso": true,
+  "total": 2
+}
+{% endhighlight %}
 
   <h3 id="carne-notificacao">Recebendo notificação do carnê</h3>
 
-  <p>...</p>
-  -->
+  <p>As notificações servem para que você seja informado de uma alteração de status do carnê. Dessa forma você poderá, por exemplo, identificar um pagamento e fazer os procedimentos de liquidação no seu sistema ou aplicação.</p>
 
-  <!--
-  Botões de pagamento
+  <p>As notificações são enviadas quando um carnê possui uma URL de notificação definida na criação, ou, se não estiver definida, o sistema envia a notificação para a URL informada nas configurações do Wide Pay.</p>
 
-  Checkouts
-    O Checkout é o momento no qual seu cliente escolhe a forma de pagamento desejada entre as opções habilitadas por você e realiza o pagamento. O Wide Pay dispõe de um ambiente seguro para que você possa oferecer esse serviço sem necessidade de se preocupar com o desenvolvimento de checkout.
+  <p>O envio da notificação é feito via <strong>POST</strong> via o parâmetro <code>notificacao</code>, que conterá o ID numérico da notificação que será usado para fazer a consulta dos dados do carnê. Também virá o parâmetro <code>carteira</code>, contendo o ID da carteira dona do carnê.</p>
 
-  Checkout via LightBox
+  <h6>URL</h6>
 
-  Checkout Transparente
-  -->
+  <pre>https://api.widepay.com/v1/recebimentos/carnes/notificacao</pre>
+
+  <h6>ATRIBUTOS DE ENVIO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th style="width: 110px;">Obrigatório</th>
+        <th style="width: 100px;">Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td><strong>Sim</strong></td>
+        <td>Numérico</td>
+        <td>ID da notificação a ser consultada</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h6>ATRIBUTOS DE RETORNO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>carne</td>
+        <td>Objeto com dados do carnê</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <blockquote><strong>Exemplo 18</strong><br>Efetuando a consulta de uma notificação</blockquote>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#exemplo-18-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-18-php" role="tab" data-toggle="tab">PHP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-18-curl"> 
+
+{% highlight bash %}
+curl \
+    -X POST 'https://api.widepay.com/v1/recebimentos/carnes/notificacao' \
+    -u '148446:800440511285a9b0808ea85a94f3dd62' \
+    -d 'id='
+{% endhighlight %}
+
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-18-php"">
+
+{% highlight php %}
+<?php
+
+require_once('../src/WidePay.php'); // Caminho para o SDK
+
+$wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
+
+$notificacao = $wp->api('recebimentos/carnes/notificacao', array(
+    'id' => $_POST["notificacao"] // ID da notificação recebido do Wide Pay via POST
+));
+
+if ($notificacao->sucesso) {
+
+    echo $notificacao->carne['id']; // ID do carnê
+    echo $notificacao->carne['status']; // Status do carnê
+
+    print_r($notificacao->carne); // Imprime todos os dados do carnê
+
+} else {
+
+    echo $notificacao->erro; // Erro
+
+}
+{% endhighlight %}
+
+    </div>
+  </div>
+
+  <p>Retorno do exemplo:</p>
+
+{% highlight json %}
+{
+  "sucesso": true,
+  "carne": {
+    "id": "16758",
+    "cliente": "Lívia Pontarolo Almeida",
+    "pessoa": "Física",
+    "cpf": "463.384.662-02",
+    "cnpj": null,
+    "email": "emaildalivia@gmail.com",
+    "telefone": "67 98888-0000",
+    "endereco": {
+      "rua": "Rua Primeiro de Julho",
+      "numero": "192",
+      "complemento": "Sala 25",
+      "bairro": "Vila Carvalho",
+      "cep": "79005-610",
+      "cidade": "Campo Grande",
+      "estado": "MS"
+    },
+    "itens": [
+      {
+        "descricao": "Descrição item 1",
+        "valor": "20",
+        "quantidade": "2",
+        "desconto": "4.99"
+      },
+      {
+        "descricao": "Descrição item 2",
+        "valor": "10.5",
+        "quantidade": "1",
+        "desconto": "0"
+      }
+    ],
+    "referencia": "Fatura 12345",
+    "valor": "40.51",
+    "dividir": "Não",
+    "parcelas": "6",
+    "notificacao": "http://www.minhaaplicacao.com/script-notificacao.php",
+    "vencimento": "2018-04-10",
+    "criacao": "2018-01-17 15:33:41",
+    "status": "Pendente",
+    "detalhamento": [
+      {
+        "cobranca": "8FA0DABF16210EC1",
+        "recebimento": "2018-04-07",
+        "valor": "40.51"
+      },
+      {
+        "cobranca": "5C8C1E1F16C20E2B",
+        "recebimento": "2018-05-22",
+        "valor": "42"
+      }
+    ],
+    "historico": [
+      {
+        "status": "Ativo",
+        "data": "2018-01-17 15:33:41"
+      },
+      {
+        "status": "Pendente",
+        "data": "2018-05-11 00:41:49"
+      },
+      {
+        "status": "Ativo",
+        "data": "2018-05-23 05:46:09"
+      }
+    ],
+    "comentario": null,
+    "favorito": null
+  }
+}
+{% endhighlight %}
 
 </section>
