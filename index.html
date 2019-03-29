@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Wide Pay API</title>
 
   
-  <link rel="icon" type="image/png" href="./favicon.png">
+  <link rel="icon" type="image/png" href="./favicon.png"/>
   
 
   <!--[if lt IE 9]>
@@ -51,7 +50,7 @@
           
           
             
-            <li>
+            <li >
               <a href="./bibliotecas.html">Bibliotecas</a>
             </li>
             
@@ -59,13 +58,15 @@
             
           
             
-            <li>
+            <li >
               <a href="./modulos.html">Módulos</a>
             </li>
             
           
             
-            <li>
+          
+            
+            <li >
               <a href="./sistemas.html">Sistemas integrados</a>
             </li>
             
@@ -129,12 +130,12 @@
   <p>Toda chamada para a API tem, no retorno, o atributo <code>sucesso</code> e, em caso de erro, também virá o atributo <code>erro</code>, conforme os exemplos abaixo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mensagem de erro..."</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mensagem de erro..."</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <p>As mensagens de erros variam de acordo com o método e existe uma condição especial para os erros abaixo:</p>
@@ -144,16 +145,16 @@
       <p>Caso a mensagem de erro seja <code>Erro na validação dos campos.</code> será porque algum atributo obrigatório do método não foi enviado ou é inválido e também virá o atributo <code>validacao</code>, com o detalhamento dos atributos inválidos, conforme o exemplo abaixo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erro na validação dos campos."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"validacao"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erro na validação dos campos."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"validacao"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"cpf"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"O CPF informado é inválido."</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"cpf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"O CPF informado é inválido."</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"vencimento"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"O preenchimento do campo é obrigatório."</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"vencimento"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"O preenchimento do campo é obrigatório."</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
@@ -163,16 +164,16 @@
       <p>Caso a mensagem de erro seja <code>Erro na execução da solicitação.</code> será porque não houve sucesso da chamada em nenhum dos itens e também virá o atributo <code>execucao</code>, com o detalhamento dos erros, conforme o exemplo abaixo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erro na execução da solicitação."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"execucao"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"erro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erro na execução da solicitação."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"execucao"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"8FA0E7B48E882379"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"Cobrança não encontrada."</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"8FA0E7B48E882379"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"Cobrança não encontrada."</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"5C5C051E86177A22"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"A cobrança já está baixada."</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w">  </span><span class="s2">"5C5C051E86177A22"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"erro"</span><span class="p">:</span><span class="w">  </span><span class="s2">"A cobrança já está cancelada."</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
@@ -283,8 +284,7 @@
         <td>forma</td>
         <td><strong>Sim</strong></td>
         <td>Definido</td>
-        <td>Forma de recebimento: <code>Boleto</code> e/ou <code>Cartão</code>
-</td>
+        <td>Forma de recebimento: <code>Boleto</code> e/ou <code>Cartão</code></td>
       </tr>
       <tr>
         <td>cliente</td>
@@ -296,22 +296,19 @@
         <td>pessoa</td>
         <td><strong>Sim</strong></td>
         <td>Definido</td>
-        <td>Pode ser <code>Física</code> ou <code>Jurídica</code>
-</td>
+        <td>Pode ser <code>Física</code> ou <code>Jurídica</code></td>
       </tr>
       <tr>
         <td>cpf</td>
         <td><strong>Condicional</strong></td>
         <td>CPF</td>
-        <td>Obrigatório, se o atributo pessoa for <code>Física</code>
-</td>
+        <td>Obrigatório, se o atributo pessoa for <code>Física</code></td>
       </tr>
       <tr>
         <td>cnpj</td>
         <td><strong>Condicional</strong></td>
         <td>CNPJ</td>
-        <td>Obrigatório, se o atributo pessoa for <code>Jurídica</code>
-</td>
+        <td>Obrigatório, se o atributo pessoa for <code>Jurídica</code></td>
       </tr>
       <tr>
         <td>email</td>
@@ -377,8 +374,7 @@
         <td>endereco[coletar]</td>
         <td>Não</td>
         <td>Definido</td>
-        <td>Opção para que a tela de pagamento solicite ao cliente que informe um endereço de entrega, pode ser <code>Não</code> ou <code>Sim</code>
-</td>
+        <td>Opção para que a tela de pagamento solicite ao cliente que informe um endereço de entrega, pode ser <code>Não</code> ou <code>Sim</code></td>
       </tr>
       <tr>
         <td>itens</td>
@@ -426,22 +422,19 @@
         <td>redirecionamento</td>
         <td>Não</td>
         <td>URL</td>
-        <td>URL que o sistema redirecionará quando houver o pagamento e utilizado somente se o atributo forma for <code>Cartão</code>
-</td>
+        <td>URL que o sistema redirecionará quando houver o pagamento e utilizado somente se o atributo forma for <code>Cartão</code></td>
       </tr>
       <tr>
         <td>vencimento</td>
         <td><strong>Condicional</strong></td>
         <td>Data</td>
-        <td>Obrigatório, se o atributo forma for <code>Boleto</code>
-</td>
+        <td>Obrigatório, se o atributo forma for <code>Boleto</code></td>
       </tr>
       <tr>
         <td>enviar</td>
         <td>Não</td>
         <td>Definido</td>
-        <td>Formas de envio da cobrança, atualmente só pode ser <code>E-mail</code>
-</td>
+        <td>Formas de envio da cobrança, atualmente só pode ser <code>E-mail</code></td>
       </tr>
       <tr>
         <td>mensagem</td>
@@ -477,8 +470,7 @@
         <td>boleto</td>
         <td>Não</td>
         <td>Objeto</td>
-        <td>Parâmetros opcionais de configuração do boleto, utilizado somente se o atributo forma for <code>Boleto</code>
-</td>
+        <td>Parâmetros opcionais de configuração do boleto, utilizado somente se o atributo forma for <code>Boleto</code></td>
       </tr>
       <tr>
         <td>boleto[desconto]</td>
@@ -532,8 +524,7 @@
     </tbody>
   </table>
 
-  <blockquote>
-<strong>Exemplo 1</strong><br>Criando uma cobrança simples com o envio mínimo de atributos</blockquote>
+  <blockquote><strong>Exemplo 1</strong><br>Criando uma cobrança simples com o envio mínimo de atributos</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-1-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -544,17 +535,17 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-1-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/adicionar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'forma=Cartão'</span> <span class="se">\</span>
-    -d <span class="s1">'cliente=Lívia Pontarolo Almeida'</span> <span class="se">\</span>
-    -d <span class="s1">'pessoa=Física'</span> <span class="se">\</span>
-    -d <span class="s1">'cpf=463.384.662-02'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][descricao]=Descrição item 1'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][valor]=22.50'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/adicionar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'forma=Cartão'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cliente=Lívia Pontarolo Almeida'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'pessoa=Física'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cpf=463.384.662-02'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][descricao]=Descrição item 1'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][valor]=22.50'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-1-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-1-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -593,8 +584,7 @@
     </div>
   </div>
 
-  <blockquote>
-<strong>Exemplo 2</strong><br>Criando uma cobrança completa com o envio de todos os atributos disponíveis</blockquote>
+  <blockquote><strong>Exemplo 2</strong><br>Criando uma cobrança completa com o envio de todos os atributos disponíveis</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-2-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -605,47 +595,47 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-2-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/adicionar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'forma=Boleto,Cartão'</span> <span class="se">\</span>
-    -d <span class="s1">'cliente=Lívia Pontarolo Almeida'</span> <span class="se">\</span>
-    -d <span class="s1">'pessoa=Física'</span> <span class="se">\</span>
-    -d <span class="s1">'cpf=463.384.662-02'</span> <span class="se">\</span>
-    -d <span class="s1">'email=emaildalivia@gmail.com'</span> <span class="se">\</span>
-    -d <span class="s1">'telefone=67 98888-0000'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[rua]=Rua Primeiro de Julho'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[numero]=192'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[complemento]=Sala 25'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[bairro]=Vila Carvalho'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[cep]=79005-610'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[cidade]=Campo Grande'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[estado]=MS'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[coletar]=Sim'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][descricao]=Descrição item 1'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][valor]=20'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][quantidade]=2'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][desconto]=4.99'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[1][descricao]=Descrição item 2'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[1][valor]=10.50'</span> <span class="se">\</span>
-    -d <span class="s1">'referencia=Fatura 12345'</span> <span class="se">\</span>
-    -d <span class="s1">'notificacao=http://www.minhaaplicacao.com/script-notificacao.php'</span> <span class="se">\</span>
-    -d <span class="s1">'redirecionamento=http://www.minhaaplicacao.com/script-redirecionamento.php'</span> <span class="se">\</span>
-    -d <span class="s1">'vencimento=2017-08-10'</span> <span class="se">\</span>
-    -d <span class="s1">'enviar=E-mail'</span> <span class="se">\</span>
-    -d <span class="s1">'mensagem=Mensagem personalizada no e-mail'</span> <span class="se">\</span>
-    -d <span class="s1">'marketplace[0][carteira]=10500'</span> <span class="se">\</span>
-    -d <span class="s1">'marketplace[0][valor]=10'</span> <span class="se">\</span>
-    -d <span class="s1">'marketplace[0][item]=0'</span> <span class="se">\</span>
-    -d <span class="s1">'marketplace[1][carteira]=10800'</span> <span class="se">\</span>
-    -d <span class="s1">'marketplace[1][valor]=5'</span> <span class="se">\</span>
-    -d <span class="s1">'boleto[desconto]=4.5'</span> <span class="se">\</span>
-    -d <span class="s1">'boleto[multa]=2'</span> <span class="se">\</span>
-    -d <span class="s1">'boleto[juros]=1'</span> <span class="se">\</span>
-    -d <span class="s1">'boleto[instrucoes][0]=Instrução personalizada ao cliente, linha 1'</span> <span class="se">\</span>
-    -d <span class="s1">'boleto[instrucoes][1]=Instrução personalizada ao cliente, linha 2'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/adicionar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'forma=Boleto,Cartão'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cliente=Lívia Pontarolo Almeida'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'pessoa=Física'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cpf=463.384.662-02'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'email=emaildalivia@gmail.com'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'telefone=67 98888-0000'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[rua]=Rua Primeiro de Julho'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[numero]=192'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[complemento]=Sala 25'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[bairro]=Vila Carvalho'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[cep]=79005-610'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[cidade]=Campo Grande'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[estado]=MS'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[coletar]=Sim'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][descricao]=Descrição item 1'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][valor]=20'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][quantidade]=2'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][desconto]=4.99'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[1][descricao]=Descrição item 2'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[1][valor]=10.50'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'referencia=Fatura 12345'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'notificacao=http://www.minhaaplicacao.com/script-notificacao.php'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'redirecionamento=http://www.minhaaplicacao.com/script-redirecionamento.php'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'vencimento=2017-08-10'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'enviar=E-mail'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'mensagem=Mensagem personalizada no e-mail'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'marketplace[0][carteira]=10500'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'marketplace[0][valor]=10'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'marketplace[0][item]=0'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'marketplace[1][carteira]=10800'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'marketplace[1][valor]=5'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'boleto[desconto]=4.5'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'boleto[multa]=2'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'boleto[juros]=1'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'boleto[instrucoes][0]=Instrução personalizada ao cliente, linha 1'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'boleto[instrucoes][1]=Instrução personalizada ao cliente, linha 2'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-2-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-2-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -731,9 +721,9 @@
   <p>Retorno dos exemplos:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4A13E8BE9842C174"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/cobranca/148446-4A13E8BE9842C174"</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4A13E8BE9842C174"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/cobranca/148446-4A13E8BE9842C174"</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="cobranca-boleto">Boleto de uma cobrança</h3>
@@ -766,29 +756,25 @@
         <td>atualizar</td>
         <td>Não</td>
         <td>Definido</td>
-        <td>Atualiza automaticamente a data do boleto caso esteja vencido, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Sim</code>
-</td>
+        <td>Atualiza automaticamente a data do boleto caso esteja vencido, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Sim</code></td>
       </tr>
       <tr>
         <td>vencimento</td>
         <td>Não</td>
         <td>Data</td>
-        <td>Atualiza a data de vencimento, disponível somente se o atributo atualizar for <code>Sim</code>
-</td>
+        <td>Atualiza a data de vencimento, disponível somente se o atributo atualizar for <code>Sim</code></td>
       </tr>
       <tr>
         <td>html</td>
         <td>Não</td>
         <td>Definido</td>
-        <td>Traz no retorno da requisição o HTML do boleto, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code>
-</td>
+        <td>Traz no retorno da requisição o HTML do boleto, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
       </tr>
       <tr>
         <td>carne</td>
         <td>Não</td>
         <td>Definido</td>
-        <td>Muda o layout HTML do boleto do formato convencional para o formato de carnê, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code>
-</td>
+        <td>Muda o layout HTML do boleto do formato convencional para o formato de carnê, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
       </tr>
     </tbody>
   </table>
@@ -818,8 +804,7 @@
     </tbody>
   </table>
 
-  <blockquote>
-<strong>Exemplo 3</strong><br>Obtendo dados do boleto de uma cobrança</blockquote>
+  <blockquote><strong>Exemplo 3</strong><br>Obtendo dados do boleto de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-3-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -830,15 +815,15 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-3-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/boleto'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id=8AF962B49E3920BB'</span> <span class="se">\</span>
-    -d <span class="s1">'atualizar=Sim'</span> <span class="se">\</span>
-    -d <span class="s1">'html=Sim'</span> <span class="se">\</span>
-    -d <span class="s1">'carne=Não'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/boleto'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'atualizar=Sim'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'html=Sim'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'carne=Não'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-3-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-3-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -872,17 +857,17 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"parametros"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"033"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"agencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4582"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"conta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13001057-3"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"convenio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"208822"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"carteira"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"parametros"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"033"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"agencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4582"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"conta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13001057-3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"convenio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"208822"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"carteira"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03399.81276 22000.000004 00001.901016 1 73280000002250"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;table&gt;...&lt;/table&gt;"</span><span class="w">
+  </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03399.81276 22000.000004 00001.901016 1 73280000002250"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;table&gt;...&lt;/table&gt;"</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="cobranca-consultando">Consultando uma cobrança</h3>
@@ -933,8 +918,7 @@
     </tbody>
   </table>
 
-  <blockquote>
-<strong>Exemplo 4</strong><br>Efetuando a consulta de uma cobrança</blockquote>
+  <blockquote><strong>Exemplo 4</strong><br>Efetuando a consulta de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-4-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -945,12 +929,12 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-4-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/consultar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id=264C51BE984C7718'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/consultar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id=264C51BE984C7718'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-4-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-4-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -981,87 +965,79 @@
   <p>Alguns atributos do retorno variam de acordo com a forma do recebimento, abaixo você encontrará a descrição de alguns atributos importantes de uma cobrança, e mais abaixo, alguns exemplos de retornos:</p>
 
   <ul>
-    <li>
-<code>valor</code> Valor total da cobrança</li>
-    <li>
-<code>recebido</code> Valor recebido</li>
-    <li>
-<code>tarifa</code> Valor da tarifa descontada pelo Wide Pay</li>
-    <li>
-<code>recebimento</code> Data do recebimento</li>
-    <li>
-<code>compensacao</code> Data de compensação do valor recebido</li>
-    <li>
-<code>status</code> Status atual da cobrança</li>
-    <li>
-<code>detalhamento</code> Detalhes do recebimento</li>
-    <li>
-<code>historico</code> Datas de alteração do status</li>
+    <li><code>valor</code> Valor total da cobrança</li>
+    <li><code>recebido</code> Valor recebido</li>
+    <li><code>tarifa</code> Valor da tarifa descontada pelo Wide Pay</li>
+    <li><code>recebimento</code> Data do recebimento</li>
+    <li><code>compensacao</code> Data de compensação do valor recebido</li>
+    <li><code>status</code> Status atual da cobrança</li>
+    <li><code>detalhamento</code> Detalhes do recebimento</li>
+    <li><code>historico</code> Datas de alteração do status</li>
   </ul>
 
   <p>Retorno de um exemplo de cobrança que está aguardando pagamento:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"264C51BE984C7718"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boleto,Cartão"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"emaildalivia@gmail.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67 98888-0000"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"rua"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua Primeiro de Julho"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sala 25"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vila Carvalho"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"cep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79005-610"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campo Grande"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"264C51BE984C7718"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boleto,Cartão"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"emaildalivia@gmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67 98888-0000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rua"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua Primeiro de Julho"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sala 25"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vila Carvalho"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79005-610"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campo Grande"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.99"</span><span class="w">
+          </span><span class="s2">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.99"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 2"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.5"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+          </span><span class="s2">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.5"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fatura 12345"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.51"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-notificacao.php"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-redirecionamento.php"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-10"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-25 18:55:18"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aguardando"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"duplicado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"compensado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fatura 12345"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.51"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-notificacao.php"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-redirecionamento.php"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-25 18:55:18"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aguardando"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"duplicado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"compensado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aguardando"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-25 18:55:18"</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aguardando"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-25 18:55:18"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="s2">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
@@ -1069,68 +1045,68 @@
   <p>Retorno de um exemplo de cobrança recebida por boleto:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"264C51BE984C7718"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boleto"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"rua"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"cep"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"264C51BE984C7718"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boleto"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rua"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cep"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.50"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+          </span><span class="s2">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.50"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.50"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.50"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.15"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-10"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23 00:00:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-30"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-22 10:50:35"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"fixa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.15"</span><span class="w">
+      </span><span class="s2">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.50"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.50"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.15"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23 00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-30"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-22 10:50:35"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"fixa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.15"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"duplicado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"compensado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"duplicado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"compensado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aguardando"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-22 10:50:35"</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aguardando"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-22 10:50:35"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-24 00:30:10"</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-24 00:30:10"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="s2">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
@@ -1138,73 +1114,73 @@
   <p>Retorno de um exemplo de cobrança recebida por cartão de crédito:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"264C51BE984C7718"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cartão"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"rua"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"cep"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"264C51BE984C7718"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cartão"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rua"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cep"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.75"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+          </span><span class="s2">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.75"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.75"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.75"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.91"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-20 14:20:12"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-10 09:34:28"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"bandeira"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MasterCard"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"cartao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9080"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"parcelas"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"fatura"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NomeLoja"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"fixa"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.35</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"porcentagem"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.56</span><span class="w">
+      </span><span class="s2">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.75"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.75"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.91"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-20 14:20:12"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-10 09:34:28"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"bandeira"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MasterCard"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cartao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9080"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parcelas"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fatura"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NomeLoja"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"fixa"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.35</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"porcentagem"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.56</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"duplicado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"compensado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sim"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"duplicado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"compensado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sim"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aguardando"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-10 09:34:28"</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aguardando"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-10 09:34:28"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-20 14:20:12"</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-20 14:20:12"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="s2">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
@@ -1248,13 +1224,12 @@
     <tbody>
       <tr>
         <td>total</td>
-        <td>Total de cobranças canceladas</td>
+        <td>Total de cobranças afetadas</td>
       </tr>
     </tbody>
   </table>
 
-  <blockquote>
-<strong>Exemplo 5</strong><br>Efetuando o cancelamento de uma cobrança</blockquote>
+  <blockquote><strong>Exemplo 5</strong><br>Efetuando o cancelamento de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-5-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -1265,12 +1240,12 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-5-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-5-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-5-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1284,7 +1259,7 @@
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="k">echo</span> <span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de cobranças canceladas
+    <span class="k">echo</span> <span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de cobranças afetadas
 </span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 
@@ -1298,12 +1273,11 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-  <blockquote>
-<strong>Exemplo 6</strong><br>Efetuando o cancelamento de duas ou mais cobranças</blockquote>
+  <blockquote><strong>Exemplo 6</strong><br>Efetuando o cancelamento de duas ou mais cobranças</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-6-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -1314,13 +1288,13 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-6-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id[0]=8AF962B49E3920BB'</span> <span class="se">\</span>
-    -d <span class="s1">'id[1]=922FEDBE9835857A'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id[0]=8AF962B49E3920BB'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id[1]=922FEDBE9835857A'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-6-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-6-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1334,7 +1308,7 @@
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="k">echo</span> <span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de cobranças canceladas
+    <span class="k">echo</span> <span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de cobranças afetadas
 </span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 
@@ -1348,15 +1322,15 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-  <h3 id="cobranca-baixando">Baixando uma cobrança</h3>
+  <h3 id="cobranca-manual">Recebendo manualmente uma cobrança</h3>
 
   <h6>URL</h6>
 
-  <pre>https://api.widepay.com/v1/recebimentos/cobrancas/baixar</pre>
+  <pre>https://api.widepay.com/v1/recebimentos/cobrancas/manual</pre>
 
   <h6>ATRIBUTOS DE ENVIO</h6>
 
@@ -1374,7 +1348,7 @@
         <td>id</td>
         <td><strong>Sim</strong></td>
         <td>String, Array</td>
-        <td>ID da cobrança a ser baixada, pode ser um ou mais</td>
+        <td>ID da cobrança a ser recebida, pode ser um ou mais</td>
       </tr>
     </tbody>
   </table>
@@ -1391,13 +1365,12 @@
     <tbody>
       <tr>
         <td>total</td>
-        <td>Total de cobranças baixadas</td>
+        <td>Total de cobranças afetadas</td>
       </tr>
     </tbody>
   </table>
 
-  <blockquote>
-<strong>Exemplo 7</strong><br>Efetuando a baixa de uma cobrança</blockquote>
+  <blockquote><strong>Exemplo 7</strong><br>Efetuando o recebimento manual de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -1408,12 +1381,12 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-7-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/baixar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/manual'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-7-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-7-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1421,17 +1394,17 @@
 </span>
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
-<span class="nv">$baixar</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/baixar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nv">$manual</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/manual'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'8AF962B49E3920BB'</span>
 <span class="p">));</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$manual</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="k">echo</span> <span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de cobranças canceladas
+    <span class="k">echo</span> <span class="nv">$manual</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de cobranças afetadas
 </span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 
-    <span class="k">echo</span> <span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
+    <span class="k">echo</span> <span class="nv">$manual</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
 </span>
 <span class="p">}</span></code></pre></figure>
 
@@ -1441,12 +1414,11 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-  <blockquote>
-<strong>Exemplo 8</strong><br>Efetuando a baixa de duas ou mais cobranças</blockquote>
+  <blockquote><strong>Exemplo 8</strong><br>Efetuando o recebimento manual de duas ou mais cobranças</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -1457,13 +1429,13 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-8-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id[0]=8AF962B49E3920BB'</span> <span class="se">\</span>
-    -d <span class="s1">'id[1]=922FEDBE9835857A'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id[0]=8AF962B49E3920BB'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id[1]=922FEDBE9835857A'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-8-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-8-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1471,17 +1443,17 @@
 </span>
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
-<span class="nv">$baixar</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/baixar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nv">$manual</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/manual'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'8AF962B49E3920BB'</span><span class="p">,</span> <span class="s1">'922FEDBE9835857A'</span><span class="p">)</span>
 <span class="p">));</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$manual</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="k">echo</span> <span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de cobranças canceladas
+    <span class="k">echo</span> <span class="nv">$manual</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de cobranças afetadas
 </span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 
-    <span class="k">echo</span> <span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
+    <span class="k">echo</span> <span class="nv">$manual</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
 </span>
 <span class="p">}</span></code></pre></figure>
 
@@ -1491,8 +1463,8 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="cobranca-notificacao">Recebendo notificação da cobrança</h3>
@@ -1545,8 +1517,7 @@
     </tbody>
   </table>
 
-  <blockquote>
-<strong>Exemplo 9</strong><br>Efetuando a consulta de uma notificação</blockquote>
+  <blockquote><strong>Exemplo 9</strong><br>Efetuando a consulta de uma notificação</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-9-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -1557,12 +1528,12 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-9-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/notificacao'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id='</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/notificacao'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id='</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-9-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-9-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1593,62 +1564,62 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9F15771E9FA3AFEF"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cartão"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rua"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cep"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9F15771E9FA3AFEF"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cartão"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rua"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cep"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="s2">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60.00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-notificacao.php"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-17 08:29:05"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido manualmente"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"duplicado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"compensado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-notificacao.php"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-17 08:29:05"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido manualmente"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duplicado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"compensado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aguardando"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-17 08:29:05"</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aguardando"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-17 08:29:05"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido manualmente"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-25 15:22:41"</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido manualmente"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-25 15:22:41"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="s2">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
@@ -1676,7 +1647,7 @@
       </tr>
       <tr>
         <td><span class="label label-success">Finalizado</span></td>
-        <td>Quando o carnê é finalizado pelo pagamento das parcelas ou por baixa manual</td>
+        <td>Quando o carnê é finalizado pelo pagamento das parcelas</td>
       </tr>
       <tr>
         <td><span class="label label-warning">Pendente</span></td>
@@ -1713,22 +1684,19 @@
         <td>pessoa</td>
         <td><strong>Sim</strong></td>
         <td>Definido</td>
-        <td>Pode ser <code>Física</code> ou <code>Jurídica</code>
-</td>
+        <td>Pode ser <code>Física</code> ou <code>Jurídica</code></td>
       </tr>
       <tr>
         <td>cpf</td>
         <td><strong>Condicional</strong></td>
         <td>CPF</td>
-        <td>Obrigatório, se o atributo pessoa for <code>Física</code>
-</td>
+        <td>Obrigatório, se o atributo pessoa for <code>Física</code></td>
       </tr>
       <tr>
         <td>cnpj</td>
         <td><strong>Condicional</strong></td>
         <td>CNPJ</td>
-        <td>Obrigatório, se o atributo pessoa for <code>Jurídica</code>
-</td>
+        <td>Obrigatório, se o atributo pessoa for <code>Jurídica</code></td>
       </tr>
       <tr>
         <td>email</td>
@@ -1854,8 +1822,7 @@
         <td>enviar</td>
         <td>Não</td>
         <td>Definido</td>
-        <td>Formas de envio do carnê, atualmente só pode ser <code>E-mail</code>
-</td>
+        <td>Formas de envio do carnê, atualmente só pode ser <code>E-mail</code></td>
       </tr>
       <tr>
         <td>mensagem</td>
@@ -1945,8 +1912,7 @@
     </tbody>
   </table>
 
-  <blockquote>
-<strong>Exemplo 10</strong><br>Criando um carnê simples com o envio mínimo de atributos</blockquote>
+  <blockquote><strong>Exemplo 10</strong><br>Criando um carnê simples com o envio mínimo de atributos</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-10-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -1957,19 +1923,19 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-10-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/adicionar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'cliente=Lívia Pontarolo Almeida'</span> <span class="se">\</span>
-    -d <span class="s1">'pessoa=Física'</span> <span class="se">\</span>
-    -d <span class="s1">'cpf=463.384.662-02'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][descricao]=Descrição item 1'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][valor]=22.50'</span> <span class="se">\</span>
-    -d <span class="s1">'vencimento=2018-04-10'</span> <span class="se">\</span>
-    -d <span class="s1">'parcelas=6'</span> <span class="se">\</span>
-    -d <span class="s1">'dividir=Não'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/adicionar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cliente=Lívia Pontarolo Almeida'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'pessoa=Física'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cpf=463.384.662-02'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][descricao]=Descrição item 1'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][valor]=22.50'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'vencimento=2018-04-10'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'parcelas=6'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'dividir=Não'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-10-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-10-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -2012,8 +1978,7 @@
     </div>
   </div>
 
-  <blockquote>
-<strong>Exemplo 11</strong><br>Criando um carnê completo com o envio de todos os atributos disponíveis</blockquote>
+  <blockquote><strong>Exemplo 11</strong><br>Criando um carnê completo com o envio de todos os atributos disponíveis</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-11-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -2024,46 +1989,46 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-11-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/adicionar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'cliente=Lívia Pontarolo Almeida'</span> <span class="se">\</span>
-    -d <span class="s1">'pessoa=Física'</span> <span class="se">\</span>
-    -d <span class="s1">'cpf=463.384.662-02'</span> <span class="se">\</span>
-    -d <span class="s1">'email=emaildalivia@gmail.com'</span> <span class="se">\</span>
-    -d <span class="s1">'telefone=67 98888-0000'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[rua]=Rua Primeiro de Julho'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[numero]=192'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[complemento]=Sala 25'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[bairro]=Vila Carvalho'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[cep]=79005-610'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[cidade]=Campo Grande'</span> <span class="se">\</span>
-    -d <span class="s1">'endereco[estado]=MS'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][descricao]=Descrição item 1'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][valor]=20'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][quantidade]=2'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[0][desconto]=4.99'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[1][descricao]=Descrição item 2'</span> <span class="se">\</span>
-    -d <span class="s1">'itens[1][valor]=10.50'</span> <span class="se">\</span>
-    -d <span class="s1">'referencia=Fatura 12345'</span> <span class="se">\</span>
-    -d <span class="s1">'notificacao=http://www.minhaaplicacao.com/script-notificacao.php'</span> <span class="se">\</span>
-    -d <span class="s1">'vencimento=2018-04-10'</span> <span class="se">\</span>
-    -d <span class="s1">'parcelas=6'</span> <span class="se">\</span>
-    -d <span class="s1">'dividir=Não'</span> <span class="se">\</span>
-    -d <span class="s1">'enviar=E-mail'</span> <span class="se">\</span>
-    -d <span class="s1">'mensagem=Mensagem personalizada no e-mail'</span> <span class="se">\</span>
-    -d <span class="s1">'marketplace[0][carteira]=10500'</span> <span class="se">\</span>
-    -d <span class="s1">'marketplace[0][valor]=10'</span> <span class="se">\</span>
-    -d <span class="s1">'marketplace[0][item]=0'</span> <span class="se">\</span>
-    -d <span class="s1">'marketplace[1][carteira]=10800'</span> <span class="se">\</span>
-    -d <span class="s1">'marketplace[1][valor]=5'</span> <span class="se">\</span>
-    -d <span class="s1">'boleto[desconto]=4.5'</span> <span class="se">\</span>
-    -d <span class="s1">'boleto[multa]=2'</span> <span class="se">\</span>
-    -d <span class="s1">'boleto[juros]=1'</span> <span class="se">\</span>
-    -d <span class="s1">'boleto[instrucoes][0]=Instrução personalizada ao cliente, linha 1'</span> <span class="se">\</span>
-    -d <span class="s1">'boleto[instrucoes][1]=Instrução personalizada ao cliente, linha 2'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/adicionar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cliente=Lívia Pontarolo Almeida'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'pessoa=Física'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cpf=463.384.662-02'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'email=emaildalivia@gmail.com'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'telefone=67 98888-0000'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[rua]=Rua Primeiro de Julho'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[numero]=192'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[complemento]=Sala 25'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[bairro]=Vila Carvalho'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[cep]=79005-610'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[cidade]=Campo Grande'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'endereco[estado]=MS'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][descricao]=Descrição item 1'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][valor]=20'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][quantidade]=2'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[0][desconto]=4.99'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[1][descricao]=Descrição item 2'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'itens[1][valor]=10.50'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'referencia=Fatura 12345'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'notificacao=http://www.minhaaplicacao.com/script-notificacao.php'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'vencimento=2018-04-10'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'parcelas=6'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'dividir=Não'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'enviar=E-mail'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'mensagem=Mensagem personalizada no e-mail'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'marketplace[0][carteira]=10500'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'marketplace[0][valor]=10'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'marketplace[0][item]=0'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'marketplace[1][carteira]=10800'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'marketplace[1][valor]=5'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'boleto[desconto]=4.5'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'boleto[multa]=2'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'boleto[juros]=1'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'boleto[instrucoes][0]=Instrução personalizada ao cliente, linha 1'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'boleto[instrucoes][1]=Instrução personalizada ao cliente, linha 2'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-11-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-11-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -2150,10 +2115,10 @@
   <p>Retorno dos exemplos:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16758"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/carne/148446-16758"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"387A98B52D924091"</span><span class="p">,</span><span class="s2">"15CBD6BFCD924091"</span><span class="p">,</span><span class="s2">"3A769A152392EA9B"</span><span class="p">,</span><span class="s2">"4A22ACB5CD924A91"</span><span class="p">,</span><span class="s2">"2E7966BF23924A91"</span><span class="p">,</span><span class="s2">"94C8C9B52D92E091"</span><span class="p">]</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16758"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/carne/148446-16758"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"387A98B52D924091"</span><span class="p">,</span><span class="s2">"15CBD6BFCD924091"</span><span class="p">,</span><span class="s2">"3A769A152392EA9B"</span><span class="p">,</span><span class="s2">"4A22ACB5CD924A91"</span><span class="p">,</span><span class="s2">"2E7966BF23924A91"</span><span class="p">,</span><span class="s2">"94C8C9B52D92E091"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="carne-montando">Montando um carnê</h3>
@@ -2218,8 +2183,7 @@
     </tbody>
   </table>
 
-  <blockquote>
-<strong>Exemplo 12</strong><br>Efetuando a montagem de um carnê</blockquote>
+  <blockquote><strong>Exemplo 12</strong><br>Efetuando a montagem de um carnê</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-12-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -2230,14 +2194,14 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-12-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/montar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'cobrancas[0]=5F151D278C9DDC80'</span> <span class="se">\</span>
-    -d <span class="s1">'cobrancas[1]=7CF34C1FF5E842B0'</span> <span class="se">\</span>
-    -d <span class="s1">'cobrancas[2]=6AB79C5F626436A8'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/montar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cobrancas[0]=5F151D278C9DDC80'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cobrancas[1]=7CF34C1FF5E842B0'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cobrancas[2]=6AB79C5F626436A8'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-12-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-12-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -2270,9 +2234,9 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16768"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/carne/148446-16768"</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16768"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/carne/148446-16768"</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="carne-consultando">Consultando um carnê</h3>
@@ -2323,8 +2287,7 @@
     </tbody>
   </table>
 
-  <blockquote>
-<strong>Exemplo 13</strong><br>Efetuando a consulta de um carnê</blockquote>
+  <blockquote><strong>Exemplo 13</strong><br>Efetuando a consulta de um carnê</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-13-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -2335,12 +2298,12 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-13-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/consultar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id=16758'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/consultar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id=16758'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-13-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-13-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -2371,76 +2334,76 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"carnes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"carnes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16758"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"emaildalivia@gmail.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67 98888-0000"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"rua"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua Primeiro de Julho"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sala 25"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vila Carvalho"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"cep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79005-610"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campo Grande"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16758"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"emaildalivia@gmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67 98888-0000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rua"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua Primeiro de Julho"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sala 25"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vila Carvalho"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79005-610"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campo Grande"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.99"</span><span class="w">
+          </span><span class="s2">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.99"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 2"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.5"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+          </span><span class="s2">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.5"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fatura 12345"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.51"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"dividir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"parcelas"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-notificacao.php"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-10"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17 15:33:41"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pendente"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fatura 12345"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.51"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dividir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"parcelas"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-notificacao.php"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17 15:33:41"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pendente"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8FA0DABF16210EC1"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-07"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.51"</span><span class="w">
+          </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8FA0DABF16210EC1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-07"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.51"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5C8C1E1F16C20E2B"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-22"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="w">
+          </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5C8C1E1F16C20E2B"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-22"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ativo"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17 15:33:41"</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ativo"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17 15:33:41"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pendente"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-11 00:41:49"</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pendente"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-11 00:41:49"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ativo"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-23 05:46:09"</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ativo"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-23 05:46:09"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="s2">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
@@ -2484,13 +2447,12 @@
     <tbody>
       <tr>
         <td>total</td>
-        <td>Total de carnês cancelados</td>
+        <td>Total de carnês afetados</td>
       </tr>
     </tbody>
   </table>
 
-  <blockquote>
-<strong>Exemplo 14</strong><br>Efetuando o cancelamento de um carnê</blockquote>
+  <blockquote><strong>Exemplo 14</strong><br>Efetuando o cancelamento de um carnê</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-14-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -2501,12 +2463,12 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-14-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/cancelar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id=16700'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/cancelar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id=16700'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-14-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-14-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -2520,7 +2482,7 @@
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="k">echo</span> <span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de carnês cancelados
+    <span class="k">echo</span> <span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de carnês afetados
 </span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 
@@ -2534,12 +2496,11 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-  <blockquote>
-<strong>Exemplo 15</strong><br>Efetuando o cancelamento de dois ou mais carnês</blockquote>
+  <blockquote><strong>Exemplo 15</strong><br>Efetuando o cancelamento de dois ou mais carnês</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-15-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -2550,13 +2511,13 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-15-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/cancelar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id[0]=16700'</span> <span class="se">\</span>
-    -d <span class="s1">'id[1]=16701'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/cancelar'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id[0]=16700'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id[1]=16701'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-15-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-15-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -2570,7 +2531,7 @@
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="k">echo</span> <span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de carnês cancelados
+    <span class="k">echo</span> <span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de carnês afetados
 </span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 
@@ -2584,11 +2545,61 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-  <strong>Exemplo 16</strong><br>Efetuando a consulta de uma notificação</blockquote>
+  <h3 id="carne-notificacao">Recebendo notificação do carnê</h3>
+
+  <p>As notificações servem para que você seja informado de uma alteração de status do carnê. Dessa forma você poderá, por exemplo, identificar um pagamento e fazer os procedimentos de liquidação no seu sistema ou aplicação.</p>
+
+  <p>As notificações são enviadas quando um carnê possui uma URL de notificação definida na criação, ou, se não estiver definida, o sistema envia a notificação para a URL informada nas configurações do Wide Pay.</p>
+
+  <p>O envio da notificação é feito via <strong>POST</strong> via o parâmetro <code>notificacao</code>, que conterá o ID numérico da notificação que será usado para fazer a consulta dos dados do carnê. Também virá o parâmetro <code>carteira</code>, contendo o ID da carteira dona do carnê.</p>
+
+  <h6>URL</h6>
+
+  <pre>https://api.widepay.com/v1/recebimentos/carnes/notificacao</pre>
+
+  <h6>ATRIBUTOS DE ENVIO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th style="width: 110px;">Obrigatório</th>
+        <th style="width: 100px;">Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td><strong>Sim</strong></td>
+        <td>Numérico</td>
+        <td>ID da notificação a ser consultada</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h6>ATRIBUTOS DE RETORNO</h6>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 190px;">Atributo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>carne</td>
+        <td>Objeto com dados do carnê</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <blockquote><strong>Exemplo 16</strong><br>Efetuando a consulta de uma notificação</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-16-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -2599,12 +2610,12 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-16-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/notificacao'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id='</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/notificacao'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id='</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-16-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-16-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -2635,74 +2646,74 @@
   <p>Retorno do exemplo:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"carne"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16758"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"emaildalivia@gmail.com"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67 98888-0000"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rua"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua Primeiro de Julho"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sala 25"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vila Carvalho"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79005-610"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campo Grande"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="w">
+  </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"carne"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16758"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"emaildalivia@gmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67 98888-0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endereco"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rua"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua Primeiro de Julho"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"complemento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sala 25"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bairro"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vila Carvalho"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79005-610"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campo Grande"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.99"</span><span class="w">
+        </span><span class="s2">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.99"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 2"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.5"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="s2">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Descrição item 2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quantidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"desconto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fatura 12345"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.51"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"dividir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"parcelas"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-notificacao.php"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-10"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17 15:33:41"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pendente"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"referencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fatura 12345"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.51"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dividir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parcelas"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-notificacao.php"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-10"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17 15:33:41"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pendente"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8FA0DABF16210EC1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-07"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.51"</span><span class="w">
+        </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8FA0DABF16210EC1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-07"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.51"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5C8C1E1F16C20E2B"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-22"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="w">
+        </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5C8C1E1F16C20E2B"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-22"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ativo"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17 15:33:41"</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ativo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17 15:33:41"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pendente"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-11 00:41:49"</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pendente"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-11 00:41:49"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ativo"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-23 05:46:09"</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ativo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-23 05:46:09"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="s2">"comentario"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
