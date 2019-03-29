@@ -217,11 +217,6 @@
         <td>Cobrança criada e aguardando pagamento</td>
       </tr>
       <tr>
-        <td><span class="label label-success">Baixado</span></td>
-        <td>Boleto e cartão</td>
-        <td>Cobrança baixada é uma forma de confirmação manual do pagamento</td>
-      </tr>
-      <tr>
         <td><span class="label label-danger">Cancelado</span></td>
         <td>Boleto e cartão</td>
         <td>Cobrança cancelada pelo solicitante</td>
@@ -245,6 +240,11 @@
         <td><span class="label label-success">Recebido</span></td>
         <td>Boleto e cartão</td>
         <td>Pagamento recebido</td>
+      </tr>
+      <tr>
+        <td><span class="label label-success">Recebido manualmente</span></td>
+        <td>Boleto e cartão</td>
+        <td>Pagamento recebido manualmente</td>
       </tr>
       <tr>
         <td><span class="label label-danger">Recusado</span></td>
@@ -1633,7 +1633,7 @@
     </span><span class="nt">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"criacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-17 08:29:05"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baixado"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido manualmente"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"detalhamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"duplicado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"compensado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1643,7 +1643,7 @@
         </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-17 08:29:05"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baixado"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recebido manualmente"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-25 15:22:41"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -2588,52 +2588,7 @@
   </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-  <h3 id="carne-baixando">Baixando um carnê</h3>
-
-  <h6>URL</h6>
-
-  <pre>https://api.widepay.com/v1/recebimentos/carnes/baixar</pre>
-
-  <h6>ATRIBUTOS DE ENVIO</h6>
-
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th style="width: 190px;">Atributo</th>
-        <th style="width: 110px;">Obrigatório</th>
-        <th style="width: 100px;">Tipo</th>
-        <th>Descrição</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>id</td>
-        <td><strong>Sim</strong></td>
-        <td>String, Array</td>
-        <td>ID do carnê a ser baixado, pode ser um ou mais</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h6>ATRIBUTOS DE RETORNO</h6>
-
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th style="width: 190px;">Atributo</th>
-        <th>Descrição</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>total</td>
-        <td>Total de carnês baixados</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <blockquote>
-<strong>Exemplo 16</strong><br>Efetuando a baixa de um carnê</blockquote>
+  <strong>Exemplo 16</strong><br>Efetuando a consulta de uma notificação</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-16-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -2644,161 +2599,12 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-16-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/baixar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id=16700'</span></code></pre></figure>
-
-    </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-16-php">
-
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-
-<span class="k">require_once</span><span class="p">(</span><span class="s1">'../src/WidePay.php'</span><span class="p">);</span> <span class="c1">// Caminho para o SDK
-</span>
-<span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
-</span>
-<span class="nv">$baixar</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/carnes/baixar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'16700'</span>
-<span class="p">));</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">echo</span> <span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de carnês cancelados
-</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
-    <span class="k">echo</span> <span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
-</span>
-<span class="p">}</span></code></pre></figure>
-
-    </div>
-  </div>
-
-  <p>Retorno do exemplo:</p>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
-
-  <blockquote>
-<strong>Exemplo 17</strong><br>Efetuando a baixa de dois ou mais carnês</blockquote>
-
-  <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-17-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-17-php" role="tab" data-toggle="tab">PHP</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-17-curl"> 
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/cancelar'</span> <span class="se">\</span>
-    -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    -d <span class="s1">'id[0]=16700'</span> <span class="se">\</span>
-    -d <span class="s1">'id[1]=16701'</span></code></pre></figure>
-
-    </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-17-php">
-
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-
-<span class="k">require_once</span><span class="p">(</span><span class="s1">'../src/WidePay.php'</span><span class="p">);</span> <span class="c1">// Caminho para o SDK
-</span>
-<span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
-</span>
-<span class="nv">$baixar</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/carnes/baixar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'16700'</span><span class="p">,</span> <span class="s1">'16701'</span><span class="p">)</span>
-<span class="p">));</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">echo</span> <span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">total</span><span class="p">;</span> <span class="c1">// Total de carnês cancelados
-</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
-    <span class="k">echo</span> <span class="nv">$baixar</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
-</span>
-<span class="p">}</span></code></pre></figure>
-
-    </div>
-  </div>
-
-  <p>Retorno do exemplo:</p>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
-
-  <h3 id="carne-notificacao">Recebendo notificação do carnê</h3>
-
-  <p>As notificações servem para que você seja informado de uma alteração de status do carnê. Dessa forma você poderá, por exemplo, identificar um pagamento e fazer os procedimentos de liquidação no seu sistema ou aplicação.</p>
-
-  <p>As notificações são enviadas quando um carnê possui uma URL de notificação definida na criação, ou, se não estiver definida, o sistema envia a notificação para a URL informada nas configurações do Wide Pay.</p>
-
-  <p>O envio da notificação é feito via <strong>POST</strong> via o parâmetro <code>notificacao</code>, que conterá o ID numérico da notificação que será usado para fazer a consulta dos dados do carnê. Também virá o parâmetro <code>carteira</code>, contendo o ID da carteira dona do carnê.</p>
-
-  <h6>URL</h6>
-
-  <pre>https://api.widepay.com/v1/recebimentos/carnes/notificacao</pre>
-
-  <h6>ATRIBUTOS DE ENVIO</h6>
-
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th style="width: 190px;">Atributo</th>
-        <th style="width: 110px;">Obrigatório</th>
-        <th style="width: 100px;">Tipo</th>
-        <th>Descrição</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>id</td>
-        <td><strong>Sim</strong></td>
-        <td>Numérico</td>
-        <td>ID da notificação a ser consultada</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h6>ATRIBUTOS DE RETORNO</h6>
-
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th style="width: 190px;">Atributo</th>
-        <th>Descrição</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>carne</td>
-        <td>Objeto com dados do carnê</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <blockquote>
-<strong>Exemplo 18</strong><br>Efetuando a consulta de uma notificação</blockquote>
-
-  <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-18-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-18-php" role="tab" data-toggle="tab">PHP</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-18-curl"> 
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     -X POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/notificacao'</span> <span class="se">\</span>
     -u <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
     -d <span class="s1">'id='</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-18-php">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-16-php">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
