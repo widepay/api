@@ -88,7 +88,7 @@ hide: true
     },
     {
       "id":  "5C5C051E86177A22",
-      "erro":  "A cobrança já está baixada."
+      "erro":  "A cobrança já está cancelada."
     }
   ]
 }
@@ -1280,11 +1280,11 @@ if ($cancelar->sucesso) {
 }
 {% endhighlight %}
 
-  <h3 id="cobranca-baixando">Baixando uma cobrança</h3>
+  <h3 id="cobranca-manual">Recebendo manualmente uma cobrança</h3>
 
   <h6>URL</h6>
 
-  <pre>https://api.widepay.com/v1/recebimentos/cobrancas/baixar</pre>
+  <pre>https://api.widepay.com/v1/recebimentos/cobrancas/manual</pre>
 
   <h6>ATRIBUTOS DE ENVIO</h6>
 
@@ -1302,7 +1302,7 @@ if ($cancelar->sucesso) {
         <td>id</td>
         <td><strong>Sim</strong></td>
         <td>String, Array</td>
-        <td>ID da cobrança a ser baixada, pode ser um ou mais</td>
+        <td>ID da cobrança a ser recebida, pode ser um ou mais</td>
       </tr>
     </tbody>
   </table>
@@ -1324,7 +1324,7 @@ if ($cancelar->sucesso) {
     </tbody>
   </table>
 
-  <blockquote><strong>Exemplo 7</strong><br>Efetuando a baixa de uma cobrança</blockquote>
+  <blockquote><strong>Exemplo 7</strong><br>Efetuando o recebimento manual de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -1336,7 +1336,7 @@ if ($cancelar->sucesso) {
 
 {% highlight bash %}
 curl \
-    -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/baixar' \
+    -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/manual' \
     -u '148446:800440511285a9b0808ea85a94f3dd62' \
     -d 'id=8AF962B49E3920BB'
 {% endhighlight %}
@@ -1351,17 +1351,17 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
-$baixar = $wp->api('recebimentos/cobrancas/baixar', array(
+$manual = $wp->api('recebimentos/cobrancas/manual', array(
     'id' => '8AF962B49E3920BB'
 ));
 
-if ($baixar->sucesso) {
+if ($manual->sucesso) {
 
-    echo $baixar->total; // Total de cobranças afetadas
+    echo $manual->total; // Total de cobranças afetadas
 
 } else {
 
-    echo $baixar->erro; // Erro
+    echo $manual->erro; // Erro
 
 }
 {% endhighlight %}
@@ -1378,7 +1378,7 @@ if ($baixar->sucesso) {
 }
 {% endhighlight %}
 
-  <blockquote><strong>Exemplo 8</strong><br>Efetuando a baixa de duas ou mais cobranças</blockquote>
+  <blockquote><strong>Exemplo 8</strong><br>Efetuando o recebimento manual de duas ou mais cobranças</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
@@ -1406,17 +1406,17 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
-$baixar = $wp->api('recebimentos/cobrancas/baixar', array(
+$manual = $wp->api('recebimentos/cobrancas/manual', array(
     'id' => array('8AF962B49E3920BB', '922FEDBE9835857A')
 ));
 
-if ($baixar->sucesso) {
+if ($manual->sucesso) {
 
-    echo $baixar->total; // Total de cobranças afetadas
+    echo $manual->total; // Total de cobranças afetadas
 
 } else {
 
-    echo $baixar->erro; // Erro
+    echo $manual->erro; // Erro
 
 }
 {% endhighlight %}
@@ -1619,7 +1619,7 @@ if ($notificacao->sucesso) {
       </tr>
       <tr>
         <td><span class="label label-success">Finalizado</span></td>
-        <td>Quando o carnê é finalizado pelo pagamento das parcelas ou por baixa manual</td>
+        <td>Quando o carnê é finalizado pelo pagamento das parcelas</td>
       </tr>
       <tr>
         <td><span class="label label-warning">Pendente</span></td>
