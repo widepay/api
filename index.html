@@ -529,6 +529,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-1-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-1-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-1-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -545,9 +546,9 @@
     <span class="nt">-d</span> <span class="s1">'itens[0][valor]=22.50'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-1-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-1-php">
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php">    <span class="cp">&lt;?php</span>
 
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'../src/WidePay.php'</span><span class="p">);</span> <span class="c1">// Caminho para o SDK
 </span>
@@ -580,7 +581,49 @@
 </span>    <span class="p">}</span>
 
 <span class="p">}</span></code></pre></figure>
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-1-node">
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"moment"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
 
+<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+  <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">forma</span><span class="p">:</span> <span class="s1">'Cartão'</span><span class="p">,</span>
+  <span class="na">cliente</span><span class="p">:</span> <span class="s1">'Lívia Pontarolo Almeida'</span><span class="p">,</span>
+  <span class="na">pessoa</span><span class="p">:</span> <span class="s1">'Física'</span><span class="p">,</span>
+  <span class="na">cpf</span><span class="p">:</span> <span class="s1">'463.384.662-02'</span><span class="p">,</span>
+  <span class="na">vencimento</span><span class="p">:</span> <span class="nx">moment</span><span class="p">().</span><span class="nx">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">'days'</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="s1">'YYYY-MM-DD'</span><span class="p">),</span>
+  <span class="na">itens</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s1">'descricao'</span><span class="p">:</span> <span class="s1">'Descrição item 1'</span><span class="p">,</span>
+      <span class="s1">'valor'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+<span class="p">};</span>
+
+<span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">adicionar</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/cobrancas/adicionar'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span> <span class="c1">// ID da cobrança gerada</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">link</span><span class="p">);</span> <span class="c1">// Link da cobrança gerada</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">erro</span> <span class="o">===</span> <span class="s1">'Erro na validação dos campos.'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">validacao</span><span class="p">);</span> <span class="c1">// Imprime os erros de validação</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">)</span>
+<span class="p">})()</span></code></pre></figure>
     </div>
   </div>
 
@@ -589,6 +632,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-2-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-2-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-2-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -714,16 +758,94 @@
 </span>    <span class="p">}</span>
 
 <span class="p">}</span></code></pre></figure>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-2-node"">
 
-    </div>
+<figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"moment"</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+    <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">forma</span><span class="p">:</span> <span class="s1">'Cartão,Boleto'</span><span class="p">,</span>
+    <span class="na">cliente</span><span class="p">:</span> <span class="s1">'Lívia Pontarolo Almeida'</span><span class="p">,</span>
+    <span class="na">pessoa</span><span class="p">:</span> <span class="s1">'Física'</span><span class="p">,</span>
+    <span class="na">cpf</span><span class="p">:</span> <span class="s1">'463.384.662-02'</span><span class="p">,</span>
+    <span class="na">email</span><span class="p">:</span> <span class="s1">'emaildalivia@gmail.com'</span><span class="p">,</span>
+    <span class="na">telefone</span><span class="p">:</span> <span class="s1">'67 98888-0000'</span><span class="p">,</span>
+    <span class="na">endereco</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">rua</span><span class="p">:</span> <span class="s1">'Rua Primeiro de Julho'</span><span class="p">,</span>
+      <span class="na">numero</span><span class="p">:</span> <span class="s1">'192'</span><span class="p">,</span>
+      <span class="na">bairro</span><span class="p">:</span> <span class="s1">'Vila Carvalho'</span><span class="p">,</span>
+      <span class="na">complemento</span><span class="p">:</span> <span class="s1">'Sala 25'</span><span class="p">,</span>
+      <span class="na">cep</span><span class="p">:</span> <span class="s1">'79005-610'</span><span class="p">,</span>
+      <span class="na">cidade</span><span class="p">:</span> <span class="s1">'Campo Grande'</span><span class="p">,</span>
+      <span class="na">estado</span><span class="p">:</span> <span class="s1">'MS'</span><span class="p">,</span>
+      <span class="na">coletar</span><span class="p">:</span> <span class="s1">'Sim'</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">vencimento</span><span class="p">:</span> <span class="nx">moment</span><span class="p">().</span><span class="nx">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">'days'</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="s1">'YYYY-MM-DD'</span><span class="p">),</span>
+    <span class="na">itens</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s1">'descricao'</span><span class="p">:</span> <span class="s1">'Descrição item 1'</span><span class="p">,</span>
+        <span class="s1">'valor'</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s1">'quantidade'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s1">'desconto'</span><span class="p">:</span> <span class="mf">4.99</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s1">'descricao'</span><span class="p">:</span> <span class="s1">'Descrição item 2'</span><span class="p">,</span>
+        <span class="s1">'valor'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="na">referencia</span><span class="p">:</span> <span class="s1">'Fatura 12345'</span><span class="p">,</span>
+    <span class="na">notificacao</span><span class="p">:</span> <span class="s1">'http://www.minhaaplicacao.com/script-notificacao.php'</span><span class="p">,</span>
+    <span class="na">redirecionamento</span><span class="p">:</span> <span class="s1">'http://www.minhaaplicacao.com/script-redirecionamento.php'</span>
+  <span class="p">};</span>
+
+  <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">adicionar</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/cobrancas/adicionar'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span> <span class="c1">// ID da cobrança gerada</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">link</span><span class="p">);</span> <span class="c1">// Link da cobrança gerada</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">erro</span> <span class="o">===</span> <span class="s1">'Erro na validação dos campos.'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">validacao</span><span class="p">);</span> <span class="c1">// Imprime os erros de validação</span>
+      <span class="p">}</span>
+
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">)</span>
+  <span class="p">})()</span></code></pre></figure>
+
+  </div>
   </div>
 
   <p>Retorno dos exemplos:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
   </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4A13E8BE9842C174"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/cobranca/148446-4A13E8BE9842C174"</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70FB7FB597743802"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/cobranca/406218-70FB7FB597743802"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/cobranca/406218-70FB7FB597743802.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"boleto"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"parametros"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"agencia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6993-0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"conta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17282-0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"convenio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3188299"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"carteira"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"variacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"019"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00190.00009 03188.299006 00000.001172 2 83560000004501"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="cobranca-boleto">Boleto de uma cobrança</h3>
@@ -809,6 +931,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-3-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-3-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-3-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -823,7 +946,7 @@
     <span class="nt">-d</span> <span class="s1">'carne=Não'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-3-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-3-php">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -851,7 +974,43 @@
 </span>
 <span class="p">}</span></code></pre></figure>
 
-    </div>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-3-node">
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+    <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="s1">'4509FBB5977E4854'</span><span class="p">,</span>
+    <span class="na">atualizar</span><span class="p">:</span> <span class="s1">'Não'</span><span class="p">,</span>
+    <span class="na">html</span><span class="p">:</span> <span class="s1">'Sim'</span><span class="p">,</span>
+    <span class="na">carne</span><span class="p">:</span> <span class="s1">'Não'</span>
+  <span class="p">};</span>
+
+  <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">boleto</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/cobrancas/boleto'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">boleto</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">boleto</span><span class="p">.</span><span class="nx">parametros</span><span class="p">);</span> <span class="c1">// Imprime os parâmetros de configuração do boleto</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">boleto</span><span class="p">.</span><span class="nx">codigo</span><span class="p">);</span> <span class="c1">// Código de barras do boleto</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">boleto</span><span class="p">.</span><span class="nx">html</span><span class="p">);</span> <span class="c1">// HTML do boleto</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">boleto</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro</span>
+
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">boleto</span><span class="p">)</span>
+  <span class="p">})()</span></code></pre></figure>
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -923,6 +1082,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-4-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-4-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-4-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -958,8 +1118,40 @@
     <span class="k">echo</span> <span class="nv">$consultar</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
 </span>
 <span class="p">}</span></code></pre></figure>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-4-node"">
 
-    </div>
+  <figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+    <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="s1">'4509FBB5977E4854'</span><span class="p">,</span>
+  <span class="p">};</span>
+
+  <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">consultar</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/cobrancas/consultar'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">consultar</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">consultar</span><span class="p">.</span><span class="nx">cobrancas</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]);</span> <span class="c1">// ID da cobrança</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">consultar</span><span class="p">.</span><span class="nx">cobrancas</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'status'</span><span class="p">]);</span> <span class="c1">// Status da cobrança</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">consultar</span><span class="p">.</span><span class="nx">cobrancas</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// Imprime todos os dados da cobrança</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">consultar</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro</span>
+
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">consultar</span><span class="p">)</span>
+  <span class="p">})()</span>
+  </code></pre></figure>
+
+  </div>
   </div>
 
   <p>Alguns atributos do retorno variam de acordo com a forma do recebimento, abaixo você encontrará a descrição de alguns atributos importantes de uma cobrança, e mais abaixo, alguns exemplos de retornos:</p>
@@ -1234,6 +1426,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-5-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-5-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-5-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1266,8 +1459,33 @@
     <span class="k">echo</span> <span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
 </span>
 <span class="p">}</span></code></pre></figure>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-5-node"">
 
-    </div>
+<figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+    <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="s1">'4509FBB5977E4854'</span><span class="p">,</span>
+  <span class="p">};</span>
+
+  <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">cancelar</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/cobrancas/cancelar'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">cancelar</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="p">.</span><span class="nx">total</span><span class="p">);</span> <span class="c1">// Total de cobranças afetadas</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="p">)</span>
+  <span class="p">})()</span></code></pre></figure>
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -1282,6 +1500,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-6-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-6-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-6-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1315,6 +1534,33 @@
     <span class="k">echo</span> <span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
 </span>
 <span class="p">}</span></code></pre></figure>
+
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-6-node">
+
+  <figure class="highlight"><pre><code class="language-php" data-lang="php">  <span class="k">const</span> <span class="no">WidePay</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+  <span class="k">const</span> <span class="no">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">widePayId</span><span class="o">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+    <span class="nx">widePayToken</span><span class="o">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+  <span class="p">};</span>
+
+  <span class="k">const</span> <span class="no">options</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="nx">id</span><span class="o">:</span> <span class="p">[</span><span class="s1">'4509FBB5977E4854'</span><span class="p">,</span> <span class="s1">'922FEDBE9835857A'</span><span class="p">],</span>
+  <span class="p">};</span>
+
+  <span class="p">(</span><span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="no">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="o">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="o">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+    <span class="k">const</span> <span class="no">cancelar</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">widePay</span><span class="o">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/cobrancas/cancelar'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">cancelar</span><span class="o">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">console</span><span class="o">.</span><span class="nb">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="o">.</span><span class="nx">total</span><span class="p">);</span> <span class="c1">// Total de cobranças afetadas
+</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+     <span class="nx">console</span><span class="o">.</span><span class="nb">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="o">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro
+</span>    <span class="p">}</span>
+    <span class="nx">console</span><span class="o">.</span><span class="nb">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="p">)</span>
+  <span class="p">})()</span>
+  </code></pre></figure>
 
     </div>
   </div>
@@ -1375,6 +1621,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-7-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-7-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1407,8 +1654,34 @@
     <span class="k">echo</span> <span class="nv">$manual</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
 </span>
 <span class="p">}</span></code></pre></figure>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-7-node">
 
-    </div>
+<figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+      <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+    <span class="p">};</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">id</span><span class="p">:</span> <span class="s1">'879831BF977E6369'</span><span class="p">,</span>
+    <span class="p">};</span>
+
+    <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+      <span class="kd">const</span> <span class="nx">manual</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/cobrancas/manual'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">manual</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">manual</span><span class="p">.</span><span class="nx">total</span><span class="p">);</span> <span class="c1">// Total de cobranças afetadas</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">manual</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro</span>
+      <span class="p">}</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">manual</span><span class="p">)</span>
+    <span class="p">})()</span></code></pre></figure>
+
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -1423,6 +1696,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-8-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-8-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1456,8 +1730,34 @@
     <span class="k">echo</span> <span class="nv">$manual</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
 </span>
 <span class="p">}</span></code></pre></figure>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-8-node">
 
-    </div>
+  <figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+    <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="p">[</span><span class="s1">'879831BF977E6369'</span><span class="p">,</span><span class="s1">'879831BF977E6369'</span><span class="p">]</span>
+  <span class="p">};</span>
+
+  <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">manual</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/cobrancas/manual'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">manual</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">manual</span><span class="p">.</span><span class="nx">total</span><span class="p">);</span> <span class="c1">// Total de cobranças afetadas</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">manual</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">manual</span><span class="p">)</span>
+  <span class="p">})()</span>
+  </code></pre></figure>
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -1522,6 +1822,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-9-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-9-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-9-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1558,7 +1859,35 @@
 </span>
 <span class="p">}</span></code></pre></figure>
 
-    </div>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-9-node">
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+      <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+    <span class="p">};</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">id</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">notificacao</span>
+    <span class="p">};</span>
+
+    <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+      <span class="kd">const</span> <span class="nx">notificacao</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/cobrancas/notificacaor'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">notificacao</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notificacao</span><span class="p">.</span><span class="nx">cobranca</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]);</span> <span class="c1">// ID da cobrança</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notificacao</span><span class="p">.</span><span class="nx">cobranca</span><span class="p">[</span><span class="s1">'status'</span><span class="p">]);</span> <span class="c1">// Status da cobrança</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notificacao</span><span class="p">.</span><span class="nx">cobranca</span><span class="p">);</span> <span class="c1">// Imprime todos os dados da cobrança</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notificacao</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro</span>
+      <span class="p">}</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notificacao</span><span class="p">)</span>
+    <span class="p">})()</span></code></pre></figure>
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -1917,6 +2246,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-10-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-10-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-10-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1974,8 +2304,56 @@
 </span>    <span class="p">}</span>
 
 <span class="p">}</span></code></pre></figure>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-10-node">
 
-    </div>
+  <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"moment"</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+      <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+    <span class="p">};</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">cliente</span><span class="p">:</span> <span class="s1">'Lívia Pontarolo Almeida'</span><span class="p">,</span>
+      <span class="na">pessoa</span><span class="p">:</span> <span class="s1">'Física'</span><span class="p">,</span>
+      <span class="na">cpf</span><span class="p">:</span> <span class="s1">'463.384.662-02'</span><span class="p">,</span>
+      <span class="na">itens</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s1">'descricao'</span><span class="p">:</span> <span class="s1">'Descrição item 1'</span><span class="p">,</span>
+          <span class="s1">'valor'</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+          <span class="s1">'quantidade'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s1">'desconto'</span><span class="p">:</span> <span class="mf">4.99</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s1">'descricao'</span><span class="p">:</span> <span class="s1">'Descrição item 2'</span><span class="p">,</span>
+          <span class="s1">'valor'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="na">vencimento</span><span class="p">:</span> <span class="nx">moment</span><span class="p">().</span><span class="nx">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">'days'</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="s1">'YYYY-MM-DD'</span><span class="p">),</span>
+      <span class="na">parcelas</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+      <span class="na">dividir</span><span class="p">:</span> <span class="s1">'Não'</span><span class="p">,</span>
+    <span class="p">};</span>
+
+    <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+      <span class="kd">const</span> <span class="nx">adicionar</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/carnes/adicionar'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span> <span class="c1">// ID do carnê gerado</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">link</span><span class="p">);</span> <span class="c1">// Link do carnê gerado</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">cobrancas</span><span class="p">);</span> <span class="c1">// Imprime todos os IDS das cobranças geradas</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">erro</span> <span class="o">===</span> <span class="s1">'Erro na validação dos campos.'</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">validacao</span><span class="p">);</span> <span class="c1">// Imprime os erros de validação</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">)</span>
+    <span class="p">})()</span>
+  </code></pre></figure>
+
+  </div>
   </div>
 
   <blockquote><strong>Exemplo 11</strong><br>Criando um carnê completo com o envio de todos os atributos disponíveis</blockquote>
@@ -1983,6 +2361,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-11-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-11-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-11-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2109,7 +2488,91 @@
 
 <span class="p">}</span></code></pre></figure>
 
-    </div>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-11-node">
+
+  <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"moment"</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+      <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+    <span class="p">};</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">cliente</span><span class="p">:</span> <span class="s1">'Lívia Pontarolo Almeida'</span><span class="p">,</span>
+      <span class="na">pessoa</span><span class="p">:</span> <span class="s1">'Física'</span><span class="p">,</span>
+      <span class="na">cpf</span><span class="p">:</span> <span class="s1">'463.384.662-02'</span><span class="p">,</span>
+      <span class="na">email</span><span class="p">:</span> <span class="s1">'emaildalivia@gmail.com'</span><span class="p">,</span>
+      <span class="na">telefone</span><span class="p">:</span> <span class="s1">'67 98888-0000'</span><span class="p">,</span>
+      <span class="na">endereco</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">rua</span><span class="p">:</span> <span class="s1">'Rua Primeiro de Julho'</span><span class="p">,</span>
+        <span class="na">numero</span><span class="p">:</span> <span class="s1">'192'</span><span class="p">,</span>
+        <span class="na">complemento</span><span class="p">:</span> <span class="s1">'Sala 25'</span><span class="p">,</span>
+        <span class="na">bairro</span><span class="p">:</span> <span class="s1">'Vila Carvalho'</span><span class="p">,</span>
+        <span class="na">cep</span><span class="p">:</span> <span class="s1">'79005-610'</span><span class="p">,</span>
+        <span class="na">cidade</span><span class="p">:</span> <span class="s1">'Campo Grande'</span><span class="p">,</span>
+        <span class="na">estado</span><span class="p">:</span> <span class="s1">'MS'</span>
+      <span class="p">},</span>
+      <span class="na">itens</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="na">descricao</span><span class="p">:</span> <span class="s1">'Descrição item 1'</span><span class="p">,</span>
+          <span class="na">valor</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+          <span class="na">quantidade</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="na">desconto</span><span class="p">:</span> <span class="mf">4.99</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="na">descricao</span><span class="p">:</span> <span class="s1">'Descrição item 2'</span><span class="p">,</span>
+          <span class="na">valor</span><span class="p">:</span> <span class="mf">10.50</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="na">referencia</span><span class="p">:</span> <span class="s1">'Fatura 12345'</span><span class="p">,</span>
+      <span class="na">notificacao</span><span class="p">:</span> <span class="s1">'http://www.minhaaplicacao.com/script-notificacao.php'</span><span class="p">,</span>
+      <span class="na">vencimento</span><span class="p">:</span> <span class="nx">moment</span><span class="p">().</span><span class="nx">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">'days'</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="s1">'YYYY-MM-DD'</span><span class="p">),</span>
+      <span class="na">parcelas</span><span class="p">:</span> <span class="s1">'6'</span><span class="p">,</span>
+      <span class="na">dividir</span><span class="p">:</span> <span class="s1">'Não'</span><span class="p">,</span>
+      <span class="na">enviar</span><span class="p">:</span> <span class="s1">'E-mail'</span><span class="p">,</span>
+      <span class="na">mensagem</span><span class="p">:</span> <span class="s1">'Mensagem personalizada no e-mail'</span><span class="p">,</span>
+      <span class="na">marketplace</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="na">carteira</span><span class="p">:</span> <span class="mi">10500</span><span class="p">,</span>
+          <span class="na">valor</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+          <span class="na">item</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="na">carteira</span><span class="p">:</span> <span class="mi">10800</span><span class="p">,</span>
+          <span class="na">valor</span><span class="p">:</span> <span class="mi">5</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="na">boleto</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">desconto</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span>
+        <span class="na">multa</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="na">juros</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="na">instrucoes</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s1">'Instrução personalizada ao cliente, linha 1'</span><span class="p">,</span>
+          <span class="s1">'Instrução personalizada ao cliente, linha 2'</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">adicionar</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/carnes/adicionar'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span> <span class="c1">// ID do carnê gerado</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">link</span><span class="p">);</span> <span class="c1">// Link do carnê gerado</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">cobrancas</span><span class="p">);</span> <span class="c1">// Imprime todos os IDS das cobranças geradas</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">erro</span> <span class="o">===</span> <span class="s1">'Erro na validação dos campos.'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">.</span><span class="nx">validacao</span><span class="p">);</span> <span class="c1">// Imprime os erros de validação</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">adicionar</span><span class="p">)</span>
+    <span class="p">})()</span>
+  </code></pre></figure>
+
+  </div>
   </div>
 
   <p>Retorno dos exemplos:</p>
@@ -2188,6 +2651,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-12-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-12-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-12-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2227,8 +2691,44 @@
 </span>    <span class="p">}</span>
 
 <span class="p">}</span></code></pre></figure>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-12-node">
 
-    </div>
+  <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"moment"</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+      <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+    <span class="p">};</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">cobrancas</span><span class="p">:</span> <span class="p">[</span><span class="s1">'5F151D278C9DDC80'</span><span class="p">,</span> <span class="s1">'7CF34C1FF5E842B0'</span><span class="p">,</span> <span class="s1">'6AB79C5F626436A8'</span><span class="p">]</span>
+    <span class="p">};</span>
+
+    <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">montar</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/carnes/montar'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">montar</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">montar</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span> <span class="c1">// ID do carnê gerado</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">montar</span><span class="p">.</span><span class="nx">link</span><span class="p">);</span> <span class="c1">// Link do carnê gerado</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">montar</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">montar</span><span class="p">.</span><span class="nx">erro</span> <span class="o">===</span> <span class="s1">'Erro na validação dos campos.'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">montar</span><span class="p">.</span><span class="nx">validacao</span><span class="p">);</span> <span class="c1">// Imprime os erros de validação</span>
+      <span class="p">}</span>
+
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">montar</span><span class="p">)</span>
+    <span class="p">})()</span>
+  </code></pre></figure>
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -2292,6 +2792,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-13-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-13-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-13-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2327,8 +2828,37 @@
     <span class="k">echo</span> <span class="nv">$consultar</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
 </span>
 <span class="p">}</span></code></pre></figure>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-13-node">
 
-    </div>
+  <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"moment"</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+      <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+    <span class="p">};</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">id</span><span class="p">:</span> <span class="s1">'16758'</span>
+    <span class="p">};</span>
+
+    <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">consultar</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/carnes/consultar'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">consultar</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">consultar</span><span class="p">.</span><span class="nx">carnes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]);</span> <span class="c1">// ID do carnê</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">consultar</span><span class="p">.</span><span class="nx">carnes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'status'</span><span class="p">]);</span> <span class="c1">// Status do carnê</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">consultar</span><span class="p">.</span><span class="nx">carnes</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// Imprime todos os dados do carnê</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">consultar</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">consultar</span><span class="p">)</span>
+    <span class="p">})()</span>
+  </code></pre></figure>
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -2457,6 +2987,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-14-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-14-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-14-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2490,7 +3021,34 @@
 </span>
 <span class="p">}</span></code></pre></figure>
 
-    </div>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-14-node">
+
+  <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+      <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+    <span class="p">};</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">id</span><span class="p">:</span> <span class="s1">'16758'</span>
+    <span class="p">};</span>
+
+    <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+      <span class="kd">const</span> <span class="nx">cancelar</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/carnes/cancelar'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">cancelar</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="p">.</span><span class="nx">total</span><span class="p">);</span> <span class="c1">// Total de carnês afetados</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro</span>
+      <span class="p">}</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="p">)</span>
+    <span class="p">})()</span>
+  </code></pre></figure>
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -2505,6 +3063,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-15-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-15-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-15-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2538,8 +3097,34 @@
     <span class="k">echo</span> <span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
 </span>
 <span class="p">}</span></code></pre></figure>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-15-node">
 
-    </div>
+  <figure class="highlight"><pre><code class="language-php" data-lang="php">    <span class="k">const</span> <span class="no">WidePay</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+    <span class="k">const</span> <span class="no">config</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">widePayId</span><span class="o">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+      <span class="nx">widePayToken</span><span class="o">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+    <span class="p">};</span>
+
+    <span class="k">const</span> <span class="no">options</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">id</span><span class="o">:</span> <span class="p">[</span><span class="s1">'16758'</span><span class="p">,</span><span class="s1">'10293'</span><span class="p">]</span>
+    <span class="p">};</span>
+
+    <span class="p">(</span><span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="no">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="o">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="o">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+    <span class="k">const</span> <span class="no">cancelar</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">widePay</span><span class="o">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/carnes/cancelar'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">cancelar</span><span class="o">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="o">.</span><span class="nb">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="o">.</span><span class="nx">total</span><span class="p">);</span> <span class="c1">// Total de carnês afetados
+</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="o">.</span><span class="nb">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="o">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro
+</span>    <span class="p">}</span>
+    <span class="nx">console</span><span class="o">.</span><span class="nb">log</span><span class="p">(</span><span class="nx">cancelar</span><span class="p">)</span>
+    <span class="p">})()</span>
+  </code></pre></figure>
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -2604,6 +3189,7 @@
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-16-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-16-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-16-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2639,8 +3225,36 @@
     <span class="k">echo</span> <span class="nv">$notificacao</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
 </span>
 <span class="p">}</span></code></pre></figure>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-16-node"">
 
-    </div>
+  <figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./WidePay.js"</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+    <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">notificacao</span>
+  <span class="p">};</span>
+
+  <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">notificacao</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/carnes/notificacaor'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">notificacao</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notificacao</span><span class="p">.</span><span class="nx">carne</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]);</span> <span class="c1">// ID do carnê</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notificacao</span><span class="p">.</span><span class="nx">carne</span><span class="p">[</span><span class="s1">'status'</span><span class="p">]);</span> <span class="c1">// Status do carnê</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notificacao</span><span class="p">.</span><span class="nx">carne</span><span class="p">);</span> <span class="c1">// Imprime todos os dados do carnê</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notificacao</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notificacao</span><span class="p">)</span>
+  <span class="p">})()</span>
+  </code></pre></figure>
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
