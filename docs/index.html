@@ -445,6 +445,7 @@ hide: true
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-1-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-1-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-1-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -463,10 +464,10 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-1-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-1-php">
 
 {% highlight php %}
-<?php
+    <?php
 
 require_once('../src/WidePay.php'); // Caminho para o SDK
 
@@ -500,7 +501,51 @@ if ($adicionar->sucesso) {
 
 }
 {% endhighlight %}
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-1-node">
+{% highlight js %}
+const moment = require("moment");
+const WidePay = require("wide-pay-node");
 
+const config = {
+  widePayId: '406218',
+  widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+};
+
+const options = {
+  forma: 'Cartão',
+  cliente: 'Lívia Pontarolo Almeida',
+  pessoa: 'Física',
+  cpf: '463.384.662-02',
+  vencimento: moment().add(5, 'days').format('YYYY-MM-DD'),
+  itens: [
+    {
+      'descricao': 'Descrição item 1',
+      'valor': 10,
+    }
+  ],
+};
+
+(async () => {
+  const widePay = new WidePay(config.widePayId, config.widePayToken);
+  const adicionar = await widePay.api('/recebimentos/cobrancas/adicionar', options)
+  if (adicionar.sucesso) {
+
+    console.log(adicionar.id); // ID da cobrança gerada
+    console.log(adicionar.link); // Link da cobrança gerada
+
+  } else {
+
+    console.log(adicionar.erro);
+
+    if (adicionar.erro === 'Erro na validação dos campos.') {
+      console.log(adicionar.validacao); // Imprime os erros de validação
+    }
+
+  }
+  console.log(adicionar)
+})()
+{% endhighlight %}
     </div>
   </div>
 
@@ -509,6 +554,7 @@ if ($adicionar->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-2-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-2-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-2-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -638,8 +684,75 @@ if ($adicionar->sucesso) {
 
 }
 {% endhighlight %}
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-2-node"">
 
-    </div>
+{% highlight js %}
+  const moment = require("moment");
+  const WidePay = require("wide-pay-node");
+
+  const config = {
+    widePayId: '406218',
+    widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+  };
+
+  const options = {
+    forma: 'Cartão,Boleto',
+    cliente: 'Lívia Pontarolo Almeida',
+    pessoa: 'Física',
+    cpf: '463.384.662-02',
+    email: 'emaildalivia@gmail.com',
+    telefone: '67 98888-0000',
+    endereco: {
+      rua: 'Rua Primeiro de Julho',
+      numero: '192',
+      bairro: 'Vila Carvalho',
+      complemento: 'Sala 25',
+      cep: '79005-610',
+      cidade: 'Campo Grande',
+      estado: 'MS',
+      coletar: 'Sim',
+    },
+    vencimento: moment().add(5, 'days').format('YYYY-MM-DD'),
+    itens: [
+      {
+        'descricao': 'Descrição item 1',
+        'valor': 20,
+        'quantidade': 2,
+        'desconto': 4.99
+      }, {
+        'descricao': 'Descrição item 2',
+        'valor': 10,
+      }
+    ],
+    referencia: 'Fatura 12345',
+    notificacao: 'http://www.minhaaplicacao.com/script-notificacao.php',
+    redirecionamento: 'http://www.minhaaplicacao.com/script-redirecionamento.php'
+  };
+
+  (async () => {
+    const widePay = new WidePay(config.widePayId, config.widePayToken);
+    const adicionar = await widePay.api('/recebimentos/cobrancas/adicionar', options)
+
+    if (adicionar.sucesso) {
+
+      console.log(adicionar.id); // ID da cobrança gerada
+      console.log(adicionar.link); // Link da cobrança gerada
+
+    } else {
+
+      console.log(adicionar.erro);
+
+      if (adicionar.erro === 'Erro na validação dos campos.') {
+        console.log(adicionar.validacao); // Imprime os erros de validação
+      }
+
+    }
+    console.log(adicionar)
+  })()
+{% endhighlight %}
+
+  </div>
   </div>
 
   <p>Retorno dos exemplos:</p>
@@ -647,8 +760,21 @@ if ($adicionar->sucesso) {
 {% highlight json %}
 {
   "sucesso": true,
-  "id": "4A13E8BE9842C174",
-  "link": "https://www.widepay.com/cobranca/148446-4A13E8BE9842C174"
+  "id": "70FB7FB597743802",
+  "link": "https://www.widepay.com/cobranca/406218-70FB7FB597743802",
+  "pdf": "https://www.widepay.com/cobranca/406218-70FB7FB597743802.pdf",
+  "boleto": {
+    "parametros": {
+      "banco": "001",
+      "agencia": "6993-0",
+      "conta": "17282-0",
+      "convenio": "3188299",
+      "carteira": "17",
+      "variacao": "019",
+      "numero": "1"
+    },
+    "codigo": "00190.00009 03188.299006 00000.001172 2 83560000004501"
+  }
 }
 {% endhighlight %}
 
@@ -735,6 +861,7 @@ if ($adicionar->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-3-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-3-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-3-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -751,7 +878,7 @@ curl \
 {% endhighlight %}
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-3-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-3-php">
 
 {% highlight php %}
 <?php
@@ -781,7 +908,45 @@ if ($boleto->sucesso) {
 }
 {% endhighlight %}
 
-    </div>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-3-node">
+
+{% highlight js %}
+  const WidePay = require("wide-pay-node");
+
+  const config = {
+    widePayId: '406218',
+    widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+  };
+
+  const options = {
+    id: '4509FBB5977E4854',
+    atualizar: 'Não',
+    html: 'Sim',
+    carne: 'Não'
+  };
+
+  (async () => {
+    const widePay = new WidePay(config.widePayId, config.widePayToken);
+    const boleto = await widePay.api('/recebimentos/cobrancas/boleto', options)
+
+    if (boleto.sucesso) {
+
+      console.log(boleto.parametros); // Imprime os parâmetros de configuração do boleto
+
+      console.log(boleto.codigo); // Código de barras do boleto
+      console.log(boleto.html); // HTML do boleto
+
+    } else {
+
+      console.log(boleto.erro); // Erro
+
+    }
+    console.log(boleto)
+  })()
+{% endhighlight %}
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -855,6 +1020,7 @@ if ($boleto->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-4-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-4-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-4-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -894,8 +1060,41 @@ if ($consultar->sucesso) {
 
 }
 {% endhighlight %}
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-4-node"">
 
-    </div>
+  {% highlight js %}
+  const WidePay = require("wide-pay-node");
+
+  const config = {
+    widePayId: '406218',
+    widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+  };
+
+  const options = {
+    id: '4509FBB5977E4854',
+  };
+
+  (async () => {
+    const widePay = new WidePay(config.widePayId, config.widePayToken);
+    const consultar = await widePay.api('/recebimentos/cobrancas/consultar', options)
+
+    if (consultar.sucesso) {
+
+      console.log(consultar.cobrancas[0]['id']); // ID da cobrança
+      console.log(consultar.cobrancas[0]['status']); // Status da cobrança
+      console.log(consultar.cobrancas[0]); // Imprime todos os dados da cobrança
+
+    } else {
+
+      console.log(consultar.erro); // Erro
+
+    }
+    console.log(consultar)
+  })()
+  {% endhighlight %}
+
+  </div>
   </div>
 
   <p>Alguns atributos do retorno variam de acordo com a forma do recebimento, abaixo você encontrará a descrição de alguns atributos importantes de uma cobrança, e mais abaixo, alguns exemplos de retornos:</p>
@@ -1176,6 +1375,7 @@ if ($consultar->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-5-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-5-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-5-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1212,8 +1412,35 @@ if ($cancelar->sucesso) {
 
 }
 {% endhighlight %}
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-5-node"">
 
-    </div>
+{% highlight js %}
+  const WidePay = require("wide-pay-node");
+
+  const config = {
+    widePayId: '406218',
+    widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+  };
+
+  const options = {
+    id: '4509FBB5977E4854',
+  };
+
+  (async () => {
+    const widePay = new WidePay(config.widePayId, config.widePayToken);
+    const cancelar = await widePay.api('/recebimentos/cobrancas/cancelar', options)
+
+    if (cancelar.sucesso) {
+      console.log(cancelar.total); // Total de cobranças afetadas
+    } else {
+      console.log(cancelar.erro); // Erro
+    }
+    console.log(cancelar)
+  })()
+{% endhighlight %}
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -1230,6 +1457,7 @@ if ($cancelar->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-6-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-6-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-6-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1267,6 +1495,34 @@ if ($cancelar->sucesso) {
 
 }
 {% endhighlight %}
+
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-6-node">
+
+  {% highlight php %}
+  const WidePay = require("wide-pay-node");
+
+  const config = {
+    widePayId: '406218',
+    widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+  };
+
+  const options = {
+   id: ['4509FBB5977E4854', '922FEDBE9835857A'],
+  };
+
+  (async () => {
+    const widePay = new WidePay(config.widePayId, config.widePayToken);
+    const cancelar = await widePay.api('/recebimentos/cobrancas/cancelar', options)
+
+    if (cancelar.sucesso) {
+     console.log(cancelar.total); // Total de cobranças afetadas
+    } else {
+     console.log(cancelar.erro); // Erro
+    }
+    console.log(cancelar)
+  })()
+  {% endhighlight %}
 
     </div>
   </div>
@@ -1329,6 +1585,7 @@ if ($cancelar->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-7-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-7-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1365,8 +1622,36 @@ if ($manual->sucesso) {
 
 }
 {% endhighlight %}
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-7-node">
 
-    </div>
+{% highlight js %}
+    const WidePay = require("wide-pay-node");
+
+    const config = {
+      widePayId: '406218',
+      widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+    };
+
+    const options = {
+      id: '879831BF977E6369',
+    };
+
+    (async () => {
+      const widePay = new WidePay(config.widePayId, config.widePayToken);
+      const manual = await widePay.api('/recebimentos/cobrancas/manual', options)
+
+      if (manual.sucesso) {
+        console.log(manual.total); // Total de cobranças afetadas
+      } else {
+        console.log(manual.erro); // Erro
+      }
+      console.log(manual)
+    })()
+{% endhighlight %}
+
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -1383,6 +1668,7 @@ if ($manual->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-8-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-8-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1420,8 +1706,35 @@ if ($manual->sucesso) {
 
 }
 {% endhighlight %}
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-8-node">
 
-    </div>
+  {% highlight js %}
+  const WidePay = require("wide-pay-node");
+
+  const config = {
+    widePayId: '406218',
+    widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+  };
+
+  const options = {
+    id: ['879831BF977E6369','879831BF977E6369']
+  };
+
+  (async () => {
+    const widePay = new WidePay(config.widePayId, config.widePayToken);
+    const manual = await widePay.api('/recebimentos/cobrancas/manual', options)
+
+    if (manual.sucesso) {
+      console.log(manual.total); // Total de cobranças afetadas
+    } else {
+      console.log(manual.erro); // Erro
+    }
+    console.log(manual)
+  })()
+  {% endhighlight %}
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -1488,6 +1801,7 @@ if ($manual->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-9-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-9-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-9-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1528,7 +1842,37 @@ if ($notificacao->sucesso) {
 }
 {% endhighlight %}
 
-    </div>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-9-node">
+
+{% highlight js %}
+    const WidePay = require("wide-pay-node");
+
+    const config = {
+      widePayId: '406218',
+      widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+    };
+
+    const options = {
+      id: request.body.notificacao
+    };
+
+    (async () => {
+      const widePay = new WidePay(config.widePayId, config.widePayToken);
+      const notificacao = await widePay.api('/recebimentos/cobrancas/notificacaor', options)
+
+      if (notificacao.sucesso) {
+        console.log(notificacao.cobranca['id']); // ID da cobrança
+        console.log(notificacao.cobranca['status']); // Status da cobrança
+        console.log(notificacao.cobranca); // Imprime todos os dados da cobrança
+      } else {
+        console.log(notificacao.erro); // Erro
+      }
+      console.log(notificacao)
+    })()
+{% endhighlight %}
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -1889,6 +2233,7 @@ if ($notificacao->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-10-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-10-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-10-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -1950,8 +2295,57 @@ if ($adicionar->sucesso) {
 
 }
 {% endhighlight %}
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-10-node">
 
-    </div>
+  {% highlight js %}
+    const moment = require("moment");
+    const WidePay = require("wide-pay-node");
+
+    const config = {
+      widePayId: '406218',
+      widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+    };
+
+    const options = {
+      cliente: 'Lívia Pontarolo Almeida',
+      pessoa: 'Física',
+      cpf: '463.384.662-02',
+      itens: [
+        {
+          'descricao': 'Descrição item 1',
+          'valor': 20,
+          'quantidade': 2,
+          'desconto': 4.99
+        }, {
+          'descricao': 'Descrição item 2',
+          'valor': 10,
+        }
+      ],
+      vencimento: moment().add(5, 'days').format('YYYY-MM-DD'),
+      parcelas: 6,
+      dividir: 'Não',
+    };
+
+    (async () => {
+      const widePay = new WidePay(config.widePayId, config.widePayToken);
+      const adicionar = await widePay.api('/recebimentos/carnes/adicionar', options)
+
+      if (adicionar.sucesso) {
+        console.log(adicionar.id); // ID do carnê gerado
+        console.log(adicionar.link); // Link do carnê gerado
+        console.log(adicionar.cobrancas); // Imprime todos os IDS das cobranças geradas
+      } else {
+        console.log(adicionar.erro);
+        if (adicionar.erro === 'Erro na validação dos campos.') {
+          console.log(adicionar.validacao); // Imprime os erros de validação
+        }
+      }
+      console.log(adicionar)
+    })()
+  {% endhighlight %}
+
+  </div>
   </div>
 
   <blockquote><strong>Exemplo 11</strong><br>Criando um carnê completo com o envio de todos os atributos disponíveis</blockquote>
@@ -1959,6 +2353,7 @@ if ($adicionar->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-11-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-11-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-11-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2089,7 +2484,92 @@ if ($adicionar->sucesso) {
 }
 {% endhighlight %}
 
-    </div>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-11-node">
+
+  {% highlight js %}
+    const moment = require("moment");
+    const WidePay = require("wide-pay-node");
+
+    const config = {
+      widePayId: '406218',
+      widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+    };
+
+    const options = {
+      cliente: 'Lívia Pontarolo Almeida',
+      pessoa: 'Física',
+      cpf: '463.384.662-02',
+      email: 'emaildalivia@gmail.com',
+      telefone: '67 98888-0000',
+      endereco: {
+        rua: 'Rua Primeiro de Julho',
+        numero: '192',
+        complemento: 'Sala 25',
+        bairro: 'Vila Carvalho',
+        cep: '79005-610',
+        cidade: 'Campo Grande',
+        estado: 'MS'
+      },
+      itens: [
+        {
+          descricao: 'Descrição item 1',
+          valor: 20,
+          quantidade: 2,
+          desconto: 4.99
+        },
+        {
+          descricao: 'Descrição item 2',
+          valor: 10.50
+        }
+      ],
+      referencia: 'Fatura 12345',
+      notificacao: 'http://www.minhaaplicacao.com/script-notificacao.php',
+      vencimento: moment().add(5, 'days').format('YYYY-MM-DD'),
+      parcelas: '6',
+      dividir: 'Não',
+      enviar: 'E-mail',
+      mensagem: 'Mensagem personalizada no e-mail',
+      marketplace: [
+        {
+          carteira: 10500,
+          valor: 10,
+          item: 0
+        }, {
+          carteira: 10800,
+          valor: 5
+        }
+      ],
+      boleto: {
+        desconto: 4.5,
+        multa: 2,
+        juros: 1,
+        instrucoes: [
+          'Instrução personalizada ao cliente, linha 1',
+          'Instrução personalizada ao cliente, linha 2'
+        ]
+      }
+    };
+
+    (async () => {
+    const widePay = new WidePay(config.widePayId, config.widePayToken);
+    const adicionar = await widePay.api('/recebimentos/carnes/adicionar', options)
+
+    if (adicionar.sucesso) {
+      console.log(adicionar.id); // ID do carnê gerado
+      console.log(adicionar.link); // Link do carnê gerado
+      console.log(adicionar.cobrancas); // Imprime todos os IDS das cobranças geradas
+    } else {
+      console.log(adicionar.erro);
+      if (adicionar.erro === 'Erro na validação dos campos.') {
+        console.log(adicionar.validacao); // Imprime os erros de validação
+      }
+    }
+    console.log(adicionar)
+    })()
+  {% endhighlight %}
+
+  </div>
   </div>
 
   <p>Retorno dos exemplos:</p>
@@ -2170,6 +2650,7 @@ if ($adicionar->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-12-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-12-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-12-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2213,8 +2694,45 @@ if ($montar->sucesso) {
 
 }
 {% endhighlight %}
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-12-node">
 
-    </div>
+  {% highlight js %}
+    const moment = require("moment");
+    const WidePay = require("wide-pay-node");
+
+    const config = {
+      widePayId: '406218',
+      widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+    };
+
+    const options = {
+      cobrancas: ['5F151D278C9DDC80', '7CF34C1FF5E842B0', '6AB79C5F626436A8']
+    };
+
+    (async () => {
+    const widePay = new WidePay(config.widePayId, config.widePayToken);
+    const montar = await widePay.api('/recebimentos/carnes/montar', options)
+
+    if (montar.sucesso) {
+
+      console.log(montar.id); // ID do carnê gerado
+      console.log(montar.link); // Link do carnê gerado
+
+    } else {
+
+      console.log(montar.erro); // Erro
+
+      if (montar.erro === 'Erro na validação dos campos.') {
+        console.log(montar.validacao); // Imprime os erros de validação
+      }
+
+    }
+    console.log(montar)
+    })()
+  {% endhighlight %}
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -2280,6 +2798,7 @@ if ($montar->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-13-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-13-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-13-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2319,8 +2838,38 @@ if ($consultar->sucesso) {
 
 }
 {% endhighlight %}
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-13-node">
 
-    </div>
+  {% highlight js %}
+    const moment = require("moment");
+    const WidePay = require("wide-pay-node");
+
+    const config = {
+      widePayId: '406218',
+      widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+    };
+
+    const options = {
+      id: '16758'
+    };
+
+    (async () => {
+    const widePay = new WidePay(config.widePayId, config.widePayToken);
+    const consultar = await widePay.api('/recebimentos/carnes/consultar', options)
+
+    if (consultar.sucesso) {
+      console.log(consultar.carnes[0]['id']); // ID do carnê
+      console.log(consultar.carnes[0]['status']); // Status do carnê
+      console.log(consultar.carnes[0]); // Imprime todos os dados do carnê
+    } else {
+      console.log(consultar.erro); // Erro
+    }
+    console.log(consultar)
+    })()
+  {% endhighlight %}
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -2451,6 +3000,7 @@ if ($consultar->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-14-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-14-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-14-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2488,7 +3038,35 @@ if ($cancelar->sucesso) {
 }
 {% endhighlight %}
 
-    </div>
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-14-node">
+
+  {% highlight js %}
+    const WidePay = require("wide-pay-node");
+
+    const config = {
+      widePayId: '406218',
+      widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+    };
+
+    const options = {
+      id: '16758'
+    };
+
+    (async () => {
+      const widePay = new WidePay(config.widePayId, config.widePayToken);
+      const cancelar = await widePay.api('/recebimentos/carnes/cancelar', options)
+
+      if (cancelar.sucesso) {
+        console.log(cancelar.total); // Total de carnês afetados
+      } else {
+        console.log(cancelar.erro); // Erro
+      }
+      console.log(cancelar)
+    })()
+  {% endhighlight %}
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -2505,6 +3083,7 @@ if ($cancelar->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-15-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-15-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-15-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2542,8 +3121,35 @@ if ($cancelar->sucesso) {
 
 }
 {% endhighlight %}
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-15-node">
 
-    </div>
+  {% highlight php %}
+    const WidePay = require("wide-pay-node");
+
+    const config = {
+      widePayId: '406218',
+      widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+    };
+
+    const options = {
+      id: ['16758','10293']
+    };
+
+    (async () => {
+    const widePay = new WidePay(config.widePayId, config.widePayToken);
+    const cancelar = await widePay.api('/recebimentos/carnes/cancelar', options)
+
+    if (cancelar.sucesso) {
+      console.log(cancelar.total); // Total de carnês afetados
+    } else {
+      console.log(cancelar.erro); // Erro
+    }
+    console.log(cancelar)
+    })()
+  {% endhighlight %}
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
@@ -2610,6 +3216,7 @@ if ($cancelar->sucesso) {
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active"><a href="#exemplo-16-curl" role="tab" data-toggle="tab">cURL</a></li>
     <li role="presentation"><a href="#exemplo-16-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-16-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
@@ -2649,8 +3256,37 @@ if ($notificacao->sucesso) {
 
 }
 {% endhighlight %}
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-16-node"">
 
-    </div>
+  {% highlight js %}
+  const WidePay = require("wide-pay-node");
+
+  const config = {
+    widePayId: '406218',
+    widePayToken: 'c257c157c07f397dfdf5496258b33d86'
+  };
+
+  const options = {
+    id: request.body.notificacao
+  };
+
+  (async () => {
+    const widePay = new WidePay(config.widePayId, config.widePayToken);
+    const notificacao = await widePay.api('/recebimentos/carnes/notificacaor', options)
+
+    if (notificacao.sucesso) {
+      console.log(notificacao.carne['id']); // ID do carnê
+      console.log(notificacao.carne['status']); // Status do carnê
+      console.log(notificacao.carne); // Imprime todos os dados do carnê
+    } else {
+      console.log(notificacao.erro); // Erro
+    }
+    console.log(notificacao)
+  })()
+  {% endhighlight %}
+
+  </div>
   </div>
 
   <p>Retorno do exemplo:</p>
