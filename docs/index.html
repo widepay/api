@@ -2918,17 +2918,23 @@ if ($consultar->sucesso) {
       "vencimento": "2018-04-10",
       "criacao": "2018-01-17 15:33:41",
       "status": "Pendente",
-      "detalhamento": [
-        {
-          "cobranca": "8FA0DABF16210EC1",
-          "recebimento": "2018-04-07",
-          "valor": "40.51"
-        },
-        {
-          "cobranca": "5C8C1E1F16C20E2B",
-          "recebimento": "2018-05-22",
-          "valor": "42"
-        }
+      "cobrancas": [
+          {
+            "id": "8FA0DABF16210EC1",
+            "status": "Recebido manualmente",
+            "recebimento": "2021-01-02",
+            "vencimento": "2021-01-23",
+            "valor": "40.51",
+            "recebido": "40.51",
+          },
+          {
+            "id": "5C8C1E1F16C20E2B",
+            "status": "Recebido manualmente",
+            "recebimento": "2021-02-02",
+            "vencimento": "2021-02-30",
+            "valor": "42",
+            "recebido": "40.51",
+          }
       ],
       "historico": [
         {
@@ -3333,30 +3339,34 @@ if ($notificacao->sucesso) {
     "vencimento": "2018-04-10",
     "criacao": "2018-01-17 15:33:41",
     "status": "Pendente",
-    "detalhamento": [
+    "cobrancas": [
       {
-        "cobranca": "8FA0DABF16210EC1",
-        "recebimento": "2018-04-07",
-        "valor": "40.51"
+        "id": "8FA0DABF16210EC1",
+        "recebimento": "2021-01-02",
+        "vencimento": "2021-01-23",
+        "valor": "40.51",
+        "recebido": "40.51",
       },
       {
-        "cobranca": "5C8C1E1F16C20E2B",
-        "recebimento": "2018-05-22",
-        "valor": "42"
+        "id": "5C8C1E1F16C20E2B",
+        "recebimento": "2021-02-02",
+        "vencimento": "2021-02-30",
+        "valor": "42",
+        "recebido": "40.51",
       }
     ],
     "historico": [
       {
         "status": "Ativo",
-        "data": "2018-01-17 15:33:41"
+        "data": "2021-01-01 15:33:41"
       },
       {
         "status": "Pendente",
-        "data": "2018-05-11 00:41:49"
+        "data": "2021-01-01 00:41:49"
       },
       {
         "status": "Ativo",
-        "data": "2018-05-23 05:46:09"
+        "data": "2021-01-02 05:46:09"
       }
     ],
     "comentario": null,
