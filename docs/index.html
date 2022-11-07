@@ -115,7 +115,7 @@ hide: true
 
   <h2 id="cobrancas">Cobranças</h2>
 
-  <p>Em cobranças, você pode realizar recebimentos via boleto ou cartão de crédito.</p>
+  <p>Em cobranças, você pode realizar recebimentos via boleto e/ou pix</p>
 
   <p>Confira na tabela abaixo a lista de todos os status de uma cobrança e sua respectiva descrição.</p>
 
@@ -130,47 +130,47 @@ hide: true
     <tbody>
       <tr>
         <td><span class="label label-info">Aguardando</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Cobrança criada e aguardando pagamento</td>
       </tr>
       <tr>
         <td><span class="label label-danger">Cancelado</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Cobrança cancelada pelo solicitante</td>
       </tr>
       <tr>
         <td><span class="label label-danger">Contestado</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Quando o pagador faz uma contestação do pagamento ao Wide Pay</td>
       </tr>
       <tr>
         <td><span class="label label-info">Em análise</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Após o pagamento, a cobrança pode ser submetida a uma análise antifraude</td>
       </tr>
-      <tr>
-        <td><span class="label label-danger">Estornado</span></td>
-        <td>Cartão</td>
-        <td>Quando a cobrança é estornada pelo solicitante</td>
-      </tr>
+<!--      <tr>-->
+<!--        <td><span class="label label-danger">Estornado</span></td>-->
+<!--        <td>Cartão</td>-->
+<!--        <td>Quando a cobrança é estornada pelo solicitante</td>-->
+<!--      </tr>-->
       <tr>
         <td><span class="label label-success">Recebido</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Pagamento recebido</td>
       </tr>
       <tr>
         <td><span class="label label-success">Recebido manualmente</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Pagamento recebido manualmente</td>
       </tr>
-      <tr>
-        <td><span class="label label-danger">Recusado</span></td>
-        <td>Cartão</td>
-        <td>Pagamento recusado pela administradora de cartão ou pela análise antifraude</td>
-      </tr>
+<!--      <tr>-->
+<!--        <td><span class="label label-danger">Recusado</span></td>-->
+<!--        <td>Cartão</td>-->
+<!--        <td>Pagamento recusado pela administradora de cartão ou pela análise antifraude</td>-->
+<!--      </tr>-->
       <tr>
         <td><span class="label label-warning">Vencido</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Um dia após o vencimento caso não haja o pagamento, o status é alterado</td>
       </tr>
     </tbody>
@@ -773,7 +773,11 @@ if ($adicionar->sucesso) {
       "variacao": "019",
       "numero": "1"
     },
-    "codigo": "00190.00009 03188.299006 00000.001172 2 83560000004501"
+    "codigo": "00190.00009 03188.299006 00000.001172 2 83560000004501",
+    "pix": {
+      "emv": "...",
+      "imagem": "data:image/png;base64..."
+    },
   }
 }
 {% endhighlight %}
@@ -1139,7 +1143,7 @@ if ($consultar->sucesso) {
       "cobranca": null,
       "carne": null,
       "assinatura": null,
-      "forma": "Boleto,Cartão",
+      "forma": "Boleto,Pix",
       "cliente": "Lívia Pontarolo Almeida",
       "pessoa": "Física",
       "cpf": "463.384.662-02",
