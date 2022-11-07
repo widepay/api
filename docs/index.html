@@ -200,7 +200,7 @@ hide: true
         <td>forma</td>
         <td><strong>Sim</strong></td>
         <td>Definido</td>
-        <td>Forma de recebimento: <code>Boleto</code> e/ou <code>Cartão</code></td>
+        <td>Forma de recebimento: <code>Boleto</code> e/ou <code>Pix</code></td>
       </tr>
       <tr>
         <td>cliente</td>
@@ -455,7 +455,7 @@ hide: true
 curl \
     -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/adicionar' \
     -u '148446:800440511285a9b0808ea85a94f3dd62' \
-    -d 'forma=Cartão' \
+    -d 'forma=Pix' \
     -d 'cliente=Lívia Pontarolo Almeida' \
     -d 'pessoa=Física' \
     -d 'cpf=463.384.662-02' \
@@ -474,7 +474,7 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
 $adicionar = $wp->api('recebimentos/cobrancas/adicionar', array(
-    'forma' => 'Cartão',
+    'forma' => 'Pix',
     'cliente' => 'Lívia Pontarolo Almeida',
     'pessoa' => 'Física',
     'cpf' => '463.384.662-02',
@@ -513,7 +513,7 @@ const config = {
 };
 
 const options = {
-  forma: 'Cartão',
+  forma: 'Pix',
   cliente: 'Lívia Pontarolo Almeida',
   pessoa: 'Física',
   cpf: '463.384.662-02',
@@ -564,7 +564,7 @@ const options = {
 curl \
     -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/adicionar' \
     -u '148446:800440511285a9b0808ea85a94f3dd62' \
-    -d 'forma=Boleto,Cartão' \
+    -d 'forma=Boleto,Pix' \
     -d 'cliente=Lívia Pontarolo Almeida' \
     -d 'pessoa=Física' \
     -d 'cpf=463.384.662-02' \
@@ -613,7 +613,7 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
 $adicionar = $wp->api('recebimentos/cobrancas/adicionar', array(
-    'forma' => 'Boleto,Cartão',
+    'forma' => 'Boleto,Pix',
     'cliente' => 'Lívia Pontarolo Almeida',
     'pessoa' => 'Física',
     'cpf' => '463.384.662-02',
@@ -697,7 +697,7 @@ if ($adicionar->sucesso) {
   };
 
   const options = {
-    forma: 'Cartão,Boleto',
+    forma: 'Pix,Boleto',
     cliente: 'Lívia Pontarolo Almeida',
     pessoa: 'Física',
     cpf: '463.384.662-02',
@@ -823,6 +823,12 @@ if ($adicionar->sucesso) {
         <td>Traz no retorno da requisição o HTML do boleto, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
       </tr>
       <tr>
+        <td>pix</td>
+        <td>Não</td>
+        <td>Definido</td>
+        <td>Traz no retorno da requisição informações sobre o pix, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
+      </tr>
+      <tr>
         <td>carne</td>
         <td>Não</td>
         <td>Definido</td>
@@ -853,6 +859,10 @@ if ($adicionar->sucesso) {
         <td>html</td>
         <td>HTML do boleto</td>
       </tr>
+      <tr>
+        <td>pix</td>
+        <td>Objeto Pix contendo <code>emv</code> e <code>imagem</code>, emv do pix pode ser usado para o pix cópia e cola e a imagem vem no formato base 64 um QRCode para ser renderizada</td>
+      </tr>
     </tbody>
   </table>
 
@@ -869,12 +879,13 @@ if ($adicionar->sucesso) {
 
 {% highlight bash %}
 curl \
-    -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/boleto' \
-    -u '148446:800440511285a9b0808ea85a94f3dd62' \
-    -d 'id=8AF962B49E3920BB' \
-    -d 'atualizar=Sim' \
-    -d 'html=Sim' \
-    -d 'carne=Não'
+      -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/boleto' \
+      -u '148446:800440511285a9b0808ea85a94f3dd62' \
+      -d 'id=8AF962B49E3920BB' \
+      -d 'atualizar=Sim' \
+      -d 'html=Sim' \
+      -d 'pix=Sim' \
+      -d 'carne=Não'
 {% endhighlight %}
 
     </div>
@@ -891,6 +902,7 @@ $boleto = $wp->api('recebimentos/cobrancas/boleto', array(
     'id' => '8AF962B49E3920BB',
     'atualizar' => 'Sim',
     'html' => 'Sim',
+    'pix' => 'Sim',
     'carne' => 'Não'
 ));
 
@@ -923,6 +935,7 @@ if ($boleto->sucesso) {
     id: '4509FBB5977E4854',
     atualizar: 'Não',
     html: 'Sim',
+    pix: 'Sim',
     carne: 'Não'
   };
 
@@ -964,6 +977,10 @@ if ($boleto->sucesso) {
   },
   "codigo": "03399.81276 22000.000004 00001.901016 1 73280000002250",
   "html": "<table>...</table>"
+  "pix": {
+    "emv": "...",
+    "imagem": "data:image/png;base64..."
+  },
 }
 {% endhighlight %}
 
