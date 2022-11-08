@@ -199,7 +199,7 @@
 
   <h2 id="cobrancas">Cobranças</h2>
 
-  <p>Em cobranças, você pode realizar recebimentos via boleto ou cartão de crédito.</p>
+  <p>Em cobranças, você pode realizar recebimentos via boleto e/ou pix</p>
 
   <p>Confira na tabela abaixo a lista de todos os status de uma cobrança e sua respectiva descrição.</p>
 
@@ -214,47 +214,47 @@
     <tbody>
       <tr>
         <td><span class="label label-info">Aguardando</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Cobrança criada e aguardando pagamento</td>
       </tr>
       <tr>
         <td><span class="label label-danger">Cancelado</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Cobrança cancelada pelo solicitante</td>
       </tr>
       <tr>
         <td><span class="label label-danger">Contestado</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Quando o pagador faz uma contestação do pagamento ao Wide Pay</td>
       </tr>
       <tr>
         <td><span class="label label-info">Em análise</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Após o pagamento, a cobrança pode ser submetida a uma análise antifraude</td>
       </tr>
-      <tr>
-        <td><span class="label label-danger">Estornado</span></td>
-        <td>Cartão</td>
-        <td>Quando a cobrança é estornada pelo solicitante</td>
-      </tr>
+<!--      <tr>-->
+<!--        <td><span class="label label-danger">Estornado</span></td>-->
+<!--        <td>Cartão</td>-->
+<!--        <td>Quando a cobrança é estornada pelo solicitante</td>-->
+<!--      </tr>-->
       <tr>
         <td><span class="label label-success">Recebido</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Pagamento recebido</td>
       </tr>
       <tr>
         <td><span class="label label-success">Recebido manualmente</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Pagamento recebido manualmente</td>
       </tr>
-      <tr>
-        <td><span class="label label-danger">Recusado</span></td>
-        <td>Cartão</td>
-        <td>Pagamento recusado pela administradora de cartão ou pela análise antifraude</td>
-      </tr>
+<!--      <tr>-->
+<!--        <td><span class="label label-danger">Recusado</span></td>-->
+<!--        <td>Cartão</td>-->
+<!--        <td>Pagamento recusado pela administradora de cartão ou pela análise antifraude</td>-->
+<!--      </tr>-->
       <tr>
         <td><span class="label label-warning">Vencido</span></td>
-        <td>Boleto e cartão</td>
+        <td>Boleto e pix</td>
         <td>Um dia após o vencimento caso não haja o pagamento, o status é alterado</td>
       </tr>
     </tbody>
@@ -284,7 +284,7 @@
         <td>forma</td>
         <td><strong>Sim</strong></td>
         <td>Definido</td>
-        <td>Forma de recebimento: <code>Boleto</code> e/ou <code>Cartão</code></td>
+        <td>Forma de recebimento: <code>Boleto</code> e/ou <code>Pix</code></td>
       </tr>
       <tr>
         <td>cliente</td>
@@ -538,7 +538,7 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/adicionar'</span> <span class="se">\</span>
     <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'forma=Cartão'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'forma=Pix'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'cliente=Lívia Pontarolo Almeida'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'pessoa=Física'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'cpf=463.384.662-02'</span> <span class="se">\</span>
@@ -555,7 +555,7 @@
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
 <span class="nv">$adicionar</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/adicionar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'forma'</span> <span class="o">=&gt;</span> <span class="s1">'Cartão'</span><span class="p">,</span>
+    <span class="s1">'forma'</span> <span class="o">=&gt;</span> <span class="s1">'Pix'</span><span class="p">,</span>
     <span class="s1">'cliente'</span> <span class="o">=&gt;</span> <span class="s1">'Lívia Pontarolo Almeida'</span><span class="p">,</span>
     <span class="s1">'pessoa'</span> <span class="o">=&gt;</span> <span class="s1">'Física'</span><span class="p">,</span>
     <span class="s1">'cpf'</span> <span class="o">=&gt;</span> <span class="s1">'463.384.662-02'</span><span class="p">,</span>
@@ -592,7 +592,7 @@
 <span class="p">};</span>
 
 <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">forma</span><span class="p">:</span> <span class="s1">'Cartão'</span><span class="p">,</span>
+  <span class="na">forma</span><span class="p">:</span> <span class="s1">'Pix'</span><span class="p">,</span>
   <span class="na">cliente</span><span class="p">:</span> <span class="s1">'Lívia Pontarolo Almeida'</span><span class="p">,</span>
   <span class="na">pessoa</span><span class="p">:</span> <span class="s1">'Física'</span><span class="p">,</span>
   <span class="na">cpf</span><span class="p">:</span> <span class="s1">'463.384.662-02'</span><span class="p">,</span>
@@ -641,7 +641,7 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/adicionar'</span> <span class="se">\</span>
     <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'forma=Boleto,Cartão'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'forma=Boleto,Pix'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'cliente=Lívia Pontarolo Almeida'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'pessoa=Física'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'cpf=463.384.662-02'</span> <span class="se">\</span>
@@ -688,7 +688,7 @@
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
 <span class="nv">$adicionar</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/adicionar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'forma'</span> <span class="o">=&gt;</span> <span class="s1">'Boleto,Cartão'</span><span class="p">,</span>
+    <span class="s1">'forma'</span> <span class="o">=&gt;</span> <span class="s1">'Boleto,Pix'</span><span class="p">,</span>
     <span class="s1">'cliente'</span> <span class="o">=&gt;</span> <span class="s1">'Lívia Pontarolo Almeida'</span><span class="p">,</span>
     <span class="s1">'pessoa'</span> <span class="o">=&gt;</span> <span class="s1">'Física'</span><span class="p">,</span>
     <span class="s1">'cpf'</span> <span class="o">=&gt;</span> <span class="s1">'463.384.662-02'</span><span class="p">,</span>
@@ -770,7 +770,7 @@
   <span class="p">};</span>
 
   <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">forma</span><span class="p">:</span> <span class="s1">'Cartão,Boleto'</span><span class="p">,</span>
+    <span class="na">forma</span><span class="p">:</span> <span class="s1">'Pix,Boleto'</span><span class="p">,</span>
     <span class="na">cliente</span><span class="p">:</span> <span class="s1">'Lívia Pontarolo Almeida'</span><span class="p">,</span>
     <span class="na">pessoa</span><span class="p">:</span> <span class="s1">'Física'</span><span class="p">,</span>
     <span class="na">cpf</span><span class="p">:</span> <span class="s1">'463.384.662-02'</span><span class="p">,</span>
@@ -844,7 +844,11 @@
       </span><span class="s2">"variacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"019"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00190.00009 03188.299006 00000.001172 2 83560000004501"</span><span class="w">
+    </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00190.00009 03188.299006 00000.001172 2 83560000004501"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pix"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"emv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"imagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
@@ -893,6 +897,12 @@
         <td>Traz no retorno da requisição o HTML do boleto, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
       </tr>
       <tr>
+        <td>pix</td>
+        <td>Não</td>
+        <td>Definido</td>
+        <td>Traz no retorno da requisição informações sobre o pix, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
+      </tr>
+      <tr>
         <td>carne</td>
         <td>Não</td>
         <td>Definido</td>
@@ -923,6 +933,10 @@
         <td>html</td>
         <td>HTML do boleto</td>
       </tr>
+      <tr>
+        <td>pix</td>
+        <td>Objeto Pix contendo <code>emv</code> e <code>imagem</code>, emv do pix pode ser usado para o pix cópia e cola e a imagem vem no formato base 64 um QRCode para ser renderizada</td>
+      </tr>
     </tbody>
   </table>
 
@@ -938,12 +952,13 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-3-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/boleto'</span> <span class="se">\</span>
-    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'atualizar=Sim'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'html=Sim'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'carne=Não'</span></code></pre></figure>
+      <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/boleto'</span> <span class="se">\</span>
+      <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+      <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span> <span class="se">\</span>
+      <span class="nt">-d</span> <span class="s1">'atualizar=Sim'</span> <span class="se">\</span>
+      <span class="nt">-d</span> <span class="s1">'html=Sim'</span> <span class="se">\</span>
+      <span class="nt">-d</span> <span class="s1">'pix=Sim'</span> <span class="se">\</span>
+      <span class="nt">-d</span> <span class="s1">'carne=Não'</span></code></pre></figure>
 
     </div>
     <div class="tab-pane fade" role="tabpanel" id="exemplo-3-php">
@@ -958,6 +973,7 @@
     <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'8AF962B49E3920BB'</span><span class="p">,</span>
     <span class="s1">'atualizar'</span> <span class="o">=&gt;</span> <span class="s1">'Sim'</span><span class="p">,</span>
     <span class="s1">'html'</span> <span class="o">=&gt;</span> <span class="s1">'Sim'</span><span class="p">,</span>
+    <span class="s1">'pix'</span> <span class="o">=&gt;</span> <span class="s1">'Sim'</span><span class="p">,</span>
     <span class="s1">'carne'</span> <span class="o">=&gt;</span> <span class="s1">'Não'</span>
 <span class="p">));</span>
 
@@ -988,6 +1004,7 @@
     <span class="na">id</span><span class="p">:</span> <span class="s1">'4509FBB5977E4854'</span><span class="p">,</span>
     <span class="na">atualizar</span><span class="p">:</span> <span class="s1">'Não'</span><span class="p">,</span>
     <span class="na">html</span><span class="p">:</span> <span class="s1">'Sim'</span><span class="p">,</span>
+    <span class="na">pix</span><span class="p">:</span> <span class="s1">'Sim'</span><span class="p">,</span>
     <span class="na">carne</span><span class="p">:</span> <span class="s1">'Não'</span>
   <span class="p">};</span>
 
@@ -1027,6 +1044,10 @@
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03399.81276 22000.000004 00001.901016 1 73280000002250"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;table&gt;...&lt;/table&gt;"</span><span class="w">
+  </span><span class="s2">"pix"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"emv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"imagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64..."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="cobranca-consultando">Consultando uma cobrança</h3>
@@ -1178,7 +1199,7 @@
       </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boleto,Cartão"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boleto,Pix"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
