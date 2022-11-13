@@ -105,7 +105,7 @@
 
   <p>Com a API do Wide Pay, é possível utilizar qualquer recurso disponível em sua conta, como: gerar transações, carnês, assinaturas e receber notificações toda vez que algum status sofrer alteração.</p>
 
-  <p>Também é possível utilizar os recursos de pagamento de contas, recargas de celular, transferências bancárias, transferências entre contas Wide Pay e transferências para cartões pré-pagos.</p>
+  <!-- <p>Também é possível utilizar os recursos de pagamento de contas, recargas de celular, transferências bancárias, transferências entre contas Wide Pay e transferências para cartões pré-pagos.</p> -->
 
   <h2 id="carteira">Carteira e token</h2>
 
@@ -199,7 +199,8 @@
 
   <h2 id="cobrancas">Cobranças</h2>
 
-  <p>Em cobranças, você pode realizar recebimentos via boleto e/ou pix</p>
+  <!-- <p>Em cobranças, você pode realizar recebimentos via boleto ou cartão de crédito.</p> -->
+  <p>Em cobranças, você pode realizar recebimentos via boleto de Pix.</p>
 
   <p>Confira na tabela abaixo a lista de todos os status de uma cobrança e sua respectiva descrição.</p>
 
@@ -214,53 +215,60 @@
     <tbody>
       <tr>
         <td><span class="label label-info">Aguardando</span></td>
-        <td>Boleto e pix</td>
+        <!-- <td>Boleto, Cartão e Pix</td> -->
+        <td>Boleto e Pix</td>
         <td>Cobrança criada e aguardando pagamento</td>
       </tr>
       <tr>
         <td><span class="label label-danger">Cancelado</span></td>
-        <td>Boleto e pix</td>
+        <!-- <td>Boleto, Cartão e Pix</td> -->
+        <td>Boleto e Pix</td>
         <td>Cobrança cancelada pelo solicitante</td>
       </tr>
       <tr>
         <td><span class="label label-danger">Contestado</span></td>
-        <td>Boleto e pix</td>
+        <!-- <td>Boleto, Cartão e Pix</td> -->
+        <td>Boleto e Pix</td>
         <td>Quando o pagador faz uma contestação do pagamento ao Wide Pay</td>
       </tr>
       <tr>
         <td><span class="label label-info">Em análise</span></td>
-        <td>Boleto e pix</td>
+        <!-- <td>Boleto e Cartão</td> -->
+        <td>Boleto</td>
         <td>Após o pagamento, a cobrança pode ser submetida a uma análise antifraude</td>
       </tr>
-<!--      <tr>-->
-<!--        <td><span class="label label-danger">Estornado</span></td>-->
-<!--        <td>Cartão</td>-->
-<!--        <td>Quando a cobrança é estornada pelo solicitante</td>-->
-<!--      </tr>-->
+      <!-- <tr>
+        <td><span class="label label-danger">Estornado</span></td>
+        <td>Cartão</td>
+        <td>Quando a cobrança é estornada pelo solicitante</td>
+      </tr> -->
       <tr>
         <td><span class="label label-success">Recebido</span></td>
-        <td>Boleto e pix</td>
+        <!-- <td>Boleto, Cartão e Pix</td> -->
+        <td>Boleto e Pix</td>
         <td>Pagamento recebido</td>
       </tr>
       <tr>
         <td><span class="label label-success">Recebido manualmente</span></td>
-        <td>Boleto e pix</td>
+        <!-- <td>Boleto, Cartão e Pix</td> -->
+        <td>Boleto e Pix</td>
         <td>Pagamento recebido manualmente</td>
       </tr>
-<!--      <tr>-->
-<!--        <td><span class="label label-danger">Recusado</span></td>-->
-<!--        <td>Cartão</td>-->
-<!--        <td>Pagamento recusado pela administradora de cartão ou pela análise antifraude</td>-->
-<!--      </tr>-->
+      <!-- <tr>
+        <td><span class="label label-danger">Recusado</span></td>
+        <td>Cartão</td>
+        <td>Pagamento recusado pela administradora de cartão ou pela análise antifraude</td>
+      </tr> -->
       <tr>
         <td><span class="label label-warning">Vencido</span></td>
-        <td>Boleto e pix</td>
+        <!-- <td>Boleto, Cartão e Pix</td> -->
+        <td>Boleto e Pix</td>
         <td>Um dia após o vencimento caso não haja o pagamento, o status é alterado</td>
       </tr>
     </tbody>
   </table>
 
-  <p>Caso queira testar a alteração de status em uma carteira em ambiente de teste, você poderá pagar uma cobrança via cartão de crédito. Valores até R$ 100,00 retornará <strong class="text-danger">Recusado</strong>, acima de R$ 100,00 retornará <strong class="text-success">Recebido</strong>.</p>
+  <!-- <p>Caso queira testar a alteração de status em uma carteira em ambiente de teste, você poderá pagar uma cobrança via cartão de crédito. Valores até R$ 100,00 retornará <strong class="text-danger">Recusado</strong>, acima de R$ 100,00 retornará <strong class="text-success">Recebido</strong>.</p> -->
 
   <h3 id="cobranca-gerando">Gerando uma cobrança</h3>
 
@@ -284,6 +292,7 @@
         <td>forma</td>
         <td><strong>Sim</strong></td>
         <td>Definido</td>
+        <!-- <td>Forma de recebimento: <code>Boleto</code> e/ou <code>Cartão</code> e/ou <code>Pix</code></td> -->
         <td>Forma de recebimento: <code>Boleto</code> e/ou <code>Pix</code></td>
       </tr>
       <tr>
@@ -407,6 +416,24 @@
         <td>Casas decimais: 2, não pode ultrapassar a quantidade x valor do item</td>
       </tr>
       <tr>
+        <td>desconto</td>
+        <td>Não</td>
+        <td>Decimal</td>
+        <td>Desconto para pagamento até o vencimento, casas decimais: 2, não pode ultrapassar 90% do valor da cobrança</td>
+      </tr>
+      <tr>
+        <td>multa</td>
+        <td>Não</td>
+        <td>Decimal</td>
+        <td>Valor em porcentagem, casas decimais: 2, valor máximo: 20, se não definido, pegará o valor definido no Wide Pay</td>
+      </tr>
+      <tr>
+        <td>juros</td>
+        <td>Não</td>
+        <td>Decimal</td>
+        <td>Valor em porcentagem aplicado ao mês, casas decimais: 2, valor máximo: 20, se não definido, pegará o valor definido no Wide Pay</td>
+      </tr>
+      <tr>
         <td>referencia</td>
         <td>Não</td>
         <td>String</td>
@@ -418,17 +445,17 @@
         <td>URL</td>
         <td>URL que será chamada quando a cobrança muda de status</td>
       </tr>
-      <tr>
+      <!-- <tr>
         <td>redirecionamento</td>
         <td>Não</td>
         <td>URL</td>
         <td>URL que o sistema redirecionará quando houver o pagamento e utilizado somente se o atributo forma for <code>Cartão</code></td>
-      </tr>
+      </tr> -->
       <tr>
         <td>vencimento</td>
         <td><strong>Condicional</strong></td>
         <td>Data</td>
-        <td>Obrigatório, se o atributo forma for <code>Boleto</code></td>
+        <td>Obrigatório, se o atributo forma for <code>Boleto</code> ou <code>Pix</code></td>
       </tr>
       <tr>
         <td>enviar</td>
@@ -443,52 +470,10 @@
         <td>Memsagem enviada ao cliente no e-mail de cobrança, tamanho máximo: 255 caracteres</td>
       </tr>
       <tr>
-        <td>marketplace</td>
-        <td>Não</td>
-        <td>Array</td>
-        <td>Regras da divisão por marketplace, máximo de itens: 5. Se não definido, utilizará o valor definido no Wide Pay</td>
-      </tr>
-      <tr>
-        <td>marketplace[][carteira]</td>
-        <td>Não</td>
-        <td>Numérico</td>
-        <td>ID da carteira para transferência</td>
-      </tr>
-      <tr>
-        <td>marketplace[][valor]</td>
-        <td>Não</td>
-        <td>Decimal</td>
-        <td>Porcentagem da transferência, casas decimais: 2, valor máximo: 100.00</td>
-      </tr>
-      <tr>
-        <td>marketplace[][item]</td>
-        <td>Não</td>
-        <td>Numérico</td>
-        <td>Utilizado para que a regra de divisão seja calculada em cima de um item da cobrança</td>
-      </tr>
-      <tr>
         <td>boleto</td>
         <td>Não</td>
         <td>Objeto</td>
         <td>Parâmetros opcionais de configuração do boleto, utilizado somente se o atributo forma for <code>Boleto</code></td>
-      </tr>
-      <tr>
-        <td>boleto[desconto]</td>
-        <td>Não</td>
-        <td>Decimal</td>
-        <td>Desconto para pagamento por boleto até o vencimento, casas decimais: 2, não pode ultrapassar 50% do valor da cobrança</td>
-      </tr>
-      <tr>
-        <td>boleto[multa]</td>
-        <td>Não</td>
-        <td>Decimal</td>
-        <td>Valor em porcentagem, casas decimais: 2, valor máximo: 20, se não definido, pegará o valor definido no Wide Pay</td>
-      </tr>
-      <tr>
-        <td>boleto[juros]</td>
-        <td>Não</td>
-        <td>Decimal</td>
-        <td>Valor em porcentagem aplicado ao mês, casas decimais: 2, valor máximo: 20, se não definido, pegará o valor definido no Wide Pay</td>
       </tr>
       <tr>
         <td>boleto[instrucoes]</td>
@@ -518,8 +503,16 @@
         <td>Link de pagamento da cobrança</td>
       </tr>
       <tr>
+        <td>pdf</td>
+        <td>Link do arquivo PDF da cobrança</td>
+      </tr>
+      <tr>
         <td>boleto</td>
-        <td>Caso a forma de pagamento seja boleto, será retornado os dados neste atributo</td>
+        <td>Em caso boleto na forma de recebimento, será retornado os dados neste atributo</td>
+      </tr>
+      <tr>
+        <td>pix</td>
+        <td>Em caso Pix na forma de recebimento, será retornado os dados neste atributo</td>
       </tr>
     </tbody>
   </table>
@@ -543,7 +536,8 @@
     <span class="nt">-d</span> <span class="s1">'pessoa=Física'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'cpf=463.384.662-02'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'itens[0][descricao]=Descrição item 1'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'itens[0][valor]=22.50'</span></code></pre></figure>
+    <span class="nt">-d</span> <span class="s1">'itens[0][valor]=22.50'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'vencimento=2017-08-10'</span></code></pre></figure>
 
     </div>
     <div class="tab-pane fade" role="tabpanel" id="exemplo-1-php">
@@ -564,7 +558,8 @@
             <span class="s1">'descricao'</span> <span class="o">=&gt;</span> <span class="s1">'Descrição item 1'</span><span class="p">,</span>
             <span class="s1">'valor'</span> <span class="o">=&gt;</span> <span class="mf">22.50</span>
         <span class="p">)</span>
-    <span class="p">)</span>
+    <span class="p">),</span>
+    <span class="s1">'vencimento'</span> <span class="o">=&gt;</span> <span class="s1">'2017-08-10'</span>
 <span class="p">));</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$adicionar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
@@ -663,15 +658,9 @@
     <span class="nt">-d</span> <span class="s1">'itens[1][valor]=10.50'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'referencia=Fatura 12345'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'notificacao=http://www.minhaaplicacao.com/script-notificacao.php'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'redirecionamento=http://www.minhaaplicacao.com/script-redirecionamento.php'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'vencimento=2017-08-10'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'enviar=E-mail'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'mensagem=Mensagem personalizada no e-mail'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'marketplace[0][carteira]=10500'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'marketplace[0][valor]=10'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'marketplace[0][item]=0'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'marketplace[1][carteira]=10800'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'marketplace[1][valor]=5'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'boleto[desconto]=4.5'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'boleto[multa]=2'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'boleto[juros]=1'</span> <span class="se">\</span>
@@ -718,21 +707,9 @@
     <span class="p">),</span>
     <span class="s1">'referencia'</span> <span class="o">=&gt;</span> <span class="s1">'Fatura 12345'</span><span class="p">,</span>
     <span class="s1">'notificacao'</span> <span class="o">=&gt;</span> <span class="s1">'http://www.minhaaplicacao.com/script-notificacao.php'</span><span class="p">,</span>
-    <span class="s1">'redirecionamento'</span> <span class="o">=&gt;</span> <span class="s1">'http://www.minhaaplicacao.com/script-redirecionamento.php'</span><span class="p">,</span>
     <span class="s1">'vencimento'</span> <span class="o">=&gt;</span> <span class="s1">'2017-08-10'</span><span class="p">,</span>
     <span class="s1">'enviar'</span> <span class="o">=&gt;</span> <span class="s1">'E-mail'</span><span class="p">,</span>
     <span class="s1">'mensagem'</span> <span class="o">=&gt;</span> <span class="s1">'Mensagem personalizada no e-mail'</span><span class="p">,</span>
-    <span class="s1">'marketplace'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'carteira'</span> <span class="o">=&gt;</span> <span class="mi">10500</span><span class="p">,</span>
-            <span class="s1">'valor'</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
-            <span class="s1">'item'</span> <span class="o">=&gt;</span> <span class="mi">0</span>
-        <span class="p">),</span>
-        <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'carteira'</span> <span class="o">=&gt;</span> <span class="mi">10800</span><span class="p">,</span>
-            <span class="s1">'valor'</span> <span class="o">=&gt;</span> <span class="mi">5</span>
-        <span class="p">)</span>
-    <span class="p">),</span>
     <span class="s1">'boleto'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
         <span class="s1">'desconto'</span> <span class="o">=&gt;</span> <span class="mf">4.5</span><span class="p">,</span>
         <span class="s1">'multa'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
@@ -770,7 +747,7 @@
   <span class="p">};</span>
 
   <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">forma</span><span class="p">:</span> <span class="s1">'Pix,Boleto'</span><span class="p">,</span>
+    <span class="na">forma</span><span class="p">:</span> <span class="s1">'Boleto,Pix'</span><span class="p">,</span>
     <span class="na">cliente</span><span class="p">:</span> <span class="s1">'Lívia Pontarolo Almeida'</span><span class="p">,</span>
     <span class="na">pessoa</span><span class="p">:</span> <span class="s1">'Física'</span><span class="p">,</span>
     <span class="na">cpf</span><span class="p">:</span> <span class="s1">'463.384.662-02'</span><span class="p">,</span>
@@ -799,8 +776,7 @@
       <span class="p">}</span>
     <span class="p">],</span>
     <span class="na">referencia</span><span class="p">:</span> <span class="s1">'Fatura 12345'</span><span class="p">,</span>
-    <span class="na">notificacao</span><span class="p">:</span> <span class="s1">'http://www.minhaaplicacao.com/script-notificacao.php'</span><span class="p">,</span>
-    <span class="na">redirecionamento</span><span class="p">:</span> <span class="s1">'http://www.minhaaplicacao.com/script-redirecionamento.php'</span>
+    <span class="na">notificacao</span><span class="p">:</span> <span class="s1">'http://www.minhaaplicacao.com/script-notificacao.php'</span>
   <span class="p">};</span>
 
   <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -844,11 +820,13 @@
       </span><span class="s2">"variacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"019"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00190.00009 03188.299006 00000.001172 2 83560000004501"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pix"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"emv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"imagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"imagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUgAAAnoAAABL..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"codigo-barras"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00191920500000005000000003351860000000000117"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"linha-digitavel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00190.00009 03188.299006 00000.001172 2 83560000004501"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pix"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"emv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00020101021226620014br.gov.bcb.pix..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"imagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64,iVBORw0KGgoAAAANSU..."</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
@@ -879,34 +857,22 @@
         <td>ID da cobrança</td>
       </tr>
       <tr>
-        <td>atualizar</td>
-        <td>Não</td>
-        <td>Definido</td>
-        <td>Atualiza automaticamente a data do boleto caso esteja vencido, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Sim</code></td>
-      </tr>
-      <tr>
-        <td>vencimento</td>
-        <td>Não</td>
-        <td>Data</td>
-        <td>Atualiza a data de vencimento, disponível somente se o atributo atualizar for <code>Sim</code></td>
-      </tr>
-      <tr>
         <td>html</td>
         <td>Não</td>
         <td>Definido</td>
         <td>Traz no retorno da requisição o HTML do boleto, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
       </tr>
       <tr>
-        <td>pix</td>
-        <td>Não</td>
-        <td>Definido</td>
-        <td>Traz no retorno da requisição informações sobre o pix, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
-      </tr>
-      <tr>
         <td>carne</td>
         <td>Não</td>
         <td>Definido</td>
         <td>Muda o layout HTML do boleto do formato convencional para o formato de carnê, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
+      </tr>
+      <tr>
+        <td>pix</td>
+        <td>Não</td>
+        <td>Definido</td>
+        <td>Adiciona o QR Code do Pix no HTML do boleto, se a cobrança tiver sido gerada com as duas formas, pode ser <code>Não</code> ou <code>Sim</code>, valor padrão: <code>Não</code></td>
       </tr>
     </tbody>
   </table>
@@ -926,16 +892,20 @@
         <td>Parâmetros da configuração do boleto, pode ser usado para gerar o boleto por sistema próprio, os dados mudam dependendo do banco configurado no Wide Pay</td>
       </tr>
       <tr>
-        <td>codigo</td>
+        <td>imagem</td>
+        <td>Imagem do código de barras</td>
+      </tr>
+      <tr>
+        <td>codigo-barras</td>
         <td>Código de barras do boleto</td>
+      </tr>
+      <tr>
+        <td>linha-digitavel</td>
+        <td>Linha digitável do boleto</td>
       </tr>
       <tr>
         <td>html</td>
         <td>HTML do boleto</td>
-      </tr>
-      <tr>
-        <td>pix</td>
-        <td>Objeto Pix contendo <code>emv</code> e <code>imagem</code>, emv do pix pode ser usado para o pix cópia e cola e a imagem vem no formato base 64 um QRCode para ser renderizada</td>
       </tr>
     </tbody>
   </table>
@@ -952,13 +922,13 @@
     <div class="tab-pane fade active in" role="tabpanel" id="exemplo-3-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
-      <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/boleto'</span> <span class="se">\</span>
-      <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-      <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span> <span class="se">\</span>
-      <span class="nt">-d</span> <span class="s1">'atualizar=Sim'</span> <span class="se">\</span>
-      <span class="nt">-d</span> <span class="s1">'html=Sim'</span> <span class="se">\</span>
-      <span class="nt">-d</span> <span class="s1">'pix=Sim'</span> <span class="se">\</span>
-      <span class="nt">-d</span> <span class="s1">'carne=Não'</span></code></pre></figure>
+    <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/boleto'</span> <span class="se">\</span>
+    <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'atualizar=Sim'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'html=Sim'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'carne=Não'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'pix=Sim'</span></code></pre></figure>
 
     </div>
     <div class="tab-pane fade" role="tabpanel" id="exemplo-3-php">
@@ -973,16 +943,15 @@
     <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'8AF962B49E3920BB'</span><span class="p">,</span>
     <span class="s1">'atualizar'</span> <span class="o">=&gt;</span> <span class="s1">'Sim'</span><span class="p">,</span>
     <span class="s1">'html'</span> <span class="o">=&gt;</span> <span class="s1">'Sim'</span><span class="p">,</span>
-    <span class="s1">'pix'</span> <span class="o">=&gt;</span> <span class="s1">'Sim'</span><span class="p">,</span>
-    <span class="s1">'carne'</span> <span class="o">=&gt;</span> <span class="s1">'Não'</span>
+    <span class="s1">'carne'</span> <span class="o">=&gt;</span> <span class="s1">'Não'</span><span class="p">,</span>
+    <span class="s1">'pix'</span> <span class="o">=&gt;</span> <span class="s1">'Sim'</span>
 <span class="p">));</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="nb">print_r</span><span class="p">(</span><span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">parametros</span><span class="p">);</span> <span class="c1">// Imprime os parâmetros de configuração do boleto
 </span>
-    <span class="k">echo</span> <span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">codigo</span><span class="p">;</span> <span class="c1">// Código de barras do boleto
-</span>    <span class="k">echo</span> <span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">html</span><span class="p">;</span> <span class="c1">// HTML do boleto
+    <span class="k">echo</span> <span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">html</span><span class="p">;</span> <span class="c1">// HTML do boleto
 </span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 
@@ -1004,8 +973,8 @@
     <span class="na">id</span><span class="p">:</span> <span class="s1">'4509FBB5977E4854'</span><span class="p">,</span>
     <span class="na">atualizar</span><span class="p">:</span> <span class="s1">'Não'</span><span class="p">,</span>
     <span class="na">html</span><span class="p">:</span> <span class="s1">'Sim'</span><span class="p">,</span>
-    <span class="na">pix</span><span class="p">:</span> <span class="s1">'Sim'</span><span class="p">,</span>
-    <span class="na">carne</span><span class="p">:</span> <span class="s1">'Não'</span>
+    <span class="na">carne</span><span class="p">:</span> <span class="s1">'Não'</span><span class="p">,</span>
+    <span class="na">pix</span><span class="p">:</span> <span class="s1">'Sim'</span>
   <span class="p">};</span>
 
   <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -1015,8 +984,6 @@
     <span class="k">if</span> <span class="p">(</span><span class="nx">boleto</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
 
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">boleto</span><span class="p">.</span><span class="nx">parametros</span><span class="p">);</span> <span class="c1">// Imprime os parâmetros de configuração do boleto</span>
-
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">boleto</span><span class="p">.</span><span class="nx">codigo</span><span class="p">);</span> <span class="c1">// Código de barras do boleto</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">boleto</span><span class="p">.</span><span class="nx">html</span><span class="p">);</span> <span class="c1">// HTML do boleto</span>
 
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -1042,12 +1009,143 @@
     </span><span class="s2">"carteira"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03399.81276 22000.000004 00001.901016 1 73280000002250"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"imagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUgAAAnoAAABL..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"codigo-barras"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00191920500000005000000003351860000000000117"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"linha-digitavel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00190.00009 03351.860006 00000.001172 1 92050000000500"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;table&gt;...&lt;/table&gt;"</span><span class="w">
-  </span><span class="s2">"pix"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"emv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"imagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64..."</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<h3 id="cobranca-pix">Pix de uma cobrança</h3>
+
+<p>Lembramos que para obter os dados do Pix de uma cobrança, a forma de recebimento da mesma deve ser <code>Pix</code>.</p>
+
+<h6>URL</h6>
+
+<pre>https://api.widepay.com/v1/recebimentos/cobrancas/pix</pre>
+
+<h6>ATRIBUTOS DE ENVIO</h6>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th style="width: 190px;">Atributo</th>
+      <th style="width: 110px;">Obrigatório</th>
+      <th style="width: 100px;">Tipo</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td><strong>Sim</strong></td>
+      <td>String</td>
+      <td>ID da cobrança</td>
+    </tr>
+  </tbody>
+</table>
+
+<h6>ATRIBUTOS DE RETORNO</h6>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th style="width: 190px;">Atributo</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>emv</td>
+      <td>Código do QR Code, Pix Copia e Cola</td>
+    </tr>
+    <tr>
+      <td>imagem</td>
+      <td>Imagem do QR Code</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote><strong>Exemplo 4</strong><br>Obtendo dados do Pix de uma cobrança</blockquote>
+
+<ul class="nav nav-pills" role="tablist">
+  <li role="presentation" class="active"><a href="#exemplo-4-curl" role="tab" data-toggle="tab">cURL</a></li>
+  <li role="presentation"><a href="#exemplo-4-php" role="tab" data-toggle="tab">PHP</a></li>
+  <li role="presentation"><a href="#exemplo-4-node" role="tab" data-toggle="tab">Node.js</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane fade active in" role="tabpanel" id="exemplo-4-curl"> 
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/pix'</span> <span class="se">\</span>
+  <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
+
+  </div>
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-4-php">
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'../src/WidePay.php'</span><span class="p">);</span> <span class="c1">// Caminho para o SDK
+</span>
+<span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
+</span>
+<span class="nv">$pix</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/pix'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'8AF962B49E3920BB'</span>
+<span class="p">));</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$pix</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">echo</span> <span class="nv">$pix</span><span class="o">-&gt;</span><span class="na">emv</span><span class="p">;</span> <span class="c1">// Emv do pix
+</span>
+  <span class="k">echo</span> <span class="nv">$pix</span><span class="o">-&gt;</span><span class="na">imagem</span><span class="p">;</span> <span class="c1">// Imagem do pix
+</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+  <span class="k">echo</span> <span class="nv">$pix</span><span class="o">-&gt;</span><span class="na">erro</span><span class="p">;</span> <span class="c1">// Erro
+</span>
+<span class="p">}</span></code></pre></figure>
+
+</div>
+<div class="tab-pane fade" role="tabpanel" id="exemplo-4-node">
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
+  <span class="na">widePayToken</span><span class="p">:</span> <span class="s1">'c257c157c07f397dfdf5496258b33d86'</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">id</span><span class="p">:</span> <span class="s1">'4509FBB5977E4854'</span>
+<span class="p">};</span>
+
+<span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">widePay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">widePayId</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">widePayToken</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">pix</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">widePay</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'/recebimentos/cobrancas/pix'</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">pix</span><span class="p">.</span><span class="nx">sucesso</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pix</span><span class="p">.</span><span class="nx">emv</span><span class="p">);</span> <span class="c1">// Emv do pix</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pix</span><span class="p">.</span><span class="nx">imagem</span><span class="p">);</span> <span class="c1">// Imagem do pix</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pix</span><span class="p">.</span><span class="nx">erro</span><span class="p">);</span> <span class="c1">// Erro</span>
+
+  <span class="p">}</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pix</span><span class="p">)</span>
+<span class="p">})()</span></code></pre></figure>
+
+</div>
+</div>
+
+<p>Retorno do exemplo:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+</span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="s2">"emv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00020101021226620014br.gov.bcb.pix..."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"imagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64,iVBORw0KGgoAAAANSU..."</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="cobranca-consultando">Consultando uma cobrança</h3>
@@ -1098,16 +1196,16 @@
     </tbody>
   </table>
 
-  <blockquote><strong>Exemplo 4</strong><br>Efetuando a consulta de uma cobrança</blockquote>
+  <blockquote><strong>Exemplo 5</strong><br>Efetuando a consulta de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-4-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-4-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-4-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-5-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-5-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-5-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-4-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-5-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/consultar'</span> <span class="se">\</span>
@@ -1115,7 +1213,7 @@
     <span class="nt">-d</span> <span class="s1">'id=264C51BE984C7718'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-4-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-5-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1140,7 +1238,7 @@
 </span>
 <span class="p">}</span></code></pre></figure>
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-4-node"">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-5-node"">
 
   <figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
 
@@ -1234,7 +1332,6 @@
       </span><span class="s2">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-notificacao.php"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-redirecionamento.php"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-10"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1295,7 +1392,6 @@
       </span><span class="s2">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.50"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.15"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-10"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23 00:00:00"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-30"</span><span class="p">,</span><span class="w">
@@ -1324,7 +1420,7 @@
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-  <p>Retorno de um exemplo de cobrança recebida por cartão de crédito:</p>
+  <!-- <p>Retorno de um exemplo de cobrança recebida por cartão de crédito:</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
   </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -1364,7 +1460,6 @@
       </span><span class="s2">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.75"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.91"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-20 14:20:12"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20"</span><span class="p">,</span><span class="w">
@@ -1396,7 +1491,7 @@
       </span><span class="s2">"favorito"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+</span><span class="p">}</span></code></pre></figure> -->
 
   <h3 id="cobranca-cancelando">Cancelando uma cobrança</h3>
 
@@ -1442,16 +1537,16 @@
     </tbody>
   </table>
 
-  <blockquote><strong>Exemplo 5</strong><br>Efetuando o cancelamento de uma cobrança</blockquote>
+  <blockquote><strong>Exemplo 6</strong><br>Efetuando o cancelamento de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-5-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-5-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-5-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-6-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-6-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-6-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-5-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-6-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
@@ -1459,7 +1554,7 @@
     <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-5-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-6-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1481,7 +1576,7 @@
 </span>
 <span class="p">}</span></code></pre></figure>
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-5-node"">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-6-node"">
 
 <figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
 
@@ -1516,16 +1611,16 @@
   </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-  <blockquote><strong>Exemplo 6</strong><br>Efetuando o cancelamento de duas ou mais cobranças</blockquote>
+  <blockquote><strong>Exemplo 7</strong><br>Efetuando o cancelamento de duas ou mais cobranças</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-6-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-6-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-6-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-7-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-7-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-6-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-7-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
@@ -1534,7 +1629,7 @@
     <span class="nt">-d</span> <span class="s1">'id[1]=922FEDBE9835857A'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-6-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-7-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1557,7 +1652,7 @@
 <span class="p">}</span></code></pre></figure>
 
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-6-node">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-7-node">
 
   <figure class="highlight"><pre><code class="language-php" data-lang="php">  <span class="k">const</span> <span class="no">WidePay</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
 
@@ -1637,16 +1732,16 @@
     </tbody>
   </table>
 
-  <blockquote><strong>Exemplo 7</strong><br>Efetuando o recebimento manual de uma cobrança</blockquote>
+  <blockquote><strong>Exemplo 8</strong><br>Efetuando o recebimento manual de uma cobrança</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-7-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-7-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-7-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-8-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-8-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-7-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-8-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/manual'</span> <span class="se">\</span>
@@ -1654,7 +1749,7 @@
     <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-7-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-8-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1676,7 +1771,7 @@
 </span>
 <span class="p">}</span></code></pre></figure>
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-7-node">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-8-node">
 
 <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
 
@@ -1712,16 +1807,16 @@
   </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-  <blockquote><strong>Exemplo 8</strong><br>Efetuando o recebimento manual de duas ou mais cobranças</blockquote>
+  <blockquote><strong>Exemplo 9</strong><br>Efetuando o recebimento manual de duas ou mais cobranças</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-8-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-8-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-8-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-9-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-9-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-9-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-8-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-9-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
@@ -1730,7 +1825,7 @@
     <span class="nt">-d</span> <span class="s1">'id[1]=922FEDBE9835857A'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-8-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-9-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1752,7 +1847,7 @@
 </span>
 <span class="p">}</span></code></pre></figure>
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-8-node">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-9-node">
 
   <figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
 
@@ -1838,16 +1933,16 @@
     </tbody>
   </table>
 
-  <blockquote><strong>Exemplo 9</strong><br>Efetuando a consulta de uma notificação</blockquote>
+  <blockquote><strong>Exemplo 10</strong><br>Efetuando a consulta de uma notificação</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-9-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-9-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-9-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-10-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-10-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-10-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-9-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-10-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/notificacao'</span> <span class="se">\</span>
@@ -1855,7 +1950,7 @@
     <span class="nt">-d</span> <span class="s1">'id='</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-9-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-10-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -1881,7 +1976,7 @@
 <span class="p">}</span></code></pre></figure>
 
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-9-node">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-10-node">
 
 <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
 
@@ -1920,7 +2015,7 @@
     </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cartão"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"forma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pix"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cliente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lívia Pontarolo Almeida"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"pessoa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Física"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"463.384.662-02"</span><span class="p">,</span><span class="w">
@@ -1949,7 +2044,6 @@
     </span><span class="s2">"recebido"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"notificacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.minhaaplicacao.com/script-notificacao.php"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"redirecionamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"vencimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"recebimento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"compensacao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -2024,6 +2118,12 @@
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td>forma</td>
+        <td><strong>Sim</strong></td>
+        <td>Definido</td>
+        <td>Forma de recebimento: <code>Boleto</code> e/ou <code>Pix</code></td>
+      </tr>
       <tr>
         <td>cliente</td>
         <td><strong>Sim</strong></td>
@@ -2181,30 +2281,6 @@
         <td>Memsagem enviada ao cliente no e-mail de cobrança, tamanho máximo: 255 caracteres</td>
       </tr>
       <tr>
-        <td>marketplace</td>
-        <td>Não</td>
-        <td>Array</td>
-        <td>Regras da divisão por marketplace, máximo de itens: 5. Se não definido, utilizará o valor definido no Wide Pay</td>
-      </tr>
-      <tr>
-        <td>marketplace[][carteira]</td>
-        <td>Não</td>
-        <td>Numérico</td>
-        <td>ID da carteira para transferência</td>
-      </tr>
-      <tr>
-        <td>marketplace[][valor]</td>
-        <td>Não</td>
-        <td>Decimal</td>
-        <td>Porcentagem da transferência, casas decimais: 2, valor máximo: 100.00</td>
-      </tr>
-      <tr>
-        <td>marketplace[][item]</td>
-        <td>Não</td>
-        <td>Numérico</td>
-        <td>Utilizado para que a regra de divisão seja calculada em cima de um item da cobrança</td>
-      </tr>
-      <tr>
         <td>boleto</td>
         <td>Não</td>
         <td>Objeto</td>
@@ -2262,16 +2338,16 @@
     </tbody>
   </table>
 
-  <blockquote><strong>Exemplo 10</strong><br>Criando um carnê simples com o envio mínimo de atributos</blockquote>
+  <blockquote><strong>Exemplo 11</strong><br>Criando um carnê simples com o envio mínimo de atributos</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-10-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-10-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-10-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-11-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-11-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-11-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-10-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-11-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/adicionar'</span> <span class="se">\</span>
@@ -2286,7 +2362,7 @@
     <span class="nt">-d</span> <span class="s1">'dividir=Não'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-10-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-11-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -2326,7 +2402,7 @@
 
 <span class="p">}</span></code></pre></figure>
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-10-node">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-11-node">
 
   <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"moment"</span><span class="p">);</span>
     <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
@@ -2377,16 +2453,16 @@
   </div>
   </div>
 
-  <blockquote><strong>Exemplo 11</strong><br>Criando um carnê completo com o envio de todos os atributos disponíveis</blockquote>
+  <blockquote><strong>Exemplo 12</strong><br>Criando um carnê completo com o envio de todos os atributos disponíveis</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-11-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-11-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-11-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-12-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-12-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-12-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-11-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-12-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/adicionar'</span> <span class="se">\</span>
@@ -2416,11 +2492,6 @@
     <span class="nt">-d</span> <span class="s1">'dividir=Não'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'enviar=E-mail'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'mensagem=Mensagem personalizada no e-mail'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'marketplace[0][carteira]=10500'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'marketplace[0][valor]=10'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'marketplace[0][item]=0'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'marketplace[1][carteira]=10800'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'marketplace[1][valor]=5'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'boleto[desconto]=4.5'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'boleto[multa]=2'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'boleto[juros]=1'</span> <span class="se">\</span>
@@ -2428,7 +2499,7 @@
     <span class="nt">-d</span> <span class="s1">'boleto[instrucoes][1]=Instrução personalizada ao cliente, linha 2'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-11-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-12-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -2470,17 +2541,6 @@
     <span class="s1">'dividir'</span> <span class="o">=&gt;</span> <span class="s1">'Não'</span><span class="p">,</span>
     <span class="s1">'enviar'</span> <span class="o">=&gt;</span> <span class="s1">'E-mail'</span><span class="p">,</span>
     <span class="s1">'mensagem'</span> <span class="o">=&gt;</span> <span class="s1">'Mensagem personalizada no e-mail'</span><span class="p">,</span>
-    <span class="s1">'marketplace'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'carteira'</span> <span class="o">=&gt;</span> <span class="mi">10500</span><span class="p">,</span>
-            <span class="s1">'valor'</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
-            <span class="s1">'item'</span> <span class="o">=&gt;</span> <span class="mi">0</span>
-        <span class="p">),</span>
-        <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'carteira'</span> <span class="o">=&gt;</span> <span class="mi">10800</span><span class="p">,</span>
-            <span class="s1">'valor'</span> <span class="o">=&gt;</span> <span class="mi">5</span>
-        <span class="p">)</span>
-    <span class="p">),</span>
     <span class="s1">'boleto'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
         <span class="s1">'desconto'</span> <span class="o">=&gt;</span> <span class="mf">4.5</span><span class="p">,</span>
         <span class="s1">'multa'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
@@ -2510,7 +2570,7 @@
 <span class="p">}</span></code></pre></figure>
 
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-11-node">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-12-node">
 
   <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"moment"</span><span class="p">);</span>
     <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
@@ -2554,16 +2614,6 @@
       <span class="na">dividir</span><span class="p">:</span> <span class="s1">'Não'</span><span class="p">,</span>
       <span class="na">enviar</span><span class="p">:</span> <span class="s1">'E-mail'</span><span class="p">,</span>
       <span class="na">mensagem</span><span class="p">:</span> <span class="s1">'Mensagem personalizada no e-mail'</span><span class="p">,</span>
-      <span class="na">marketplace</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-          <span class="na">carteira</span><span class="p">:</span> <span class="mi">10500</span><span class="p">,</span>
-          <span class="na">valor</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-          <span class="na">item</span><span class="p">:</span> <span class="mi">0</span>
-        <span class="p">},</span> <span class="p">{</span>
-          <span class="na">carteira</span><span class="p">:</span> <span class="mi">10800</span><span class="p">,</span>
-          <span class="na">valor</span><span class="p">:</span> <span class="mi">5</span>
-        <span class="p">}</span>
-      <span class="p">],</span>
       <span class="na">boleto</span><span class="p">:</span> <span class="p">{</span>
         <span class="na">desconto</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span>
         <span class="na">multa</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -2667,16 +2717,16 @@
     </tbody>
   </table>
 
-  <blockquote><strong>Exemplo 12</strong><br>Efetuando a montagem de um carnê</blockquote>
+  <blockquote><strong>Exemplo 13</strong><br>Efetuando a montagem de um carnê</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-12-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-12-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-12-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-13-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-13-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-13-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-12-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-13-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/montar'</span> <span class="se">\</span>
@@ -2686,7 +2736,7 @@
     <span class="nt">-d</span> <span class="s1">'cobrancas[2]=6AB79C5F626436A8'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-12-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-13-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -2713,7 +2763,7 @@
 
 <span class="p">}</span></code></pre></figure>
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-12-node">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-13-node">
 
   <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"moment"</span><span class="p">);</span>
     <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
@@ -2808,16 +2858,16 @@
     </tbody>
   </table>
 
-  <blockquote><strong>Exemplo 13</strong><br>Efetuando a consulta de um carnê</blockquote>
+  <blockquote><strong>Exemplo 14</strong><br>Efetuando a consulta de um carnê</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-13-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-13-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-13-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-14-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-14-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-14-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-13-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-14-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/consultar'</span> <span class="se">\</span>
@@ -2825,7 +2875,7 @@
     <span class="nt">-d</span> <span class="s1">'id=16758'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-13-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-14-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -2850,7 +2900,7 @@
 </span>
 <span class="p">}</span></code></pre></figure>
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-13-node">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-14-node">
 
   <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"moment"</span><span class="p">);</span>
     <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
@@ -3009,16 +3059,16 @@
     </tbody>
   </table>
 
-  <blockquote><strong>Exemplo 14</strong><br>Efetuando o cancelamento de um carnê</blockquote>
+  <blockquote><strong>Exemplo 15</strong><br>Efetuando o cancelamento de um carnê</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-14-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-14-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-14-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-15-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-15-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-15-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-14-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-15-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/cancelar'</span> <span class="se">\</span>
@@ -3026,7 +3076,7 @@
     <span class="nt">-d</span> <span class="s1">'id=16700'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-14-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-15-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -3049,7 +3099,7 @@
 <span class="p">}</span></code></pre></figure>
 
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-14-node">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-15-node">
 
   <figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
 
@@ -3085,16 +3135,16 @@
   </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-  <blockquote><strong>Exemplo 15</strong><br>Efetuando o cancelamento de dois ou mais carnês</blockquote>
+  <blockquote><strong>Exemplo 16</strong><br>Efetuando o cancelamento de dois ou mais carnês</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-15-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-15-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-15-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-16-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-16-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-16-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-15-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-16-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/cancelar'</span> <span class="se">\</span>
@@ -3103,7 +3153,7 @@
     <span class="nt">-d</span> <span class="s1">'id[1]=16701'</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-15-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-16-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -3125,7 +3175,7 @@
 </span>
 <span class="p">}</span></code></pre></figure>
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-15-node">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-16-node">
 
   <figure class="highlight"><pre><code class="language-php" data-lang="php">    <span class="k">const</span> <span class="no">WidePay</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
 
@@ -3211,16 +3261,16 @@
     </tbody>
   </table>
 
-  <blockquote><strong>Exemplo 16</strong><br>Efetuando a consulta de uma notificação</blockquote>
+  <blockquote><strong>Exemplo 17</strong><br>Efetuando a consulta de uma notificação</blockquote>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#exemplo-16-curl" role="tab" data-toggle="tab">cURL</a></li>
-    <li role="presentation"><a href="#exemplo-16-php" role="tab" data-toggle="tab">PHP</a></li>
-    <li role="presentation"><a href="#exemplo-16-node" role="tab" data-toggle="tab">Node.js</a></li>
+    <li role="presentation" class="active"><a href="#exemplo-17-curl" role="tab" data-toggle="tab">cURL</a></li>
+    <li role="presentation"><a href="#exemplo-17-php" role="tab" data-toggle="tab">PHP</a></li>
+    <li role="presentation"><a href="#exemplo-17-node" role="tab" data-toggle="tab">Node.js</a></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-16-curl"> 
+    <div class="tab-pane fade active in" role="tabpanel" id="exemplo-17-curl"> 
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/notificacao'</span> <span class="se">\</span>
@@ -3228,7 +3278,7 @@
     <span class="nt">-d</span> <span class="s1">'id='</span></code></pre></figure>
 
     </div>
-    <div class="tab-pane fade" role="tabpanel" id="exemplo-16-php"">
+    <div class="tab-pane fade" role="tabpanel" id="exemplo-17-php"">
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
@@ -3253,7 +3303,7 @@
 </span>
 <span class="p">}</span></code></pre></figure>
   </div>
-  <div class="tab-pane fade" role="tabpanel" id="exemplo-16-node"">
+  <div class="tab-pane fade" role="tabpanel" id="exemplo-17-node"">
 
   <figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
 
