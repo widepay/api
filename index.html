@@ -199,7 +199,7 @@
 
   <h2 id="cobrancas">Cobranças</h2>
 
-  <!-- <p>Em cobranças, você pode realizar recebimentos via boleto ou cartão de crédito.</p> -->
+  <!-- <p>Em cobranças, você pode realizar recebimentos via boleto de cartão de crédito.</p> -->
   <p>Em cobranças, você pode realizar recebimentos via boleto de Pix.</p>
 
   <p>Confira na tabela abaixo a lista de todos os status de uma cobrança e sua respectiva descrição.</p>
@@ -225,12 +225,11 @@
         <td>Boleto e Pix</td>
         <td>Cobrança cancelada pelo solicitante</td>
       </tr>
-      <tr>
+      <!-- <tr>
         <td><span class="label label-danger">Contestado</span></td>
-        <!-- <td>Boleto, Cartão e Pix</td> -->
         <td>Boleto e Pix</td>
         <td>Quando o pagador faz uma contestação do pagamento ao Wide Pay</td>
-      </tr>
+      </tr>-->
       <tr>
         <td><span class="label label-info">Em análise</span></td>
         <!-- <td>Boleto e Cartão</td> -->
@@ -821,8 +820,8 @@
       </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"imagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUgAAAnoAAABL..."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"codigo-barras"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00191920500000005000000003351860000000000117"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"linha-digitavel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00190.00009 03188.299006 00000.001172 2 83560000004501"</span><span class="w">
+		</span><span class="s2">"codigo-barras"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00191920500000005000000003351860000000000117"</span><span class="p">,</span><span class="w">
+		</span><span class="s2">"linha-digitavel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00190.00009 03351.860006 00000.001172 1 92050000000500"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"pix"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"emv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00020101021226620014br.gov.bcb.pix..."</span><span class="p">,</span><span class="w">
@@ -949,7 +948,7 @@
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="k">print_r</span><span class="p">(</span><span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">parametros</span><span class="p">);</span> <span class="c1">// Imprime os parâmetros de configuração do boleto
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">parametros</span><span class="p">);</span> <span class="c1">// Imprime os parâmetros de configuração do boleto
 </span>    <span class="k">echo</span> <span class="nv">$boleto</span><span class="o">-&gt;</span><span class="na">html</span><span class="p">;</span> <span class="c1">// HTML do boleto
 </span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -1107,7 +1106,7 @@
 </div>
 <div class="tab-pane fade" role="tabpanel" id="exemplo-4-node">
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">WidePay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"wide-pay-node"</span><span class="p">);</span>
 
 <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">widePayId</span><span class="p">:</span> <span class="s1">'406218'</span><span class="p">,</span>
