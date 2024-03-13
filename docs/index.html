@@ -735,9 +735,9 @@ if ($adicionar->sucesso) {
 {% highlight json %}
 {
   "sucesso": true,
-  "id": "70FB7FB597743802",
-  "link": "https://www.widepay.com/cobranca/406218-70FB7FB597743802",
-  "pdf": "https://www.widepay.com/cobranca/406218-70FB7FB597743802.pdf",
+  "id": "87312",
+  "link": "https://www.widepay.com/cobranca/406218-87312-5c2b11f1",
+  "pdf": "https://www.widepay.com/cobranca/406218-87312-5c2b11f1.pdf",
   "boleto": {
     "parametros": {
       "banco": "001",
@@ -854,7 +854,7 @@ if ($adicionar->sucesso) {
 curl \
     -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/boleto' \
     -u '148446:800440511285a9b0808ea85a94f3dd62' \
-    -d 'id=8AF962B49E3920BB' \
+    -d 'id=58219' \
     -d 'atualizar=Sim' \
     -d 'html=Sim' \
     -d 'carne=Não' \
@@ -872,7 +872,7 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
 $boleto = $wp->api('recebimentos/cobrancas/boleto', array(
-    'id' => '8AF962B49E3920BB',
+    'id' => '58219',
     'atualizar' => 'Sim',
     'html' => 'Sim',
     'carne' => 'Não',
@@ -1016,7 +1016,7 @@ if ($boleto->sucesso) {
 curl \
   -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/pix' \
   -u '148446:800440511285a9b0808ea85a94f3dd62' \
-  -d 'id=8AF962B49E3920BB'
+  -d 'id=58219'
 {% endhighlight %}
 
   </div>
@@ -1030,7 +1030,7 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
 $pix = $wp->api('recebimentos/cobrancas/pix', array(
-  'id' => '8AF962B49E3920BB'
+  'id' => '58219'
 ));
 
 if ($pix->sucesso) {
@@ -1154,7 +1154,7 @@ const options = {
 curl \
     -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/consultar' \
     -u '148446:800440511285a9b0808ea85a94f3dd62' \
-    -d 'id=264C51BE984C7718'
+    -d 'id=988236'
 {% endhighlight %}
 
     </div>
@@ -1168,7 +1168,7 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
 $consultar = $wp->api('recebimentos/cobrancas/consultar', array(
-    'id' => '264C51BE984C7718'
+    'id' => '988236'
 ));
 
 if ($consultar->sucesso) {
@@ -1242,7 +1242,7 @@ if ($consultar->sucesso) {
   "total": "1",
   "cobrancas": [
     {
-      "id": "264C51BE984C7718",
+      "id": "988236",
       "cobranca": null,
       "carne": null,
       "assinatura": null,
@@ -1310,7 +1310,7 @@ if ($consultar->sucesso) {
   "total": "1",
   "cobrancas": [
     {
-      "id": "264C51BE984C7718",
+      "id": "988236",
       "cobranca": null,
       "carne": null,
       "assinatura": null,
@@ -1380,7 +1380,7 @@ if ($consultar->sucesso) {
   "total": "1",
   "cobrancas": [
     {
-      "id": "264C51BE984C7718",
+      "id": "988236",
       "cobranca": null,
       "carne": null,
       "assinatura": null,
@@ -1506,7 +1506,7 @@ if ($consultar->sucesso) {
 curl \
     -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar' \
     -u '148446:800440511285a9b0808ea85a94f3dd62' \
-    -d 'id=8AF962B49E3920BB'
+    -d 'id=58219'
 {% endhighlight %}
 
     </div>
@@ -1520,7 +1520,7 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
 $cancelar = $wp->api('recebimentos/cobrancas/cancelar', array(
-    'id' => '8AF962B49E3920BB'
+    'id' => '58219'
 ));
 
 if ($cancelar->sucesso) {
@@ -1588,8 +1588,8 @@ if ($cancelar->sucesso) {
 curl \
     -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar' \
     -u '148446:800440511285a9b0808ea85a94f3dd62' \
-    -d 'id[0]=8AF962B49E3920BB' \
-    -d 'id[1]=922FEDBE9835857A'
+    -d 'id[0]=58219' \
+    -d 'id[1]=68231'
 {% endhighlight %}
 
     </div>
@@ -1603,7 +1603,7 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
 $cancelar = $wp->api('recebimentos/cobrancas/cancelar', array(
-    'id' => array('8AF962B49E3920BB', '922FEDBE9835857A')
+    'id' => array('58219', '68231')
 ));
 
 if ($cancelar->sucesso) {
@@ -1629,7 +1629,7 @@ if ($cancelar->sucesso) {
   };
 
   const options = {
-   id: ['4509FBB5977E4854', '922FEDBE9835857A'],
+   id: ['4509FBB5977E4854', '68231'],
   };
 
   (async () => {
@@ -1716,7 +1716,7 @@ if ($cancelar->sucesso) {
 curl \
     -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/manual' \
     -u '148446:800440511285a9b0808ea85a94f3dd62' \
-    -d 'id=8AF962B49E3920BB'
+    -d 'id=58219'
 {% endhighlight %}
 
     </div>
@@ -1730,7 +1730,7 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
 $manual = $wp->api('recebimentos/cobrancas/manual', array(
-    'id' => '8AF962B49E3920BB'
+    'id' => '58219'
 ));
 
 if ($manual->sucesso) {
@@ -1799,8 +1799,8 @@ if ($manual->sucesso) {
 curl \
     -X POST 'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar' \
     -u '148446:800440511285a9b0808ea85a94f3dd62' \
-    -d 'id[0]=8AF962B49E3920BB' \
-    -d 'id[1]=922FEDBE9835857A'
+    -d 'id[0]=58219' \
+    -d 'id[1]=68231'
 {% endhighlight %}
 
     </div>
@@ -1814,7 +1814,7 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
 $manual = $wp->api('recebimentos/cobrancas/manual', array(
-    'id' => array('8AF962B49E3920BB', '922FEDBE9835857A')
+    'id' => array('58219', '68231')
 ));
 
 if ($manual->sucesso) {
@@ -2002,7 +2002,7 @@ if ($notificacao->sucesso) {
 {
   "sucesso": true,
   "cobranca": {
-    "id": "9F15771E9FA3AFEF",
+    "id": "81932",
     "cobranca": null,
     "carne": null,
     "assinatura": null,
@@ -2654,8 +2654,8 @@ if ($adicionar->sucesso) {
 {
   "sucesso": true,
   "id": "16758",
-  "link": "https://www.widepay.com/carne/148446-16758",
-  "cobrancas": ["387A98B52D924091","15CBD6BFCD924091","3A769A152392EA9B","4A22ACB5CD924A91","2E7966BF23924A91","94C8C9B52D92E091"]
+  "link": "https://www.widepay.com/carne/148446-16758-28c1f1a5",
+  "cobrancas": ["371201","371202","371203","371204","371205","371206"]
 }
 {% endhighlight %}
 
@@ -2736,9 +2736,9 @@ if ($adicionar->sucesso) {
 curl \
     -X POST 'https://api.widepay.com/v1/recebimentos/carnes/montar' \
     -u '148446:800440511285a9b0808ea85a94f3dd62' \
-    -d 'cobrancas[0]=5F151D278C9DDC80' \
-    -d 'cobrancas[1]=7CF34C1FF5E842B0' \
-    -d 'cobrancas[2]=6AB79C5F626436A8'
+    -d 'cobrancas[0]=2719' \
+    -d 'cobrancas[1]=2149' \
+    -d 'cobrancas[2]=31292'
 {% endhighlight %}
 
     </div>
@@ -2752,7 +2752,7 @@ require_once('../src/WidePay.php'); // Caminho para o SDK
 $wp = new WidePay('148446', '800440511285a9b0808ea85a94f3dd62'); // ID e token da carteira
 
 $montar = $wp->api('recebimentos/carnes/montar', array(
-    'cobrancas' => array('5F151D278C9DDC80', '7CF34C1FF5E842B0', '6AB79C5F626436A8')
+    'cobrancas' => array('2719', '2149', '31292')
 ));
 
 if ($montar->sucesso) {
@@ -2783,7 +2783,7 @@ if ($montar->sucesso) {
     };
 
     const options = {
-      cobrancas: ['5F151D278C9DDC80', '7CF34C1FF5E842B0', '6AB79C5F626436A8']
+      cobrancas: ['2719', '2149', '31292']
     };
 
     (async () => {
@@ -2817,7 +2817,7 @@ if ($montar->sucesso) {
 {
   "sucesso": true,
   "id": "16768",
-  "link": "https://www.widepay.com/carne/148446-16768"
+  "link": "https://www.widepay.com/carne/148446-16768-4a28c1d1"
 }
 {% endhighlight %}
 
