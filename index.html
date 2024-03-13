@@ -806,9 +806,9 @@
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
   </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70FB7FB597743802"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/cobranca/406218-70FB7FB597743802"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/cobranca/406218-70FB7FB597743802.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87312"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/cobranca/406218-87312-5c2b11f1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/cobranca/406218-87312-5c2b11f1.pdf"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"boleto"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"parametros"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
@@ -923,7 +923,7 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/boleto'</span> <span class="se">\</span>
     <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id=58219'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'atualizar=Sim'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'html=Sim'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'carne=Não'</span> <span class="se">\</span>
@@ -939,7 +939,7 @@
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
 <span class="nv">$boleto</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/boleto'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'8AF962B49E3920BB'</span><span class="p">,</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'58219'</span><span class="p">,</span>
     <span class="s1">'atualizar'</span> <span class="o">=&gt;</span> <span class="s1">'Sim'</span><span class="p">,</span>
     <span class="s1">'html'</span> <span class="o">=&gt;</span> <span class="s1">'Sim'</span><span class="p">,</span>
     <span class="s1">'carne'</span> <span class="o">=&gt;</span> <span class="s1">'Não'</span><span class="p">,</span>
@@ -1077,7 +1077,7 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/pix'</span> <span class="se">\</span>
   <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-  <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
+  <span class="nt">-d</span> <span class="s1">'id=58219'</span></code></pre></figure>
 
   </div>
   <div class="tab-pane fade" role="tabpanel" id="exemplo-4-php">
@@ -1089,7 +1089,7 @@
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
 <span class="nv">$pix</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/pix'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'8AF962B49E3920BB'</span>
+  <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'58219'</span>
 <span class="p">));</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$pix</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
@@ -1207,7 +1207,7 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/consultar'</span> <span class="se">\</span>
     <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'id=264C51BE984C7718'</span></code></pre></figure>
+    <span class="nt">-d</span> <span class="s1">'id=988236'</span></code></pre></figure>
 
     </div>
     <div class="tab-pane fade" role="tabpanel" id="exemplo-5-php"">
@@ -1219,7 +1219,7 @@
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
 <span class="nv">$consultar</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/consultar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'264C51BE984C7718'</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'988236'</span>
 <span class="p">));</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$consultar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
@@ -1290,7 +1290,7 @@
   </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"264C51BE984C7718"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"988236"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1356,7 +1356,7 @@
   </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"264C51BE984C7718"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"988236"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1424,7 +1424,7 @@
   </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"264C51BE984C7718"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"988236"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1548,7 +1548,7 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
     <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
+    <span class="nt">-d</span> <span class="s1">'id=58219'</span></code></pre></figure>
 
     </div>
     <div class="tab-pane fade" role="tabpanel" id="exemplo-6-php"">
@@ -1560,7 +1560,7 @@
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
 <span class="nv">$cancelar</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/cancelar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'8AF962B49E3920BB'</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'58219'</span>
 <span class="p">));</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
@@ -1622,8 +1622,8 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
     <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'id[0]=8AF962B49E3920BB'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'id[1]=922FEDBE9835857A'</span></code></pre></figure>
+    <span class="nt">-d</span> <span class="s1">'id[0]=58219'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id[1]=68231'</span></code></pre></figure>
 
     </div>
     <div class="tab-pane fade" role="tabpanel" id="exemplo-7-php"">
@@ -1635,7 +1635,7 @@
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
 <span class="nv">$cancelar</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/cancelar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'8AF962B49E3920BB'</span><span class="p">,</span> <span class="s1">'922FEDBE9835857A'</span><span class="p">)</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'58219'</span><span class="p">,</span> <span class="s1">'68231'</span><span class="p">)</span>
 <span class="p">));</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$cancelar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
@@ -1659,7 +1659,7 @@
   <span class="p">};</span>
 
   <span class="k">const</span> <span class="no">options</span> <span class="o">=</span> <span class="p">{</span>
-   <span class="nx">id</span><span class="o">:</span> <span class="p">[</span><span class="s1">'4509FBB5977E4854'</span><span class="p">,</span> <span class="s1">'922FEDBE9835857A'</span><span class="p">],</span>
+   <span class="nx">id</span><span class="o">:</span> <span class="p">[</span><span class="s1">'4509FBB5977E4854'</span><span class="p">,</span> <span class="s1">'68231'</span><span class="p">],</span>
   <span class="p">};</span>
 
   <span class="p">(</span><span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -1743,7 +1743,7 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/manual'</span> <span class="se">\</span>
     <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'id=8AF962B49E3920BB'</span></code></pre></figure>
+    <span class="nt">-d</span> <span class="s1">'id=58219'</span></code></pre></figure>
 
     </div>
     <div class="tab-pane fade" role="tabpanel" id="exemplo-8-php"">
@@ -1755,7 +1755,7 @@
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
 <span class="nv">$manual</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/manual'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'8AF962B49E3920BB'</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'58219'</span>
 <span class="p">));</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$manual</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
@@ -1818,8 +1818,8 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/cobrancas/cancelar'</span> <span class="se">\</span>
     <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'id[0]=8AF962B49E3920BB'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'id[1]=922FEDBE9835857A'</span></code></pre></figure>
+    <span class="nt">-d</span> <span class="s1">'id[0]=58219'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'id[1]=68231'</span></code></pre></figure>
 
     </div>
     <div class="tab-pane fade" role="tabpanel" id="exemplo-9-php"">
@@ -1831,7 +1831,7 @@
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
 <span class="nv">$manual</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/cobrancas/manual'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'8AF962B49E3920BB'</span><span class="p">,</span> <span class="s1">'922FEDBE9835857A'</span><span class="p">)</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'58219'</span><span class="p">,</span> <span class="s1">'68231'</span><span class="p">)</span>
 <span class="p">));</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$manual</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
@@ -2008,7 +2008,7 @@
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
   </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9F15771E9FA3AFEF"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"81932"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cobranca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"carne"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"assinatura"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -2648,8 +2648,8 @@
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
   </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16758"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/carne/148446-16758"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"387A98B52D924091"</span><span class="p">,</span><span class="s2">"15CBD6BFCD924091"</span><span class="p">,</span><span class="s2">"3A769A152392EA9B"</span><span class="p">,</span><span class="s2">"4A22ACB5CD924A91"</span><span class="p">,</span><span class="s2">"2E7966BF23924A91"</span><span class="p">,</span><span class="s2">"94C8C9B52D92E091"</span><span class="p">]</span><span class="w">
+  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/carne/148446-16758-28c1f1a5"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cobrancas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"371201"</span><span class="p">,</span><span class="s2">"371202"</span><span class="p">,</span><span class="s2">"371203"</span><span class="p">,</span><span class="s2">"371204"</span><span class="p">,</span><span class="s2">"371205"</span><span class="p">,</span><span class="s2">"371206"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="carne-montando">Montando um carnê</h3>
@@ -2728,9 +2728,9 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="s1">'https://api.widepay.com/v1/recebimentos/carnes/montar'</span> <span class="se">\</span>
     <span class="nt">-u</span> <span class="s1">'148446:800440511285a9b0808ea85a94f3dd62'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'cobrancas[0]=5F151D278C9DDC80'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'cobrancas[1]=7CF34C1FF5E842B0'</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'cobrancas[2]=6AB79C5F626436A8'</span></code></pre></figure>
+    <span class="nt">-d</span> <span class="s1">'cobrancas[0]=2719'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cobrancas[1]=2149'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'cobrancas[2]=31292'</span></code></pre></figure>
 
     </div>
     <div class="tab-pane fade" role="tabpanel" id="exemplo-13-php"">
@@ -2742,7 +2742,7 @@
 <span class="nv">$wp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WidePay</span><span class="p">(</span><span class="s1">'148446'</span><span class="p">,</span> <span class="s1">'800440511285a9b0808ea85a94f3dd62'</span><span class="p">);</span> <span class="c1">// ID e token da carteira
 </span>
 <span class="nv">$montar</span> <span class="o">=</span> <span class="nv">$wp</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'recebimentos/carnes/montar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'cobrancas'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'5F151D278C9DDC80'</span><span class="p">,</span> <span class="s1">'7CF34C1FF5E842B0'</span><span class="p">,</span> <span class="s1">'6AB79C5F626436A8'</span><span class="p">)</span>
+    <span class="s1">'cobrancas'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'2719'</span><span class="p">,</span> <span class="s1">'2149'</span><span class="p">,</span> <span class="s1">'31292'</span><span class="p">)</span>
 <span class="p">));</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$montar</span><span class="o">-&gt;</span><span class="na">sucesso</span><span class="p">)</span> <span class="p">{</span>
@@ -2771,7 +2771,7 @@
     <span class="p">};</span>
 
     <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="na">cobrancas</span><span class="p">:</span> <span class="p">[</span><span class="s1">'5F151D278C9DDC80'</span><span class="p">,</span> <span class="s1">'7CF34C1FF5E842B0'</span><span class="p">,</span> <span class="s1">'6AB79C5F626436A8'</span><span class="p">]</span>
+      <span class="na">cobrancas</span><span class="p">:</span> <span class="p">[</span><span class="s1">'2719'</span><span class="p">,</span> <span class="s1">'2149'</span><span class="p">,</span> <span class="s1">'31292'</span><span class="p">]</span>
     <span class="p">};</span>
 
     <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -2804,7 +2804,7 @@
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
   </span><span class="s2">"sucesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16768"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/carne/148446-16768"</span><span class="w">
+  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.widepay.com/carne/148446-16768-4a28c1d1"</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
   <h3 id="carne-consultando">Consultando um carnê</h3>
